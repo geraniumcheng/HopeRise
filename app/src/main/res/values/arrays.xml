@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="applicationReason">
+        <item>IC Front Picture is not clear</item>
+        <item>Selfie Photo is not clear</item>
+        <item>Selfie Photo unable to look at the IC</item>
+        <item>Document submitted is wrong</item>
+        <item>IC is invalid</item>
+        <item>Photo is invalid</item>
+    </array>
+
+    <array name="filter">
+        <item>Pending</item>
+        <item>Verified</item>
+        <item>Rejected</item>
+        <item>All</item>
+    </array>
+
+    <array name="eventCategory">
+        <item>Interaction</item>
+        <item>Cleaning</item>
+        <item>Playing</item>
+        <item>Exercise</item>
+        <item>Others</item>
+    </array>
+
+    <array name="eventStatus">
+        <item>Current</item>
+        <item>Past</item>
+    </array>
+</resources>

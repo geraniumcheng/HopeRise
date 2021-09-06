@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.11488250652741515" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_account.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_add_event.xml" value="0.33" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_add_orphanage.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_attendance.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_date_dialog.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_edit_orphanage.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event.xml" value="0.22" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event_details.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_manager_manage_application_request.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_manager_volunteer_application_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_maps.xml" value="0.178125" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_orphanage_details.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_orphanage_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_participation.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_reject_reason.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_staff_main_page.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_time_dialog.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_application_status.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_details.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_submit_application.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_event_listing.xml" value="0.33" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_orphanage_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_volunteer_application_list.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_volunteer_list.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/menu/menu_add.xml" value="0.3546875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

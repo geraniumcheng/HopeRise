@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_staff"
+    app:startDestination="@id/staffMainPageFragment">
+    <fragment
+        android:id="@+id/eventListingFragment"
+        android:name="my.com.hoperise.ui.EventListingFragment"
+        android:label="Event Listing"
+        tools:layout="@layout/fragment_event_listing" />
+    <fragment
+        android:id="@+id/managerVolunteerApplicationListingFragment"
+        android:name="my.com.hoperise.ui.ManagerVolunteerApplicationListingFragment"
+        android:label="Volunteer Application Listing"
+        tools:layout="@layout/fragment_manager_volunteer_application_listing" />
+    <fragment
+        android:id="@+id/orphanageListingFragment"
+        android:name="my.com.hoperise.ui.OrphanageListingFragment"
+        android:label="Orphanage Listing"
+        tools:layout="@layout/fragment_orphanage_listing" />
+    <fragment
+        android:id="@+id/volunteerListingFragment"
+        android:name="my.com.hoperise.ui.VolunteerListingFragment"
+        android:label="Volunteer Listing"
+        tools:layout="@layout/fragment_volunteer_listing" />
+    <fragment
+        android:id="@+id/staffMainPageFragment"
+        android:name="my.com.hoperise.ui.StaffMainPageFragment"
+        android:label="Staff Page"
+        tools:layout="@layout/fragment_staff_main_page" />
+    <fragment
+        android:id="@+id/addOrphanageFragment"
+        android:name="my.com.hoperise.ui.AddOrphanageFragment"
+        android:label="Add Orphanage"
+        tools:layout="@layout/fragment_add_orphanage" />
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="my.com.hoperise.ui.AddEventFragment"
+        android:label="Add Event"
+        tools:layout="@layout/fragment_add_event" />
+    <fragment
+        android:id="@+id/dateDialogFragment"
+        android:name="my.com.hoperise.ui.DateDialogFragment"
+        android:label="fragment_date_dialog"
+        tools:layout="@layout/fragment_date_dialog" />
+    <fragment
+        android:id="@+id/timeDialogFragment"
+        android:name="my.com.hoperise.ui.TimeDialogFragment"
+        android:label="fragment_time_dialog"
+        tools:layout="@layout/fragment_time_dialog" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="my.com.hoperise.ui.MapsFragment"
+        android:label="Select Location" />
+    <fragment
+        android:id="@+id/orphanageDetailsFragment"
+        android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
+        android:label="fragment_orphanage_details"
+        tools:layout="@layout/fragment_orphanage_details" />
+    <fragment
+        android:id="@+id/editOrphanageFragment"
+        android:name="my.com.hoperise.ui.EditOrphanageFragment"
+        android:label="fragment_edit_orphanage"
+        tools:layout="@layout/fragment_edit_orphanage" />
+</navigation>
