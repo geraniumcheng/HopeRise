@@ -15,6 +15,7 @@ import my.com.hoperise.data.MapViewModel
 import my.com.hoperise.data.Orphanage
 import my.com.hoperise.data.OrphanageViewModel
 import my.com.hoperise.databinding.FragmentAddOrphanageBinding
+import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
 
 class AddOrphanageFragment : Fragment() {
