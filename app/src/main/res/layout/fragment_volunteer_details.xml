@@ -7,7 +7,7 @@
     tools:context=".ui.VolunteerDetailsFragment">
 
     <ImageView
-        android:id="@+id/orpPhoto"
+        android:id="@+id/volAppImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
@@ -31,10 +31,10 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/volAppImage" />
 
     <TextView
-        android:id="@+id/orpID"
+        android:id="@+id/orpIDListing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -43,10 +43,10 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/volAppImage" />
 
     <TextView
-        android:id="@+id/lblName"
+        android:id="@+id/lblEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblID" />
 
     <TextView
-        android:id="@+id/edtName"
+        android:id="@+id/lblSubDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -65,7 +65,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpID"
+        app:layout_constraintTop_toBottomOf="@+id/orpIDListing"
         tools:text="CHEW HONG YU" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -76,7 +76,7 @@
         app:layout_constraintGuide_begin="105dp" />
 
     <TextView
-        android:id="@+id/lblLocation"
+        android:id="@+id/orpLocationDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -84,7 +84,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtName"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubDate"
         tools:text="0189769192" />
 
     <TextView
@@ -96,7 +96,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblName" />
+        app:layout_constraintTop_toBottomOf="@+id/lblEventName" />
 
     <TextView
         android:id="@+id/edtEmail"
@@ -107,7 +107,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblLocation"
+        app:layout_constraintTop_toBottomOf="@+id/orpLocationDetails"
         tools:text="chewhy-wm18@student.tarc.edu.my" />
 
     <TextView
@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblPhone" />
 
     <TextView
-        android:id="@+id/orpAddress"
+        android:id="@+id/lblStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
 
     <TextView
-        android:id="@+id/edtStatus"
+        android:id="@+id/edtStatus2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -152,7 +152,7 @@
         android:layout_marginTop="32dp"
         android:text="Back"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/edtStatus2" />
 
     <Button
         android:id="@+id/btnAdd"

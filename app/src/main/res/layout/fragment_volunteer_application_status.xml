@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtApplicationHeader" />
 
     <TextView
-        android:id="@+id/orpAddress"
+        android:id="@+id/lblStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -62,7 +62,7 @@
         app:layout_constraintGuide_begin="219dp" />
 
     <TextView
-        android:id="@+id/edtStatus"
+        android:id="@+id/edtStatus2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orpAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
 
     <TextView
         android:id="@+id/txtPrompt"
@@ -120,7 +120,7 @@
         android:text="Reason: "
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/orpAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
 
     <TextView
         android:id="@+id/edtReason"
@@ -130,7 +130,7 @@
         android:layout_marginTop="24dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/edtStatus"
+        app:layout_constraintTop_toBottomOf="@+id/edtStatus2"
         tools:text="Front IC too blur" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

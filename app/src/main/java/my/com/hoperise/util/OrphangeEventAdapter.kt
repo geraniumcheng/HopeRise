@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import my.com.hoperise.R
 import my.com.hoperise.data.Orphanage
 
-
-class OrphanageAdapter (
+class OrphangeEventAdapter (
     val fn: (ViewHolder, Orphanage) -> Unit = { _, _ -> }
-) : ListAdapter<Orphanage, OrphanageAdapter.ViewHolder>(DiffCallback) {
+) : ListAdapter<Orphanage, OrphangeEventAdapter.ViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Orphanage>() {
         override fun areItemsTheSame(oldItem: Orphanage, newItem: Orphanage)    = oldItem.id == newItem.id
@@ -23,26 +22,22 @@ class OrphanageAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val orpName  : TextView = view.findViewById(R.id.orpName)
-        val orpPhoto : ImageView = view.findViewById(R.id.orpPhoto)
-        val orpID    : TextView = view.findViewById(R.id.orpID)
-        val orpAddress    : TextView = view.findViewById(R.id.orpAddress)
+        val lblOrphName  : TextView = view.findViewById(R.id.lblOrphName)
+        val OrphImg : ImageView = view.findViewById(R.id.OrphImg)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.item_orphanage_listing, parent, false)
+            .inflate(R.layout.item_choose_orphanage_for_event, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val orphanageItem = getItem(position)
 
-        holder.orpID.text   = orphanageItem.id
-        holder.orpName.text = orphanageItem.name
-        holder.orpAddress.text = orphanageItem.location
-        holder.orpPhoto.setImageBitmap(orphanageItem.photo?.toBitmap())
+        holder.lblOrphName.text = orphanageItem.name
+        holder.OrphImg.setImageBitmap(orphanageItem.photo?.toBitmap())
 
 
         fn(holder, orphanageItem)

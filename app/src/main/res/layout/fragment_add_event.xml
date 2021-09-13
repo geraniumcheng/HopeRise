@@ -7,27 +7,15 @@
     tools:context=".ui.AddEventFragment">
 
 
-    <TextView
-        android:id="@+id/lblOrphanage"
-        android:layout_width="257dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="24dp"
-        android:text="Add Event for HopeRise Orphanage"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name of Event"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/edtName"
+        app:layout_constraintBottom_toBottomOf="@+id/edtEventName"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/edtName" />
+        app:layout_constraintTop_toTopOf="@+id/edtEventName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,23 +68,7 @@
         android:layout_marginTop="16dp"
         android:entries="@array/eventCategory"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/edtName"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/edtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Name"
-        android:importantForAccessibility="no"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/lblOrphanage"
+        app:layout_constraintTop_toBottomOf="@+id/edtEventName"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -162,28 +134,28 @@
         android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="10/9/2021"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnDate"
         app:layout_constraintStart_toEndOf="@+id/btnDate"
-        app:layout_constraintTop_toTopOf="@+id/btnDate" />
+        app:layout_constraintTop_toTopOf="@+id/btnDate"
+        tools:text="10/9/2021" />
 
     <TextView
         android:id="@+id/lblTime"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="12:15pm"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnTime"
         app:layout_constraintStart_toEndOf="@+id/btnTime"
         app:layout_constraintTop_toTopOf="@+id/btnTime"
-        android:textColor="@color/black" />
+        tools:text="12:15pm" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="68dp"
         android:text="Submit"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
@@ -193,9 +165,38 @@
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="68dp"
         android:text="Reset"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo" />
+
+    <EditText
+        android:id="@+id/edtEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Name"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/lblOrpName"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/lblOrpName"
+        android:layout_width="257dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="24dp"
+        android:text="Add Event for HopeRise Orphanage"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

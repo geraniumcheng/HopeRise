@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.EditOrphanageFragment">
     <ImageView
-        android:id="@+id/orpPhoto"
+        android:id="@+id/orpPhotoListing"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
@@ -27,22 +27,21 @@
         android:text="ID:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/orpID"
+        app:layout_constraintBottom_toBottomOf="@+id/orpIDListing"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/orpID" />
+        app:layout_constraintTop_toTopOf="@+id/orpIDListing" />
 
     <TextView
-        android:id="@+id/orpID"
+        android:id="@+id/orpIDListing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:background="#CCC"
         android:text="A0001"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/orpPhotoListing" />
 
     <TextView
         android:id="@+id/textView10"
@@ -51,9 +50,9 @@
         android:text="Name:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edtName"
+        app:layout_constraintBottom_toBottomOf="@+id/edtOrpName"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/edtName" />
+        app:layout_constraintTop_toTopOf="@+id/edtOrpName" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -61,19 +60,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="121dp" />
-
-    <TextView
-        android:id="@+id/lblLocation"
-        android:layout_width="273dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#CCC"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/btnMap"
-        tools:text="No. 95, Jalan 1/5A, Taman Melati, Setapak, 53100, KL" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,30 +79,30 @@
         android:layout_marginTop="16dp"
         android:text="Open Map"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtName" />
+        app:layout_constraintTop_toBottomOf="@+id/edtOrpName" />
 
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
         android:text="Confirm"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
-        app:layout_constraintTop_toBottomOf="@+id/lblLocation" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset" />
 
     <Button
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="32dp"
         android:text="Reset"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/lblOrpLocation" />
 
     <EditText
-        android:id="@+id/edtName"
+        android:id="@+id/edtOrpName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -125,6 +111,17 @@
         android:hint="Name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpID" />
+        app:layout_constraintTop_toBottomOf="@+id/orpIDListing" />
+
+    <TextView
+        android:id="@+id/lblOrpLocation"
+        android:layout_width="223dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/btnMap"
+        tools:text="No. 95, Jalan 1/5A, Taman Melati, Setapak, 53100, KL" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

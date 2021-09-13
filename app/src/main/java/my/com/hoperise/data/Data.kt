@@ -1,5 +1,6 @@
 package my.com.hoperise.data
 
+import android.net.Uri
 import com.google.firebase.firestore.Blob
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.Exclude
@@ -8,15 +9,28 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
-val ORPHANAGE = Firebase.firestore.collection("Orphanage")
-val EVENT = Firebase.firestore.collection("Event")
-val VOLUNTEERAPPLICATION = Firebase.firestore.collection("VolunteerApplication")
+val ORPHANAGE = Firebase.firestore.collection("orphanage")
+val EVENT = Firebase.firestore.collection("event")
+val VOLUNTEERAPPLICATION = Firebase.firestore.collection("volunteerApplication")
 
 data class Location(
     var location: String = "",
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
 )
+
+data class TempPhoto(
+    var photo: Uri? = null
+)
+
+data class currentUser(
+    var role: String = ""
+)
+//
+//data class Size(
+//    var orphanage: Int = 4,
+//    var event: Int = 0
+//)
 
 data class Orphanage(
     @DocumentId
@@ -27,9 +41,10 @@ data class Orphanage(
     var longitude: Double = 0.0,
     var photo: Blob? = Blob.fromBytes(ByteArray(0))
 ){
-    //things that you dw to store in firestore
     @get:Exclude
     var count: Int = 0
+    @get:Exclude
+    var counter: Int = 0
 }
 
 data class Event(
@@ -37,9 +52,8 @@ data class Event(
     var id: String = "",
     var name: String = "",
     var category: String = "",
-    var status: String = "",
-    var date: Date = Date(),
-    //var time: Time
+    var date: String = "",
+    var time: String = "",
     var volunteerRequired: Int = 0,
     var volunteerCount: Int = 0,
     var description: String = "",
@@ -47,6 +61,8 @@ data class Event(
 ){
     @get:Exclude
     var count: Int = 0
+    @get:Exclude
+    var status: String = ""
     @get:Exclude
     var orphanage: Orphanage = Orphanage()
 }

@@ -1,6 +1,7 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +20,13 @@ class TimeDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentTimeDialogBinding.inflate(inflater, container, false)
 
+        binding.btnConfirm.setOnClickListener { dismiss() }
+        binding.timePicker.setOnTimeChangedListener { timePicker, hour, minute ->
 
 
+            Log.d("time", "$hour:$minute")
+            Log.d("time2", timePicker.hour.toString() +":" + timePicker.minute.toString())
+        }
         return binding.root
     }
 

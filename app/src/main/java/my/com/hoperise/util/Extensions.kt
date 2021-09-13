@@ -79,3 +79,7 @@ fun ImageView.cropToBlob(width: Int, height: Int): Blob {
     else
         return this.drawable.toBitmap().crop(width, height).toBlob()
 }
+
+private fun generateID(entity: String){
+
+}
