@@ -2,8 +2,10 @@ package my.com.hoperise.util
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.scale
@@ -15,7 +17,7 @@ import java.io.ByteArrayOutputStream
 // Usage: Show an error dialog from fragment
 fun Fragment.errorDialog(text: String) {
     AlertDialog.Builder(context)
-        //.setIcon(R.drawable.ic_error)
+        .setIcon(R.drawable.ic_error)
         .setTitle("Error")
         .setMessage(text)
         .setPositiveButton("Dismiss", null)
@@ -78,4 +80,10 @@ fun ImageView.cropToBlob(width: Int, height: Int): Blob {
         return Blob.fromBytes(ByteArray(0))
     else
         return this.drawable.toBitmap().crop(width, height).toBlob()
+}
+
+// Usage: Hide keyboard from fragment
+fun Fragment.hideKeyboard() {
+    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(requireView().windowToken, 0)
 }

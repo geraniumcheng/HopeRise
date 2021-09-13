@@ -67,7 +67,7 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginTop="8dp"
-                                    android:src="@drawable/ic_participation"
+                                    android:src="@drawable/ic_employee_management"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
@@ -378,10 +378,10 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="70dp"
                                     android:layout_height="80dp"
                                     android:layout_marginTop="8dp"
-                                    android:src="@drawable/ic_participation"
+                                    android:src="@drawable/ic_staff_profile"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"

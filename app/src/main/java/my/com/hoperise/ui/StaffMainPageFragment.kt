@@ -22,12 +22,12 @@ class StaffMainPageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentStaffMainPageBinding.inflate(inflater, container, false)
 
-        binding.cardEmployee.setOnClickListener { nav.navigate(R.id.accountFragment) }
+        binding.cardEmployee.setOnClickListener { nav.navigate(R.id.employeeListingFragment) }
         binding.cardEventHistory.setOnClickListener {  }
         binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }
         binding.cardOnScreen.setOnClickListener {  }
         binding.cardOrphanage.setOnClickListener { nav.navigate(R.id.orphanageListingFragment) }
-        binding.cardStaff.setOnClickListener {  }
+        binding.cardStaff.setOnClickListener { nav.navigate(R.id.viewStaffProfileFragment) }
         binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
         binding.cardVolunteerM.setOnClickListener { nav.navigate(R.id.volunteerListingFragment) }
 

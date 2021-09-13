@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "967535038127",
-    "project_id": "hoperise-452d0",
-    "storage_bucket": "hoperise-452d0.appspot.com"
+    "project_number": "901264639211",
+    "project_id": "mad-shuzi-try",
+    "storage_bucket": "mad-shuzi-try.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:967535038127:android:7955d42787d91227540e5a",
+        "mobilesdk_app_id": "1:901264639211:android:7416dbf0c7dc0016e22aae",
         "android_client_info": {
           "package_name": "my.com.hoperise"
         }
       },
       "oauth_client": [
         {
-          "client_id": "967535038127-gadhfhp834o27g4r2i7e581c40pk8mlk.apps.googleusercontent.com",
+          "client_id": "901264639211-tpv3tqfis4tqjbavclktht6797geuk4m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAMN_Q-AQ4Rw-RHslUg6pfjTgW5gJUD2Xk"
+          "current_key": "AIzaSyCc24SJtvV0UkCqtxTqeynxhWFYDI5eJy4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "967535038127-gadhfhp834o27g4r2i7e581c40pk8mlk.apps.googleusercontent.com",
+              "client_id": "901264639211-tpv3tqfis4tqjbavclktht6797geuk4m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

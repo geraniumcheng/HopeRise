@@ -29,4 +29,19 @@
         android:name="my.com.hoperise.ui.EventListingFragment"
         android:label="fragment_event_listing"
         tools:layout="@layout/fragment_event_listing" />
+    <fragment
+        android:id="@+id/editVolunteerProfileFragment"
+        android:name="my.com.hoperise.ui.EditVolunteerProfileFragment"
+        android:label="fragment_edit_volunteer_profile"
+        tools:layout="@layout/fragment_edit_volunteer_profile" />
+    <fragment
+        android:id="@+id/viewVolunteerProfileFragment"
+        android:name="my.com.hoperise.ui.ViewVolunteerProfileFragment"
+        android:label="Volunteer Profile"
+        tools:layout="@layout/fragment_view_volunteer_profile" />
+    <fragment
+        android:id="@+id/volunteerChangePasswordFragment"
+        android:name="my.com.hoperise.ui.VolunteerChangePasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_volunteer_change_password" />
 </navigation>
