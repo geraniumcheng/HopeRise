@@ -2,7 +2,6 @@ package my.com.hoperise.ui
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.DialogInterface.OnShowListener
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentAccountBlockBinding
 import my.com.hoperise.util.SendEmail
 import java.text.DecimalFormat
@@ -24,7 +23,7 @@ import java.util.*
 class AccountBlockFragment : Fragment() {
     private lateinit var binding: FragmentAccountBlockBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAccountBlockBinding.inflate(inflater, container, false)

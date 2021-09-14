@@ -11,8 +11,7 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_default_profile_picture"
+        android:layout_marginTop="32dp"
         app:civ_border_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:text="teohshuzi"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -34,19 +33,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="shuzizizi@gmail.com"
+        android:layout_marginTop="16dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imgVolunteerPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/lblVolunteerId" />
+        app:layout_constraintTop_toBottomOf="@+id/lblVolunteerName"
+        tools:text="shuzizizi@gmail.com" />
 
     <Button
         android:id="@+id/btnEditProfile"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="16dp"
         android:text="Edit"
         android:textSize="12sp"
@@ -59,7 +58,7 @@
         android:layout_width="350dp"
         android:layout_height="1dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="240dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,46 +142,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnActivatePremiumAccount"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPaymentHistory">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnActPre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:backgroundTint="@color/color_drawer"
-            android:clickable="false"
-            android:scaleType="center"
-            android:src="@drawable/ic_volunteer_application"
-            app:backgroundTint="@color/color_drawer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPaymentHistory"
-            app:rippleColor="@color/white"
-            app:tint="@color/white" />
-
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Unknown Button"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/btnActivatepremium"
-            app:layout_constraintStart_toEndOf="@+id/btnActivatepremium"
-            app:layout_constraintTop_toTopOf="@+id/btnActivatepremium"
-            android:layout_marginTop="20dp"/>
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -192,7 +151,7 @@
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnActivatePremiumAccount">
+        app:layout_constraintTop_toBottomOf="@id/btnPaymentHistory">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnLogout"
@@ -205,7 +164,7 @@
             android:src="@drawable/ic_logout"
             app:backgroundTint="@color/color_drawer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnActivatepremium"
+            app:layout_constraintTop_toBottomOf="@+id/btnPaymentHistory"
             app:rippleColor="@color/white"
             app:tint="@color/white" />
 
@@ -222,5 +181,17 @@
             app:layout_constraintVertical_bias="0.486"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblVolunteerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imgVolunteerPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/lblVolunteerId"
+        tools:text="Shuzi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

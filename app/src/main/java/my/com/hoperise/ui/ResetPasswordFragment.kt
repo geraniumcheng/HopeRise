@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
-import my.com.hoperise.data.User
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentResetPasswordBinding
 import my.com.hoperise.util.errorDialog
-import my.com.hoperise.util.toBlob
 
 class ResetPasswordFragment : Fragment() {
     private lateinit var binding: FragmentResetPasswordBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
@@ -72,8 +69,6 @@ class ResetPasswordFragment : Fragment() {
                         binding.lblNewPasswordWarning.text = "Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
                     }
                 }
-
-
             }
         }
     }

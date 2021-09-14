@@ -13,8 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.MainActivity
-import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentEditVolunteerProfileBinding
 import my.com.hoperise.util.cropToBlob
@@ -24,7 +23,7 @@ import my.com.hoperise.util.toBitmap
 class EditVolunteerProfileFragment : Fragment() {
    private lateinit var binding: FragmentEditVolunteerProfileBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
@@ -35,6 +34,7 @@ class EditVolunteerProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEditVolunteerProfileBinding.inflate(inflater, container, false)
 
+        requireActivity().title = "Update Volunteer Profile"
 
         loadProfileData()
         binding.btnReset.setOnClickListener { loadProfileData() }

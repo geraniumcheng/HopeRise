@@ -1,7 +1,5 @@
 package my.com.hoperise.ui
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,14 +15,14 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.LoginActivity
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentActivateAccountBinding
 import java.util.*
 
 class ActivateAccountFragment : Fragment() {
     private lateinit var binding: FragmentActivateAccountBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
     private lateinit var otp1: EditText
     private lateinit var otp2: EditText
     private lateinit var otp3: EditText
@@ -44,6 +42,8 @@ class ActivateAccountFragment : Fragment() {
          otp4 = binding.edtOtp4
          otp5 = binding.edtOtp5
          otp6 = binding.edtOtp6
+
+        binding.edtOtp1.requestFocus()
 
         setUpOtpInput()
 

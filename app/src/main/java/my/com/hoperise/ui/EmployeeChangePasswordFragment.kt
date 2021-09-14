@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.StaffActivity
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentEmployeeChangePasswordBinding
@@ -20,7 +20,7 @@ import my.com.hoperise.util.hideKeyboard
 class EmployeeChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentEmployeeChangePasswordBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
     private val loginVm: LoginViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

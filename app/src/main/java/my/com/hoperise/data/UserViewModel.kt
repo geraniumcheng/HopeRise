@@ -12,13 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 
-class EmployeeViewModel: ViewModel() {
-
-    // For All Employee Listing
-    private val EMPLOYEES = Firebase.firestore.collection("User").whereIn("role", listOf("Manager","Employee"))
-    // For insert a new Employee
-    private val NEWEMPLOYEE = Firebase.firestore.collection("User")
-
+class UserViewModel: ViewModel() {
     // Local copy for filter and sort
     private var employee = listOf<User>()
     // Live data from firestore
@@ -140,35 +134,35 @@ class EmployeeViewModel: ViewModel() {
     fun getAll() = employeeResult
 
     fun set(emp: User) {
-        NEWEMPLOYEE.document(emp.id).set(emp)
+        USER.document(emp.id).set(emp)
     }
 
     fun update(emp: User) {
-        NEWEMPLOYEE.document(emp.id).update("name",emp.name,"role",emp.role,"photo",emp.photo)
+        USER.document(emp.id).update("name",emp.name,"role",emp.role,"photo",emp.photo)
     }
 
     fun changePass(id: String, newPass: String){
-        NEWEMPLOYEE.document(id).update("password",newPass)
+        USER.document(id).update("password",newPass)
     }
 
     fun updateOtp(id: String, otpCode: Int){
-        NEWEMPLOYEE.document(id).update("otp",otpCode)
+        USER.document(id).update("otp",otpCode)
     }
 
     fun updateCount(id: String, count: Int){
-        NEWEMPLOYEE.document(id).update("count",count)
+        USER.document(id).update("count",count)
     }
 
     fun updateActivationCode(id: String, activateCode: Int){
-        NEWEMPLOYEE.document(id).update("activateCode",activateCode)
+        USER.document(id).update("activateCode",activateCode)
     }
 
     fun updateStatus(id: String, status: String){
-        NEWEMPLOYEE.document(id).update("status",status)
+        USER.document(id).update("status",status)
     }
 
     fun updatePassword(id: String, password: String){
-        NEWEMPLOYEE.document(id).update("password",password)
+        USER.document(id).update("password",password)
     }
 
     private fun idExists(id: String): Boolean {

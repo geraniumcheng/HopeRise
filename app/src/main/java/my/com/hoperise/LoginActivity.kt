@@ -1,32 +1,27 @@
 package my.com.hoperise
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.ActivityLoginBinding
-import my.com.hoperise.ui.RegisterSuccessFragment
-import my.com.hoperise.util.errorDialog
 import java.util.*
-import kotlin.concurrent.schedule
 
 @Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val nav by lazy { supportFragmentManager.findFragmentById(R.id.loginHost)!!.findNavController() }
     private val loginVm: LoginViewModel by viewModels()
-    private val vm: EmployeeViewModel by viewModels()
+    private val vm: UserViewModel by viewModels()
     var progressDialog: ProgressDialog? = null
     var failedLoggedInId =""
 
@@ -76,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
+                progressDialog?.dismiss()
             }
 
         }
@@ -99,16 +95,6 @@ class LoginActivity : AppCompatActivity() {
         if (progressDialog != null) {
             progressDialog?.dismiss()
         }
-    }
-
-    fun saveData(id: Int, data: Bundle?) {
-        // based on the id you'll know which fragment is trying to save data(see below)
-        // the Bundle will hold the data
-    }
-
-    fun getSavedData() {
-        // here you'll save the data previously retrieved from the fragments and
-        // return it in a Bundle
     }
 
 }

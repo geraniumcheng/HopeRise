@@ -14,13 +14,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentConfirmResetPasswordRequestBinding
+import my.com.hoperise.util.hideKeyboard
 
 class ConfirmResetPasswordRequestFragment : Fragment() {
     private lateinit var binding: FragmentConfirmResetPasswordRequestBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     private lateinit var otp1: EditText
     private lateinit var otp2: EditText
@@ -38,6 +39,8 @@ class ConfirmResetPasswordRequestFragment : Fragment() {
         otp4 = binding.edtOtp4
         otp5 = binding.edtOtp5
         otp6 = binding.edtOtp6
+
+        binding.edtOtp1.requestFocus()
 
         setUpOtpInput()
 
@@ -61,6 +64,7 @@ class ConfirmResetPasswordRequestFragment : Fragment() {
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
                 if(otp!!.equals(enteredOtp.toInt())){
+                    hideKeyboard()
                     nav.navigate(R.id.resetPasswordFragment)
                 }else{
                     toast("OTP mismatch, please try again!")

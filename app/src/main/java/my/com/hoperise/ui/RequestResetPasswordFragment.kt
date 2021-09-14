@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentRequestResetPasswordBinding
 import my.com.hoperise.util.SendEmail
 import java.text.DecimalFormat
@@ -21,11 +21,12 @@ import java.util.*
 class RequestResetPasswordFragment : Fragment() {
     private lateinit var binding: FragmentRequestResetPasswordBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRequestResetPasswordBinding.inflate(inflater, container, false)
 
+        binding.edtResetPassEmail.requestFocus()
         binding.btnSendOtpResetPass.setOnClickListener {
             sendOtpResetPassword()
         }

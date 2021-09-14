@@ -10,8 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.MainActivity
-import my.com.hoperise.StaffActivity
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentVolunteerChangePasswordBinding
 import my.com.hoperise.util.hideKeyboard
@@ -19,10 +18,12 @@ import my.com.hoperise.util.hideKeyboard
 class VolunteerChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentVolunteerChangePasswordBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentVolunteerChangePasswordBinding.inflate(inflater, container, false)
+
+        requireActivity().title = "Change Password"
 
         resetErrorMessage()
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }

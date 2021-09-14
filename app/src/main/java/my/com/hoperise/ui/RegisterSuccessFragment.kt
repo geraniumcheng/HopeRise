@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.LoginActivity
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentRegisterSuccessBinding
 import my.com.hoperise.util.SendEmail
 import java.text.DecimalFormat
@@ -26,7 +25,7 @@ import java.util.*
 class RegisterSuccessFragment : Fragment() {
     private lateinit var binding: FragmentRegisterSuccessBinding
     private val nav by lazy { findNavController() }
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRegisterSuccessBinding.inflate(inflater, container, false)

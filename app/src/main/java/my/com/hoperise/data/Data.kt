@@ -19,6 +19,7 @@ val VOLUNTEER = Firebase.firestore.collection("volunteer")
 val MESSAGE = Firebase.firestore.collection("message")
 val PHOTO = Firebase.firestore.collection("photo")
 val USER = Firebase.firestore.collection("User")
+val EMPLOYEES = Firebase.firestore.collection("User").whereIn("role", listOf("Manager","Employee"))
 var currentUser: User? = null
 
 data class Location(

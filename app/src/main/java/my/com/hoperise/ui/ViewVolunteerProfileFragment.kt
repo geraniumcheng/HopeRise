@@ -1,14 +1,11 @@
 package my.com.hoperise.ui
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,22 +14,21 @@ import kotlinx.coroutines.launch
 import my.com.hoperise.LoginActivity
 import my.com.hoperise.MainActivity
 import my.com.hoperise.R
-import my.com.hoperise.data.EmployeeViewModel
+import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentViewVolunteerProfileBinding
 import my.com.hoperise.util.toBitmap
-import my.com.hoperise.util.toBlob
 
 class ViewVolunteerProfileFragment : Fragment() {
     private lateinit var binding: FragmentViewVolunteerProfileBinding
     private val nav by lazy { findNavController() }
     private val loginVm: LoginViewModel by activityViewModels()
-    private val vm: EmployeeViewModel by activityViewModels()
+    private val vm: UserViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewVolunteerProfileBinding.inflate(inflater, container, false)
-
+        requireActivity().title = "Volunteer Profile"
 
         loadProfileData()
         binding.btnEditProfile.setOnClickListener {
@@ -64,6 +60,7 @@ class ViewVolunteerProfileFragment : Fragment() {
     private fun loadProfile(emp: User){
         binding.imgVolunteerPhoto.setImageBitmap(emp.photo?.toBitmap())
         binding.lblVolunteerId.setText(emp.id)
+        binding.lblVolunteerName.setText(emp.name)
         binding.lblVolunteerEmail.setText(emp.email)
     }
 
