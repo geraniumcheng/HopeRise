@@ -34,6 +34,4 @@ class StaffActivity : AppCompatActivity() {
         return nav.navigateUp() || super.onSupportNavigateUp()
     }
 
-
-
 }

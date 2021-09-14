@@ -16,6 +16,8 @@ class UnblockAccountSuccessFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentUnblockAccountSuccessBinding.inflate(inflater, container, false)
 
+        binding.btnLogin.setOnClickListener { nav.navigate(R.id.loginFragment) }
+
         return binding.root
     }
 

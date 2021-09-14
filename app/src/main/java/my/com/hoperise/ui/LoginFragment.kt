@@ -17,6 +17,7 @@ import my.com.hoperise.LoginActivity
 import my.com.hoperise.MainActivity
 import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
+import my.com.hoperise.data.EmployeeViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.databinding.FragmentLoginBinding
 import my.com.hoperise.util.errorDialog
@@ -28,6 +29,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val nav by lazy { findNavController() }
     private val loginVm: LoginViewModel by activityViewModels()
+    private val vm: EmployeeViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -84,7 +86,29 @@ class LoginFragment : Fragment() {
 
             }
             else {
-                errorDialog("Invalid login credentials.")
+                // If password mismatched + 0 attempts left will go here
+                lifecycleScope.launch {
+                    val emp = vm.getLogIn(id)
+
+                    if (emp == null) {
+                       errorDialog("Invalid login credentials.")
+                    }else{
+                        vm.setLoginFailedId(emp.id)
+                        //toast("Yes user exists")
+                        var timesLeft = emp.count
+                        timesLeft = timesLeft - 1
+                        //toast(timesLeft.toString())
+                        vm.updateCount(emp.id,timesLeft)
+                        if(timesLeft > 0 )
+                             errorDialog("Invalid login credentials! " + timesLeft + " attempts left! ")
+                        if(timesLeft <= 0 ){
+                            nav.navigate(R.id.accountBlockFragment)
+                        }
+
+
+                    }
+
+                }
             }
         }
     }
@@ -92,6 +116,4 @@ class LoginFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
     }
-
-
 }

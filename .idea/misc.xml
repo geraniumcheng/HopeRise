@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_activate_account.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_request_reset_password.xml" value="0.1" />
+        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reset_password.xml" value="0.1890625" />
+        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_unblock_account_success.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.11488250652741515" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_account.xml" value="0.3546875" />
@@ -35,7 +39,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -11,11 +11,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
+import my.com.hoperise.data.EmployeeViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.ActivityLoginBinding
 import my.com.hoperise.ui.RegisterSuccessFragment
+import my.com.hoperise.util.errorDialog
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -24,8 +26,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val nav by lazy { supportFragmentManager.findFragmentById(R.id.loginHost)!!.findNavController() }
     private val loginVm: LoginViewModel by viewModels()
+    private val vm: EmployeeViewModel by viewModels()
     private lateinit var progressDialog:ProgressDialog
-    var unactivatedLoggedInId =""
+    var failedLoggedInId =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +51,19 @@ class LoginActivity : AppCompatActivity() {
                 progressDialog.show()
                 val role = user.role
                 val status = user.status
+                val count = user.count
                 if(status.equals("Unactivated")){
-                    unactivatedLoggedInId = user.id
+                    failedLoggedInId = user.id
                     nav.navigate(R.id.registerSuccessFragment)
                     progressDialog.dismiss()
-                }else {
+                }else if(count <= 0){
+                    // If password matched + 0 attempts left will go here
+                    vm.setLoginFailedId(user.id)
+                    nav.navigate(R.id.accountBlockFragment)
+                    progressDialog.dismiss()
+                }
+                else{
+                    vm.updateCount(user.id,3)
                     if (role.equals("Volunteer")) {
                         val intent = Intent(this, MainActivity::class.java)
                             .putExtra("loggedInId", user.id)
@@ -71,8 +82,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun getUnactivatedId(): String {
-        return unactivatedLoggedInId
+    fun getFailedLoginId(): String {
+        return failedLoggedInId
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -88,6 +99,15 @@ class LoginActivity : AppCompatActivity() {
         if (progressDialog != null) {
             progressDialog.dismiss()
         }
+    }
+    fun saveData(id: Int, data: Bundle?) {
+        // based on the id you'll know which fragment is trying to save data(see below)
+        // the Bundle will hold the data
+    }
+
+    fun getSavedData() {
+        // here you'll save the data previously retrieved from the fragments and
+        // return it in a Bundle
     }
 
 }

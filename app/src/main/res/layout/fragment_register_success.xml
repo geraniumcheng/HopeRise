@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/lblMessage"
-        android:layout_width="363dp"
+        android:layout_width="365dp"
         android:layout_height="wrap_content"
 
         android:layout_marginStart="8dp"
@@ -54,7 +54,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:background="#000"
         android:elevation="0dp"
         android:text="Send OTP"
@@ -64,32 +64,5 @@
         app:layout_constraintEnd_toEndOf="@+id/lblMessage"
         app:layout_constraintStart_toStartOf="@+id/lblMessage"
         app:layout_constraintTop_toBottomOf="@+id/lblMessage" />
-
-    <Button
-        android:id="@+id/btnVerifyAccount"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="24dp"
-        android:background="#000"
-        android:elevation="0dp"
-        android:text="Verify Now"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSendOtp" />
-
-    <TextView
-        android:id="@+id/lblOtpDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/tertiary_text_light"
-        app:layout_constraintBottom_toTopOf="@+id/btnSendOtp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblMessage"
-        tools:text="OTP code was sent on @time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

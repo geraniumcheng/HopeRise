@@ -23,6 +23,8 @@ class EmployeeViewModel: ViewModel() {
     private var employee = listOf<User>()
     // Live data from firestore
     private val employeeResult = MutableLiveData<List<User>>()
+    // Live data for login failed user
+    val loginFailed = MutableLiveData<String>()
 
 
     private var name = ""       // Search purpose
@@ -46,6 +48,14 @@ class EmployeeViewModel: ViewModel() {
             }
         }
 
+    }
+    // Login failed user id
+    fun setLoginFailedId(id: String){
+        loginFailed.value = id
+    }
+
+    fun getLoginFailedId(): String{
+        return loginFailed.value.toString()
     }
 
     // Update the filtered and sorted Employee List
@@ -135,8 +145,20 @@ class EmployeeViewModel: ViewModel() {
         NEWEMPLOYEE.document(id).update("otp",otpCode)
     }
 
+    fun updateCount(id: String, count: Int){
+        NEWEMPLOYEE.document(id).update("count",count)
+    }
+
     fun updateActivationCode(id: String, activateCode: Int){
         NEWEMPLOYEE.document(id).update("activateCode",activateCode)
+    }
+
+    fun updateStatus(id: String, status: String){
+        NEWEMPLOYEE.document(id).update("status",status)
+    }
+
+    fun updatePassword(id: String, password: String){
+        NEWEMPLOYEE.document(id).update("password",password)
     }
 
     private fun idExists(id: String): Boolean {

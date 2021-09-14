@@ -61,7 +61,7 @@ class RegisterEmployeeFragment : Fragment() {
             status = "Unactivated",
             count = 3,
             photo = binding.imgEmployeePhoto.cropToBlob(300, 300),
-            otp = null,
+            otp = 0,
             activateCode = 0,
         )
 

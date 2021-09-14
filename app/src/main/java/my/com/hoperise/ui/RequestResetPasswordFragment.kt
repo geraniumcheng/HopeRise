@@ -71,7 +71,9 @@ class RequestResetPasswordFragment : Fragment() {
                     .isHtml()
                     .send() {
                     }
+
                 vm.updateOtp(userId,otpCode.toInt())
+                vm.setLoginFailedId(userId)
                 nav.navigate(R.id.confirmResetPasswordRequestFragment)
             }
       }

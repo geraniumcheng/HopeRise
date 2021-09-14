@@ -32,7 +32,7 @@ class RegisterSuccessFragment : Fragment() {
         binding = FragmentRegisterSuccessBinding.inflate(inflater, container, false)
 
         val activity: LoginActivity = activity as LoginActivity
-        val loggedInId: String = activity.getUnactivatedId()
+        val loggedInId: String = activity.getFailedLoginId()
 
         //toast(loggedInId)
         //binding.lblOtpDetails.visibility = View.INVISIBLE
@@ -40,19 +40,7 @@ class RegisterSuccessFragment : Fragment() {
             sendActivateCode(loggedInId)
         }
 
-        binding.btnVerifyAccount.setOnClickListener {
-            checkOtp()
-            nav.navigate(R.id.activateAccountFragment)
-        }
-
         return binding.root
-    }
-
-    private fun checkOtp() {
-        val otpMessage = binding.lblOtpDetails.text.toString()
-        if (otpMessage.equals("")){
-            toast("Please get your OTP first!")
-        }
     }
 
     private fun sendActivateCode(loggedInId: String) {
@@ -86,19 +74,19 @@ class RegisterSuccessFragment : Fragment() {
             <p> </p>
         """.trimIndent()
 
-//        SendEmail()
-//            .to(email)
-//            .subject(subject)
-//            .content(content)
-//            .isHtml()
-//            .send() {
-//            }
-            //
+        SendEmail()
+            .to(email)
+            .subject(subject)
+            .content(content)
+            .isHtml()
+            .send() {
+            }
+
                 vm.updateActivationCode(user, activationCode.toInt())
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Yay")
-                    .setMessage("An OTP Code is was sent to you on " + currentDateandTime + "\nVerify your account now?" )
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Hurray")
+                    .setMessage("An activation code was sent to your account's registered email on " + currentDateandTime + " successfully ✨ Activate your account now?" )
+                    .setIcon(R.drawable.ic_otp_confirm_dialog)
                     .setPositiveButton(android.R.string.yes, object :
                         DialogInterface.OnClickListener {
                         override fun onClick(dialog: DialogInterface?, whichButton: Int) {

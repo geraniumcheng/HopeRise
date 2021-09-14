@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/lblMessage"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
 
         android:layout_marginStart="8dp"
@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <Button
+        android:id="@+id/btnLogin"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

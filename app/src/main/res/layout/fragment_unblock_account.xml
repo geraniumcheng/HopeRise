@@ -27,7 +27,7 @@
         android:text="Unblock Account"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/resetPasswordLogo"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/resetPasswordLogo"
@@ -35,16 +35,16 @@
 
     <TextView
         android:id="@+id/lblMessage"
-        android:layout_width="299dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="8dp"
         android:text="Please enter the One Time Password (OTP) that we've sent to your email to unblock your account. "
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -143,6 +143,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnVerifyUnblock"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

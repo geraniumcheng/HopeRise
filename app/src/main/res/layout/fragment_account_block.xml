@@ -35,13 +35,13 @@
 
     <TextView
         android:id="@+id/lblMessage"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Your account has been locked because you have reached the maximum number of invalid login attempts.\n\nClick the 'Send OTP' button then an One Time Password (OTP) will send to your registered email to let you unlock your account."
+        android:layout_marginEnd="16dp"
+        android:text="Your account has been locked because you have reached the maximum number of invalid login attempts.\n\nIf you want to unblock your account, we will send an One Time Password (OTP) to your registered email to unblock it."
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
