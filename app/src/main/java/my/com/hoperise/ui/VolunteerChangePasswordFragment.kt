@@ -69,7 +69,7 @@ class VolunteerChangePasswordFragment : Fragment() {
                 else{
                     binding.lblConfirmNewPasswordWarning.visibility = View.VISIBLE
                     binding.lblConfirmNewPasswordWarning.text = "Please ensure your new password is matched!"
-                    binding.edtConfirmNewPass.requestFocus()
+                    binding.edtCurrentPassword.requestFocus()
                 }
             }
             else{
@@ -80,13 +80,14 @@ class VolunteerChangePasswordFragment : Fragment() {
         } else {
             binding.lblCurrentPasswordWarning.visibility = View.VISIBLE
             binding.lblCurrentPasswordWarning.text = "Password mismatched. Please try again"
-            binding.edtCurrentPass.requestFocus()
+            binding.edtCurrentPassword.requestFocus()
         }
 
 
     }
 
     private fun resetErrorMessage() {
+        binding.edtCurrentPassword.requestFocus()
         binding.lblCurrentPasswordWarning.visibility = View.GONE
         binding.lblNewPasswordWarning.visibility = View.GONE
         binding.lblConfirmNewPasswordWarning.visibility = View.GONE

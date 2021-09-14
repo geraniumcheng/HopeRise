@@ -48,8 +48,12 @@ class ActivateAccountFragment : Fragment() {
         setUpOtpInput()
 
         binding.btnActivateAccount.setOnClickListener {
-            verifyActivationCode(loggedInId)
-            nav.navigate(R.id.verifyAccountSuccessFragment)
+            if(loggedInId.equals("")){  // When user is direct from register
+                var newlyRegister = vm.getNewlyRegisteredId()
+                verifyActivationCode(newlyRegister)
+            }else{
+                verifyActivationCode(loggedInId) // When user is direct from login
+            }
         }
 
         return binding.root
@@ -69,11 +73,14 @@ class ActivateAccountFragment : Fragment() {
                 if(activationCode!!.equals(enteredOtp.toInt())){
                     if(!emp.role.equals("Volunteer")){
                         vm.updateStatus(user, "Active")
+                        nav.navigate(R.id.verifyAccountSuccessFragment)
                     }else{
                         vm.updateStatus(user, "Unverified")
+                        nav.navigate(R.id.verifyAccountSuccessFragment)
                     }
                 }else{
                     toast("OTP mismatch, please try again!")
+                    //return@launch
                 }
 
             // toast(activationCode.toString() + user + enteredOtp )

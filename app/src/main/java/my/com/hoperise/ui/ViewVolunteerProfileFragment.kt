@@ -1,6 +1,7 @@
 package my.com.hoperise.ui
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,6 +22,7 @@ import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentViewVolunteerProfileBinding
 import my.com.hoperise.util.toBitmap
+import my.com.hoperise.util.toBlob
 
 class ViewVolunteerProfileFragment : Fragment() {
     private lateinit var binding: FragmentViewVolunteerProfileBinding
@@ -72,6 +75,8 @@ class ViewVolunteerProfileFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
+    private fun toast(text: String) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
+    }
 
 }

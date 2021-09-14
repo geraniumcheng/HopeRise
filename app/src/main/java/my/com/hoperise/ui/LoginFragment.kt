@@ -34,17 +34,10 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        resetErrorMessage()
-
         binding.btnForgetPassword.setOnClickListener { nav.navigate(R.id.requestResetPasswordFragment) }
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegister.setOnClickListener {  nav.navigate(R.id.registerFragment) }
         return binding.root
-    }
-
-    private fun resetErrorMessage() {
-        binding.lblLoginIdErrorMessage.visibility = View.GONE
-        binding.lblLoginPasswordErrorMessage.visibility = View.GONE
     }
 
     private fun login() {

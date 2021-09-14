@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private val nav by lazy { supportFragmentManager.findFragmentById(R.id.loginHost)!!.findNavController() }
     private val loginVm: LoginViewModel by viewModels()
     private val vm: EmployeeViewModel by viewModels()
-    private lateinit var progressDialog:ProgressDialog
+    var progressDialog: ProgressDialog? = null
     var failedLoggedInId =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,21 +46,21 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 currentUser = User(user.id,user.email,user.name,user.password,user.role,user.status,user.count,user.photo,user.otp,user.activateCode,user.registerDate)
                 progressDialog = ProgressDialog(this@LoginActivity)
-                progressDialog.setTitle("Logging In")
-                progressDialog.setMessage("Please wait a moment ...")
-                progressDialog.show()
+                progressDialog?.setTitle("Logging In")
+                progressDialog?.setMessage("Please wait a moment ...")
+                progressDialog?.show()
                 val role = user.role
                 val status = user.status
                 val count = user.count
                 if(status.equals("Unactivated")){
                     failedLoggedInId = user.id
                     nav.navigate(R.id.registerSuccessFragment)
-                    progressDialog.dismiss()
+                    progressDialog?.dismiss()
                 }else if(count <= 0){
                     // If password matched + 0 attempts left will go here
                     vm.setLoginFailedId(user.id)
                     nav.navigate(R.id.accountBlockFragment)
-                    progressDialog.dismiss()
+                    progressDialog?.dismiss()
                 }
                 else{
                     vm.updateCount(user.id,3)
@@ -94,12 +94,13 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         if (progressDialog != null) {
-            progressDialog.dismiss()
+            progressDialog?.dismiss()
         }
     }
+
     fun saveData(id: Int, data: Bundle?) {
         // based on the id you'll know which fragment is trying to save data(see below)
         // the Bundle will hold the data

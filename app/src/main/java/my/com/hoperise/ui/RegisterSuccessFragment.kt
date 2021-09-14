@@ -37,7 +37,12 @@ class RegisterSuccessFragment : Fragment() {
         //toast(loggedInId)
         //binding.lblOtpDetails.visibility = View.INVISIBLE
         binding.btnSendOtp.setOnClickListener {
-            sendActivateCode(loggedInId)
+            if(loggedInId.equals("")){  // When user is direct from register
+                var newlyRegister = vm.getNewlyRegisteredId()
+                sendActivateCode(newlyRegister)
+            }else{
+                sendActivateCode(loggedInId) // When user is direct from login
+            }
         }
 
         return binding.root

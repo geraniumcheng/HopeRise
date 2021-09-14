@@ -60,17 +60,6 @@
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/lblLoginIdErrorMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:text="TextView"
-            android:textColor="@color/design_default_color_error"
-            android:textSize="12sp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -91,17 +80,6 @@
                 android:inputType="textPassword"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/lblLoginPasswordErrorMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:text="TextView"
-            android:textColor="@color/design_default_color_error"
-            android:textSize="12sp" />
 
         <CheckBox
             android:id="@+id/chkRememberMe"

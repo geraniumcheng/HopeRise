@@ -25,6 +25,8 @@ class EmployeeViewModel: ViewModel() {
     private val employeeResult = MutableLiveData<List<User>>()
     // Live data for login failed user
     val loginFailed = MutableLiveData<String>()
+    // Live data for newly register user
+    val newlyRegister = MutableLiveData<String>()
 
 
     private var name = ""       // Search purpose
@@ -56,6 +58,14 @@ class EmployeeViewModel: ViewModel() {
 
     fun getLoginFailedId(): String{
         return loginFailed.value.toString()
+    }
+
+    fun setNewlyRegisteredId(id: String){
+        newlyRegister.value = id
+    }
+
+    fun getNewlyRegisteredId(): String{
+        return newlyRegister.value.toString()
     }
 
     // Update the filtered and sorted Employee List
