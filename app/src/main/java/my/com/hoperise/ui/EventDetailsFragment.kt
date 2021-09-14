@@ -1,17 +1,19 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.ktx.toObject
 import my.com.hoperise.R
-import my.com.hoperise.data.Event
-import my.com.hoperise.data.EventViewModel
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentEventBinding
 import my.com.hoperise.databinding.FragmentEventDetailsBinding
 import java.text.SimpleDateFormat
@@ -30,10 +32,20 @@ class EventDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEventDetailsBinding.inflate(inflater, container, false)
+        requireActivity().title = "Event Details"
+
+        if(returnFragment){
+            EVENT.document(id).get().addOnSuccessListener {
+                    snap ->
+                val event = snap.toObject<Event>()!!
+                load(event)
+            }
+            returnFragment = false
+        }
 
         vm.get(id)?.let { load(it) }
 
-        val user = "user"
+        val user = "staff"
         if(user == "staff"){
             binding.btnEditOrJoin.text = "Edit"
         }else{
@@ -45,6 +57,9 @@ class EventDetailsFragment : Fragment() {
 
         binding.btnEditOrJoin.setOnClickListener {
             if(user == "staff"){
+//                val fragmentManager: FragmentManager = parentFragmentManager
+//                fragmentManager.beginTransaction().remove(this).commit()
+//                fragmentManager.popBackStack()
                 nav.navigate(R.id.editEventFragment, bundleOf("id" to id))
             }else{
                 //nav.navigate() join event
@@ -85,8 +100,6 @@ class EventDetailsFragment : Fragment() {
             binding.lblEventStatus.text =  "Completed"
             status = "Completed"
         }
-
-
     }
 
 

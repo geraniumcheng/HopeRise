@@ -29,7 +29,7 @@ class OrphanageViewModel: ViewModel() {
             ORPHANAGE.addSnapshotListener { snap, _ -> if( snap == null) return@addSnapshotListener
                 orp = snap.toObjects<Orphanage>()
                 lastID = if(orp.last().id == ""){
-                    "OR0001"
+                    "OR0000"
                 }else{
                     orp.last().id
                 }

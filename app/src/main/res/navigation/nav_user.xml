@@ -39,4 +39,14 @@
         android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
         android:label="Orphanage Details"
         tools:layout="@layout/fragment_orphanage_details" />
+    <fragment
+        android:id="@+id/volunteerApplicationStatusFragment"
+        android:name="my.com.hoperise.ui.VolunteerApplicationStatusFragment"
+        android:label="Application Status"
+        tools:layout="@layout/fragment_volunteer_application_status" />
+    <fragment
+        android:id="@+id/volunteerSubmitApplicationFragment"
+        android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
+        android:label="Submit Application"
+        tools:layout="@layout/fragment_volunteer_submit_application" />
 </navigation>

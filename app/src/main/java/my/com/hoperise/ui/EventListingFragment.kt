@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,14 +27,13 @@ class EventListingFragment : Fragment() {
         binding = FragmentEventListingBinding.inflate(inflater, container, false)
         vmEvent.search("")
         vmEvent.filterCategory("")
-
+        requireActivity().title = "Event Listing"
         binding.sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(value: String) = true
             override fun onQueryTextChange(value: String): Boolean {
                 vmEvent.search(value)
                 return true
             }
-
         })
 
         binding.spCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -52,16 +52,16 @@ class EventListingFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) = Unit
         }
 
-
         binding.btnID.setOnClickListener { sort("id") }
         binding.btnName.setOnClickListener { sort("name") }
         binding.btnDate.setOnClickListener { sort("date") }
 
-
-
         val role = "staff"
         if(role == "staff"){
             setHasOptionsMenu(true)
+        }else{
+            binding.spStatus.isVisible = false
+            vmEvent.filterStatus("Current")
         }
 
         val adapter = EventAdapter(){
@@ -69,6 +69,7 @@ class EventListingFragment : Fragment() {
                 nav.navigate(R.id.eventDetailsFragment, bundleOf("id" to event.id))
         }
         }
+
         binding.rvEvent.adapter = adapter
         binding.rvEvent.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
@@ -76,7 +77,6 @@ class EventListingFragment : Fragment() {
                 event -> adapter.submitList(event)
             binding.lblRecord.text = event.size.toString() + " record(s)"
         }
-
 
         return binding.root
     }

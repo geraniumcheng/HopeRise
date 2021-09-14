@@ -16,6 +16,7 @@ import my.com.hoperise.R
 import my.com.hoperise.data.Orphanage
 import my.com.hoperise.data.OrphanageViewModel
 import my.com.hoperise.data.SharedViewModel
+import my.com.hoperise.data.returnFragment
 import my.com.hoperise.databinding.FragmentEditOrphanageBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
@@ -121,7 +122,7 @@ class EditOrphanageFragment : Fragment() {
         vmShared.insertLocation("",  LatLng(0.0,0.0))
         Toast.makeText(context, "Orphanage updated successfully", Toast.LENGTH_SHORT).show()
 
-
+        returnFragment = true
         nav.navigateUp()
     }
 

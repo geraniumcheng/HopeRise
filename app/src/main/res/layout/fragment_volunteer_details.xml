@@ -7,7 +7,7 @@
     tools:context=".ui.VolunteerDetailsFragment">
 
     <ImageView
-        android:id="@+id/volAppImage"
+        android:id="@+id/imgVol"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
@@ -26,47 +26,23 @@
         android:id="@+id/lblID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="ID:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVolID"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/volAppImage" />
-
-    <TextView
-        android:id="@+id/orpIDListing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="A0001"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/volAppImage" />
+        app:layout_constraintTop_toTopOf="@+id/lblVolID" />
 
     <TextView
         android:id="@+id/lblEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Name:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVolName"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblID" />
-
-    <TextView
-        android:id="@+id/lblSubDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpIDListing"
-        tools:text="CHEW HONG YU" />
+        app:layout_constraintTop_toTopOf="@+id/lblVolName" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -76,91 +52,85 @@
         app:layout_constraintGuide_begin="105dp" />
 
     <TextView
-        android:id="@+id/orpLocationDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblSubDate"
-        tools:text="0189769192" />
-
-    <TextView
-        android:id="@+id/lblPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Phone:"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblEventName" />
-
-    <TextView
-        android:id="@+id/edtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpLocationDetails"
-        tools:text="chewhy-wm18@student.tarc.edu.my" />
-
-    <TextView
         android:id="@+id/lblEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Email:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVolEmail"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblPhone" />
+        app:layout_constraintTop_toTopOf="@+id/lblVolEmail" />
 
     <TextView
         android:id="@+id/lblStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Status:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVolStatus"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
-
-    <TextView
-        android:id="@+id/edtStatus2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail"
-        tools:text="Verified" />
+        app:layout_constraintTop_toTopOf="@+id/lblVolStatus" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="72dp"
         android:text="Back"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtStatus2" />
+        app:layout_constraintTop_toBottomOf="@+id/lblVolStatus" />
 
-    <Button
-        android:id="@+id/btnAdd"
+    <TextView
+        android:id="@+id/lblVolID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Add Event"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/imgVol"
+        tools:text="XXX" />
+
+    <TextView
+        android:id="@+id/lblVolName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/lblVolID"
+        tools:text="XXX" />
+
+    <TextView
+        android:id="@+id/lblVolEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/lblVolName"
+        tools:text="XXX" />
+
+    <TextView
+        android:id="@+id/lblVolStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/lblVolEmail"
+        tools:text="XXX" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

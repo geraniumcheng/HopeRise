@@ -16,10 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.ktx.toObjects
 import my.com.hoperise.R
-import my.com.hoperise.data.EventViewModel
-import my.com.hoperise.data.ORPHANAGE
-import my.com.hoperise.data.Orphanage
-import my.com.hoperise.data.OrphanageViewModel
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentOrphanageDetailsBinding
 import my.com.hoperise.util.toBitmap
 
@@ -32,9 +29,19 @@ class OrphanageDetailsFragment : Fragment() {
     private val isEvent by lazy { requireArguments().getBoolean("isEvent")  }
     private val nav by lazy { findNavController() }
     private var geoLocation = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentOrphanageDetailsBinding.inflate(inflater, container, false)
 
+        if(returnFragment){
+            ORPHANAGE.document(id).get().addOnSuccessListener {
+                    snap ->
+                val orph = snap.toObject<Orphanage>()!!
+                Log.d("orph", orph.toString())
+                load(orph)
+            }
+            returnFragment = false
+        }
         val user = "staff"
         if(user == "user"){
             binding.btnEdit.text = "Back"
@@ -54,12 +61,13 @@ class OrphanageDetailsFragment : Fragment() {
         }
 
         binding.btnEdit.setOnClickListener {
-            val fragmentManager: FragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().remove(this).commit()
-            fragmentManager.popBackStack()
+
             if(user == "user"){
                 nav.navigateUp()
             }else{
+//                val fragmentManager: FragmentManager = parentFragmentManager
+//                fragmentManager.beginTransaction().remove(this).commit()
+//                fragmentManager.popBackStack()
                 val args = bundleOf("id" to id)
                 nav.navigate(R.id.editOrphanageFragment, args)
             }

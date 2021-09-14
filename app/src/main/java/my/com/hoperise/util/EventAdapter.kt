@@ -1,5 +1,6 @@
 package my.com.hoperise.util
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,6 @@ class EventAdapter (
         val eventDateTime  : TextView = view.findViewById(R.id.lblEventDateTime)
         val eventName  : TextView = view.findViewById(R.id.lblEventName)
         val eventStatus  : TextView = view.findViewById(R.id.lblEventStatus)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,15 +50,13 @@ class EventAdapter (
         holder.eventDateTime.text = eventItem.date + " " + eventItem.time
         holder.eventName.text = eventItem.name
 
-        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(eventItem.date)
-        if(date1.after(Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur")).time)){
+        val date1 = SimpleDateFormat("dd-MM-yyyy hh:mm").parse("${eventItem.date} ${eventItem.time}")
+        if(date1.after(Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur"), ).time)){
             holder.eventStatus.text = "Current"
         }else {
             holder.eventStatus.text = "Completed"
         }
-
-        //holder.eventStatus.text = "Completed"
-
+        Log.d("date", Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur")).time.toString())
         fn(holder, eventItem)
     }
 }

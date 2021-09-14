@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.VolunteerListingFragment">
 
-    <SearchView
-        android:id="@+id/sv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/search_background"
-        android:iconifiedByDefault="false"
-        android:queryHint="Enter name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </SearchView>
-
     <TextView
         android:id="@+id/lblFilter2"
         android:layout_width="wrap_content"
@@ -29,17 +15,17 @@
         android:text="Filter Status:"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sv" />
+        app:layout_constraintTop_toBottomOf="@+id/svVol" />
 
     <Spinner
-        android:id="@+id/spnFilter2"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/spnVolStatus"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:entries="@array/filter"
+        android:entries="@array/volunteer"
+        app:layout_constraintBottom_toBottomOf="@+id/lblFilter2"
         app:layout_constraintStart_toEndOf="@+id/lblFilter2"
-        app:layout_constraintTop_toBottomOf="@+id/sv"
+        app:layout_constraintTop_toTopOf="@+id/lblFilter2"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -47,54 +33,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="36dp"
         android:text="Sort By:"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btnID"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblFilter2" />
+        app:layout_constraintTop_toTopOf="@+id/btnID"
+        app:layout_constraintVertical_bias="0.482" />
 
     <Button
         android:id="@+id/btnID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="ID"
         app:layout_constraintStart_toEndOf="@+id/lblSort2"
-        app:layout_constraintTop_toBottomOf="@+id/spnFilter2" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVolStatus" />
 
     <TextView
-        android:id="@+id/lblRecords2"
+        android:id="@+id/lblVolRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:text="8 record(s)"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/divider4"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnName" />
 
     <View
         android:id="@+id/divider4"
         android:layout_width="409dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnID" />
+        app:layout_constraintTop_toBottomOf="@+id/lblVolRecord" />
 
     <Button
         android:id="@+id/btnName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:text="Name"
+        app:layout_constraintBottom_toBottomOf="@+id/btnID"
         app:layout_constraintStart_toEndOf="@+id/btnID"
-        app:layout_constraintTop_toBottomOf="@+id/spnFilter2" />
+        app:layout_constraintTop_toTopOf="@+id/btnID" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVol"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="LinearLayoutManager"
@@ -103,4 +90,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider4"
         tools:listitem="@layout/item_volunteer_list" />
+
+    <SearchView
+        android:id="@+id/svVol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/search_background"
+        android:iconifiedByDefault="false"
+        android:queryHint="Enter name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

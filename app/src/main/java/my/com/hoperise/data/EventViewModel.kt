@@ -32,7 +32,7 @@ class EventViewModel: ViewModel() {
                 ev = snap.toObjects<Event>()
 
                 lastID = if(ev.last().id == ""){
-                    "EV0001"
+                    "EV0000"
                 }else{
                     ev.last().id
                 }
