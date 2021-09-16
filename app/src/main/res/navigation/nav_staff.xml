@@ -91,7 +91,7 @@
     <fragment
         android:id="@+id/employeeForgetPasswordFragment"
         android:name="my.com.hoperise.ui.EmployeeForgetPasswordFragment"
-        android:label="Forget Password"
+        android:label="Reset Password"
         tools:layout="@layout/fragment_employee_forget_password" />
     <fragment
         android:id="@+id/employeeVerifyEmailFragment"
@@ -101,6 +101,6 @@
     <fragment
         android:id="@+id/employeeVerifyOtpFragment"
         android:name="my.com.hoperise.ui.EmployeeVerifyOtpFragment"
-        android:label="Verify OTP"
+        android:label="Forget Password"
         tools:layout="@layout/fragment_employee_verify_otp" />
 </navigation>

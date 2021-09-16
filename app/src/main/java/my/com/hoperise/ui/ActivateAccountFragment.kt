@@ -71,13 +71,15 @@ class ActivateAccountFragment : Fragment() {
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
                 if(activationCode!!.equals(enteredOtp.toInt())){
-                    if(!emp.role.equals("Volunteer")){
-                        vm.updateStatus(user, "Active")
-                        nav.navigate(R.id.verifyAccountSuccessFragment)
-                    }else{
-                        vm.updateStatus(user, "Unverified")
-                        nav.navigate(R.id.verifyAccountSuccessFragment)
-                    }
+//                    if(!emp.role.equals("Volunteer")){
+//                        vm.updateStatus(user, "Active")
+//                        nav.navigate(R.id.verifyAccountSuccessFragment)
+//                    }else{
+//                        vm.updateStatus(user, "Unverified")
+//                        nav.navigate(R.id.verifyAccountSuccessFragment)
+//                    }
+                    vm.updateStatus(user, "Active")
+                    nav.navigate(R.id.verifyAccountSuccessFragment)
                 }else{
                     toast("OTP mismatch, please try again!")
                     //return@launch

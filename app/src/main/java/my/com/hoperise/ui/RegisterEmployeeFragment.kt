@@ -32,6 +32,7 @@ class RegisterEmployeeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRegisterEmployeeBinding.inflate(inflater, container, false)
 
+        binding.edtEmployeeId.requestFocus()
         binding.btnRegisterEmployee.setOnClickListener{ registerEmployee() }
         binding.btnPickImage.setOnClickListener{ pickImage() }
 

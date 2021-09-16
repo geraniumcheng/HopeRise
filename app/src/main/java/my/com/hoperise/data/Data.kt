@@ -19,7 +19,7 @@ val VOLUNTEER = Firebase.firestore.collection("volunteer")
 val MESSAGE = Firebase.firestore.collection("message")
 val PHOTO = Firebase.firestore.collection("photo")
 val USER = Firebase.firestore.collection("User")
-val EMPLOYEES = Firebase.firestore.collection("User").whereIn("role", listOf("Manager","Employee"))
+val EMPLOYEE = Firebase.firestore.collection("User").whereIn("role", listOf("Manager","Employee"))
 var currentUser: User? = null
 
 data class Location(
@@ -194,19 +194,19 @@ fun RESTORE_DATA(ctx: Context) {
 //        )
 
         val users = listOf(
-            User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, null, null, 553612, Date()),
-            User("chewhongyu", "hyhyhy@gmail.com", "Chew Hong Yu", "Abcd123!", "Manager", "Active", 3, null, null, 587851, Date()),
-            User("teohshuzi", "shuzizizi@gmail.com", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, null, null, 201478, Date()),
-            User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, null, null, 698741, Date()),
-            User("employeeno2", "employee2@gmail.com", "Employee Two", "Abcd123!", "Employee", "Deactivated", 3, null, null, 214784, Date()),
-            User("volunteer1", "volunteerno1@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, null, null, 998524, Date()),
-            User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Unverified", 3, null, null, 777558, Date()),
-            User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Pending", 3, null, null, 575757, Date()),
-            User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
+            User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff1).toBlob(), null, null, Date()),
+            User("chewhongyu", "hyhyhy@gmail.com", "Chew Hong Yu", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff2).toBlob(), null, null, Date()),
+            User("teohshuzi", "shuzizizi@gmail.com", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff3).toBlob(), null, null, Date()),
+            User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff4).toBlob(), null, null, Date()),
+            User("employeeno2", "employee2@gmail.com", "Employee Two", "Abcd123!", "Employee", "Deactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff5).toBlob(), null, null, Date()),
+            User("volunteer1", "volunteerno1@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user1).toBlob(), null, null, Date()),
+            User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user2).toBlob(), null, null, Date()),
+            User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user3).toBlob(), null, null, Date()),
+            User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user4).toBlob(), null, null, Date()),
+            User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user5).toBlob(), null, null, Date()),
+            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user6).toBlob(), null, null, Date()),
+            User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user7).toBlob(), null, null, Date()),
+            User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user8).toBlob(), null, null, Date()),
         )
 
         for (u in users)

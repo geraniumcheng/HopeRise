@@ -45,18 +45,18 @@
         android:label="Change Password"
         tools:layout="@layout/fragment_volunteer_change_password" />
     <fragment
-        android:id="@+id/volunteerForgetPasswordFragment2"
+        android:id="@+id/volunteerForgetPasswordFragment"
         android:name="my.com.hoperise.ui.VolunteerForgetPasswordFragment"
-        android:label="fragment_volunteer_forget_password"
+        android:label="Reset Password"
         tools:layout="@layout/fragment_volunteer_forget_password" />
     <fragment
-        android:id="@+id/volunteerVerifyEmailFragment2"
+        android:id="@+id/volunteerVerifyEmailFragment"
         android:name="my.com.hoperise.ui.VolunteerVerifyEmailFragment"
-        android:label="fragment_volunteer_verify_email"
+        android:label="Verify Email"
         tools:layout="@layout/fragment_volunteer_verify_email" />
     <fragment
         android:id="@+id/volunteerVefiryOtpFragment"
         android:name="my.com.hoperise.ui.VolunteerVefiryOtpFragment"
-        android:label="fragment_volunteer_vefiry_otp"
+        android:label="Forget Password"
         tools:layout="@layout/fragment_volunteer_vefiry_otp" />
 </navigation>

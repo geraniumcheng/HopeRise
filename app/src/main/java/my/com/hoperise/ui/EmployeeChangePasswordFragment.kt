@@ -1,5 +1,7 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +12,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
+import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentEmployeeChangePasswordBinding
+import my.com.hoperise.util.SendEmail
 import my.com.hoperise.util.hideKeyboard
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EmployeeChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentEmployeeChangePasswordBinding
@@ -26,13 +33,67 @@ class EmployeeChangePasswordFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEmployeeChangePasswordBinding.inflate(inflater, container, false)
 
+        val userId = (activity as StaffActivity).loggedInId
         resetErrorMessage()
         binding.edtCurrentPass.requestFocus()
 
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }
+        binding.btnForgetPassword.setOnClickListener {
+            sendOtpResetPassword(userId)
+        }
+
         return binding.root
     }
 
+    private fun sendOtpResetPassword(userId: String) {
+        lifecycleScope.launch {
+
+            val emp = vm.getLogIn(userId)
+            var email = emp!!.email
+
+            AlertDialog.Builder(requireContext())
+                .setTitle("Forget Password")
+                .setMessage("An OTP will sent to your registered email to let you reset a new password. Proceed to OTP verification?\n")
+                .setIcon(R.drawable.ic_otp_confirm_dialog)
+                .setPositiveButton(android.R.string.yes, object :
+                    DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                        var sdf = SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
+                        var currentDateandTime: String = sdf.format(Date())
+                        val n = (0..999999).random()
+                        val fmt = DecimalFormat("000000")
+                        val verifyOtpCode = fmt.format(n).toString()
+                        sendEmail(email, userId, verifyOtpCode, currentDateandTime)
+                        vm.updateOtp(userId, verifyOtpCode.toInt())
+                        nav.navigate(R.id.employeeVerifyOtpFragment)
+                    }
+                }).setNegativeButton(android.R.string.no, null).show()
+        }
+    }
+
+    private fun sendEmail(email: String, userId: String, verifyOtpCode: String, currentDateandTime: String) {
+        val subject = "Reset Hope Rise Account Password Request @ ${currentDateandTime}"
+        val content = """
+                    <p>Greetings from Hope Rise 😉 </p>
+                    <p>Dear <b>$userId</b>,</p>
+                    <p>Please entered the <b>OTP</b> code to continue for reset your password:</p>
+                    <h1 style="color: orange">$verifyOtpCode</h1>
+                    <p>Reminder: If you ignore this email, your password will not be changed. Please secure your account and password.</p>
+                    <p>Thank you! 😁</p>
+                    <p> </p>
+                    <p><i>Hope Rise Team</i></p>
+                    <p> </p>
+                    <p> </p>
+                """.trimIndent()
+
+        SendEmail()
+            .to(email)
+            .subject(subject)
+            .content(content)
+            .isHtml()
+            .send() {
+            }
+    }
 
     private fun getCurrentPassword() {
         val userId = (activity as StaffActivity).loggedInId
@@ -65,11 +126,11 @@ class EmployeeChangePasswordFragment : Fragment() {
                     return
                 }
                 if(enteredNewPass.equals(enteredConfirmNewPass)){
-                    //toast("You are all set")
-                    //resetErrorMessage()
                     hideKeyboard()
                     vm.changePass(emp.id,enteredConfirmNewPass)
                     nav.navigateUp()
+                    toast("Password updated successfully!")
+
                 }
                 else{
                     binding.lblConfirmNewPasswordWarning.visibility = View.VISIBLE

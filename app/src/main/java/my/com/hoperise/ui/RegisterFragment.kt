@@ -61,7 +61,7 @@ class RegisterFragment : Fragment() {
             AlertDialog.Builder(requireContext())
                 .setTitle("Hmmm")
                 .setMessage("Just one step away to register with Hope Rise! Are you sure you want to leave now?" )
-                .setIcon(R.drawable.ic_otp_confirm_dialog)
+                .setIcon(R.drawable.ic_leave_confirm_dialog)
                 .setPositiveButton("Yes", object :
                     DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, whichButton: Int) {

@@ -21,6 +21,8 @@ class UserViewModel: ViewModel() {
     val loginFailed = MutableLiveData<String>()
     // Live data for newly register user
     val newlyRegister = MutableLiveData<String>()
+    // Live data for verify newly register email
+    val verifyingEmail = MutableLiveData<String>()
 
 
     private var name = ""       // Search purpose
@@ -31,11 +33,11 @@ class UserViewModel: ViewModel() {
 
     // Employee list will be updated accordingly
     init {
-        EMPLOYEES.addSnapshotListener { snap, _ -> employeeResult.value = snap?.toObjects() }
+        EMPLOYEE.addSnapshotListener { snap, _ -> employeeResult.value = snap?.toObjects() }
 
         viewModelScope.launch {
 
-            EMPLOYEES.addSnapshotListener { snap, _ ->
+            EMPLOYEE.addSnapshotListener { snap, _ ->
                 if (snap == null) return@addSnapshotListener
 
                 employee = snap.toObjects<User>()
@@ -61,6 +63,15 @@ class UserViewModel: ViewModel() {
     fun getNewlyRegisteredId(): String{
         return newlyRegister.value.toString()
     }
+
+    fun getNewlyVerifiedEmail(): String{
+        return verifyingEmail.value.toString()
+    }
+
+    fun setNewlyVerifiedEmail(id: String){
+        verifyingEmail.value = id
+    }
+
 
     // Update the filtered and sorted Employee List
     private fun updateResult() {
@@ -163,6 +174,10 @@ class UserViewModel: ViewModel() {
 
     fun updatePassword(id: String, password: String){
         USER.document(id).update("password",password)
+    }
+
+    fun updateEmail(id: String, email: String){
+        USER.document(id).update("email",email)
     }
 
     private fun idExists(id: String): Boolean {

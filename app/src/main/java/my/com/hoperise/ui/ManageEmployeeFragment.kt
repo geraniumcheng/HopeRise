@@ -41,14 +41,6 @@ class ManageEmployeeFragment : Fragment() {
         return binding.root
     }
 
-//    private fun updateEmployee(){
-//        Firebase.firestore
-//            .collection("User")
-//            .document("teohshuzi")
-//            .update("name","Meinv","status","Deactivated") // field, value, field value
-//            .addOnSuccessListener { toast("Update Successfully!") }
-//    }
-
     private fun reset() {
         // TODO: Load data
         val emp = vm.get(id)
@@ -99,6 +91,7 @@ class ManageEmployeeFragment : Fragment() {
 
         vm.update(emp)
         nav.navigateUp()
+        toast("Employee updated successfully!")
     }
 
     private fun toast(text: String) {

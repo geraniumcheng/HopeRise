@@ -71,11 +71,9 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
-                progressDialog?.dismiss()
             }
-
         }
-
+        progressDialog?.dismiss()
     }
 
     fun getFailedLoginId(): String {

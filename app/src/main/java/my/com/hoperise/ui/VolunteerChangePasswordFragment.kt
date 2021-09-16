@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.MainActivity
+import my.com.hoperise.R
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentVolunteerChangePasswordBinding
@@ -27,6 +29,7 @@ class VolunteerChangePasswordFragment : Fragment() {
 
         resetErrorMessage()
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }
+        binding.btnForgetPassword.setOnClickListener { nav.navigate(R.id.volunteerVefiryOtpFragment) }
         return binding.root
     }
 
@@ -66,6 +69,7 @@ class VolunteerChangePasswordFragment : Fragment() {
                     hideKeyboard()
                     vm.changePass(emp.id,enteredConfirmNewPass)
                     nav.navigateUp()
+                    toast("Password updated successfully!")
                 }
                 else{
                     binding.lblConfirmNewPasswordWarning.visibility = View.VISIBLE
@@ -92,6 +96,10 @@ class VolunteerChangePasswordFragment : Fragment() {
         binding.lblCurrentPasswordWarning.visibility = View.GONE
         binding.lblNewPasswordWarning.visibility = View.GONE
         binding.lblConfirmNewPasswordWarning.visibility = View.GONE
+    }
+
+    private fun toast(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
 }
