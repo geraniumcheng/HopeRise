@@ -15,8 +15,10 @@ import kotlinx.coroutines.tasks.await
 class UserViewModel: ViewModel() {
     // Local copy for filter and sort
     private var employee = listOf<User>()
-    // Live data from firestore
+    // Live data from firestore for all employee
     private val employeeResult = MutableLiveData<List<User>>()
+    // Live data from firestore for all user
+    private val userResult = MutableLiveData<List<User>>()
     // Live data for login failed user
     val loginFailed = MutableLiveData<String>()
     // Live data for newly register user
@@ -34,6 +36,8 @@ class UserViewModel: ViewModel() {
     // Employee list will be updated accordingly
     init {
         EMPLOYEE.addSnapshotListener { snap, _ -> employeeResult.value = snap?.toObjects() }
+
+        USER.addSnapshotListener { snap, _ -> userResult.value = snap?.toObjects() }
 
         viewModelScope.launch {
 
@@ -181,11 +185,11 @@ class UserViewModel: ViewModel() {
     }
 
     private fun idExists(id: String): Boolean {
-        return employeeResult.value?.any { emp -> emp.id == id } ?: false
+        return userResult.value?.any { user -> user.id == id } ?: false
     }
 
     private fun emailExists(email: String): Boolean {
-        return employeeResult.value?.any { emp -> emp.email == email } ?: false
+        return userResult.value?.any { user -> user.email == email } ?: false
     }
 
     private fun isValidEmail(email: String): Boolean {

@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,13 +38,8 @@ class ViewStaffProfileFragment : Fragment() {
     private val vm: UserViewModel by activityViewModels()
     private val loginVm: LoginViewModel by activityViewModels()
     var currentEmail = ""
-
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            binding.imgEmployeePhoto.setImageURI(it.data?.data)
-        }
-    }
-
+    private val GALLERY = 1
+    private val CAMERA = 2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewStaffProfileBinding.inflate(inflater, container, false)
@@ -54,9 +52,40 @@ class ViewStaffProfileFragment : Fragment() {
             nav.navigate(R.id.employeeChangePasswordFragment)
         }
         binding.btnReset.setOnClickListener { loadProfileData(userId) }
-        binding.btnPickImage.setOnClickListener{ pickImage() }
+        binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnUpdate.setOnClickListener { updateStaff(userId) }
         return binding.root
+    }
+
+    private fun showSelection() {
+        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Change profile photo")
+            .setIcon(R.drawable.ic_select_photo)
+            .setSingleChoiceItems(items, 3, object : DialogInterface.OnClickListener {
+                override fun onClick(d: DialogInterface?, n: Int) {
+                    if(n == 0){
+                        pickImage(n)
+                        d?.dismiss()
+                    }
+                    else{
+                        pickImage(n)
+                        d?.dismiss()
+                    }
+                }
+            })
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun pickImage(n: Int) {
+        if(n == 0){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA)
+        }else{
+            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
+            galleryIntent.type = "image/*"
+            startActivityForResult(galleryIntent, GALLERY)
+        }
     }
 
     private fun updateStaff(userId: String) {
@@ -194,15 +223,25 @@ class ViewStaffProfileFragment : Fragment() {
 
     }
 
-    private fun pickImage() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        launcher.launch(intent)
-    }
-
     private fun toast(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val photoURI: Uri? = data.data
+                binding.imgEmployeePhoto.setImageURI(photoURI)
+            }
+        }
+        else if (requestCode == CAMERA) {
+            if(resultCode != Activity.RESULT_CANCELED){
+                val thumbnail = data!!.extras!!["data"] as Bitmap?
+                binding.imgEmployeePhoto.setImageBitmap(thumbnail)
+            }
+        }
+    }
 
 }
