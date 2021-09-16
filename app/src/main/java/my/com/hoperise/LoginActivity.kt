@@ -1,6 +1,8 @@
 package my.com.hoperise
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +16,7 @@ import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.ActivityLoginBinding
+import my.com.hoperise.util.errorDialog
 import java.util.*
 
 @Suppress("DEPRECATION")
@@ -51,7 +54,21 @@ class LoginActivity : AppCompatActivity() {
                     failedLoggedInId = user.id
                     nav.navigate(R.id.registerSuccessFragment)
                     progressDialog?.dismiss()
-                }else if(count <= 0){
+                }
+                else if(status.equals("Deactivated")){
+                    AlertDialog.Builder(this@LoginActivity)
+                        .setTitle("Attention")
+                        .setMessage("Please be informed that your account has been deactivated by the manager!")
+                        .setIcon(R.drawable.ic_warning)
+                        .setPositiveButton("OK", object :
+                            DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                                return
+                            }
+                        }).show()
+                    progressDialog?.dismiss()
+                }
+                else if(count <= 0){
                     // If password matched + 0 attempts left will go here
                     vm.setLoginFailedId(user.id)
                     nav.navigate(R.id.accountBlockFragment)

@@ -1,5 +1,7 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -54,48 +56,40 @@ class LoginFragment : Fragment() {
         lifecycleScope.launch {
             val success = loginVm.login(ctx, id, password, remember)
             if (success) {
-                //nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
-                //nav.navigateUp()
-//                loginVm.getUserLiveData().observe(viewLifecycleOwner) { user ->
-//                    val role = user.role
-//                    if (role.equals("Volunteer")){
-//                        val intent = Intent(activity, MainActivity::class.java)
-//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(intent)
-//                        toast(remember.toString())
-//                    }
-//                    else{
-//                        val intent = Intent(activity, StaffActivity::class.java)
-//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(intent)
-//                        toast(remember.toString())
-//                    }
-//                }
 
             }
             else {
                 // If password mismatched + 0 attempts left will go here
                 lifecycleScope.launch {
-                    val emp = vm.getLogIn(id)
-
-                    if (emp == null) {
+                    val user = vm.getLogIn(id)
+                    if (user == null) {
                        errorDialog("Invalid login credentials.")
-                    }else{
-                        vm.setLoginFailedId(emp.id)
+                    }else if(user.status.equals("Deactivated")){
+                        // If password mismatched + user account has been deactivated
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Attention")
+                            .setMessage("Please be informed that your account has been deactivated by the manager!")
+                            .setIcon(R.drawable.ic_warning)
+                            .setPositiveButton("OK", object :
+                                DialogInterface.OnClickListener {
+                                override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                                    return
+                                }
+                            }).show()
+                    }
+                    else{
+                        vm.setLoginFailedId(user.id)
                         //toast("Yes user exists")
-                        var timesLeft = emp.count
+                        var timesLeft = user.count
                         timesLeft = timesLeft - 1
                         //toast(timesLeft.toString())
-                        vm.updateCount(emp.id,timesLeft)
+                        vm.updateCount(user.id,timesLeft)
                         if(timesLeft > 0 )
                              errorDialog("Invalid login credentials! " + timesLeft + " attempts left! ")
                         if(timesLeft <= 0 ){
                             nav.navigate(R.id.accountBlockFragment)
                         }
-
-
                     }
-
                 }
             }
         }

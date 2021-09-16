@@ -142,7 +142,7 @@
         android:layout_marginTop="32dp"
         android:text="Reset"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toBottomOf="@+id/lblTempPass" />
 
     <Button
         android:id="@+id/btnUpdateEmployee"
@@ -187,5 +187,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnUpdateEmployee"
         app:layout_constraintTop_toTopOf="@+id/btnUpdateEmployee" />
+
+    <TextView
+        android:id="@+id/lblTempPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Temporary\nPassword   :"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/lblTemporaryPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTempPass"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/lblTempPass"
+        tools:text="Abcd123!" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
