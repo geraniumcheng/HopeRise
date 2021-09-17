@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
@@ -38,6 +39,12 @@ class RegisterFragment : Fragment() {
             verifyEnteredDetails()
             //nav.navigate(R.id.loginFragment)
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.popBackStack(R.id.loginFragment, false)
+            }
+        })
 
         return binding.root
     }

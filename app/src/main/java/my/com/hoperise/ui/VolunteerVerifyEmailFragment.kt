@@ -1,5 +1,7 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -51,6 +54,22 @@ class VolunteerVerifyEmailFragment : Fragment() {
 
             binding.btnVerifyRequest.setOnClickListener { verifyOtp(userId) }
 
+            activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Leave now?")
+                        .setMessage("Your email will not be update if you leave now." )
+                        .setIcon(R.drawable.ic_leave_confirm_dialog)
+                        .setPositiveButton(android.R.string.yes, object :
+                            DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                                nav.navigate(R.id.viewVolunteerProfileFragment)
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show()
+                }
+            })
+
             return binding.root
         }
 
@@ -67,7 +86,7 @@ class VolunteerVerifyEmailFragment : Fragment() {
                 if(otpCode!!.equals(enteredOtp.toInt())){
                     val newEmail = vm.getNewlyVerifiedEmail()
                     vm.updateEmail(userId, newEmail)
-                    nav.navigateUp()
+                    nav.navigate(R.id.viewVolunteerProfileFragment)
                     toast("Verify email successfully!")
                 }else{
                     toast("OTP mismatch, please try again!")

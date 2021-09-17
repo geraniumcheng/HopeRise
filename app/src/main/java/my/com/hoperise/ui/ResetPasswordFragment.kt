@@ -1,11 +1,14 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -29,6 +32,22 @@ class ResetPasswordFragment : Fragment() {
             validatePassword(loggedInId)
             //nav.navigate(R.id.resetPasswordSuccessFragment)
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Leave now?")
+                    .setMessage("Your password will not be reset if you leave now." )
+                    .setIcon(R.drawable.ic_leave_confirm_dialog)
+                    .setPositiveButton(android.R.string.yes, object :
+                        DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                            nav.navigate(R.id.loginFragment)
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show()
+            }
+        })
 
         return binding.root
     }

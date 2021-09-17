@@ -1,11 +1,14 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,6 +33,13 @@ class RequestResetPasswordFragment : Fragment() {
         binding.btnSendOtpResetPass.setOnClickListener {
             sendOtpResetPassword()
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.popBackStack(R.id.loginFragment, false)
+            }
+        })
+
         return binding.root
     }
 
@@ -83,4 +93,6 @@ class RequestResetPasswordFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
+
+
 }

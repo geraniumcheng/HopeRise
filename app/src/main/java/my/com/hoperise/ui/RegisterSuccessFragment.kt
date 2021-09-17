@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -43,6 +44,23 @@ class RegisterSuccessFragment : Fragment() {
                 sendActivateCode(loggedInId) // When user is direct from login
             }
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Leave now?")
+                    .setMessage("Your account will not be activate if you leave now." )
+                    .setIcon(R.drawable.ic_leave_confirm_dialog)
+                    .setPositiveButton(android.R.string.yes, object :
+                        DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                            nav.navigate(R.id.loginFragment)
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show()
+            }
+        })
+
 
         return binding.root
     }
@@ -97,7 +115,7 @@ class RegisterSuccessFragment : Fragment() {
                             nav.navigate(R.id.activateAccountFragment)
                         }
                     })
-                    .setNegativeButton(android.R.string.no, null).show()
+                    .setNegativeButton("I didnt receive it", null).show()
 
                 //binding.lblOtpDetails.visibility = View.VISIBLE
                 //binding.lblOtpDetails.text = "OTP Code is was sent to you on " + currentDateandTime

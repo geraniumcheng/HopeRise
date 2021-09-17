@@ -37,10 +37,8 @@ class EmployeeChangePasswordFragment : Fragment() {
         resetErrorMessage()
         binding.edtCurrentPass.requestFocus()
 
-        binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }
-        binding.btnForgetPassword.setOnClickListener {
-            sendOtpResetPassword(userId)
-        }
+        binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword(userId) }
+        binding.btnForgetPassword.setOnClickListener { sendOtpResetPassword(userId) }
 
         return binding.root
     }
@@ -95,8 +93,7 @@ class EmployeeChangePasswordFragment : Fragment() {
             }
     }
 
-    private fun getCurrentPassword() {
-        val userId = (activity as StaffActivity).loggedInId
+    private fun getCurrentPassword(userId: String) {
         lifecycleScope.launch {
             val emp = vm.getLogIn(userId)
 

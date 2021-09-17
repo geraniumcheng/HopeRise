@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Activate Account"
+        android:text="@string/activate_account"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="34sp"
@@ -42,7 +42,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Please enter the One Time Password (OTP) that we've sent to your registered email to activate your registered account. "
+        android:text="@string/please_enter_the_one_time_password_otp_that_we_ve_sent_to_your_registered_email_to_activate_your_registered_account"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -73,8 +73,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor" />
 
         <EditText
             android:id="@+id/edtOtp2"
@@ -86,8 +86,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp3"
@@ -99,8 +99,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp4"
@@ -112,8 +112,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp5"
@@ -125,8 +125,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp6"
@@ -138,8 +138,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
     </LinearLayout>
 
@@ -147,11 +147,11 @@
         android:id="@+id/btnActivateAccount"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:layout_marginTop="24dp"
         android:background="#000"
         android:elevation="0dp"
-        android:text="Verify"
+        android:text="@string/verify"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"

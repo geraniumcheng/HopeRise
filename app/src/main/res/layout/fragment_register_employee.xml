@@ -29,6 +29,7 @@
         android:layout_marginEnd="110dp"
         android:backgroundTint="@color/color_drawer"
         android:clickable="true"
+        android:contentDescription="@string/pick_image"
         android:src="@drawable/ic_camera"
         app:backgroundTint="@color/color_drawer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Username:"
+        android:text="@string/username_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -52,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Email:"
+        android:text="@string/email_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Name:"
+        android:text="@string/name_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -81,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Role:"
+        android:text="@string/role"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -92,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Temporary\nPassword:"
+        android:text="@string/temporary_npassword"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -104,12 +105,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:hint="@string/username"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:maxLength="20"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
-        tools:text="Username" />
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <EditText
         android:id="@+id/edtEmployeeEmail"
@@ -117,11 +119,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        tools:text="abc123@gmail.com" />
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
 
     <EditText
         android:id="@+id/edtEmployeeName"
@@ -129,11 +132,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:hint="@string/name"
+        android:importantForAutofill="no"
         android:inputType="textCapWords"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
-        tools:text="Name" />
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
 
     <Spinner
         android:id="@+id/spnEmployeeRole"
@@ -152,17 +156,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Temporary Password"
+        android:hint="@string/temporary_password"
+        android:importantForAutofill="no"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView18" />
+        app:layout_constraintTop_toTopOf="@+id/textView18"
+        tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/btnRegisterEmployee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
         app:layout_constraintTop_toTopOf="@+id/btnReset" />
@@ -172,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Reset"
+        android:text="@string/reset"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/edtTemporaryPassword" />
 

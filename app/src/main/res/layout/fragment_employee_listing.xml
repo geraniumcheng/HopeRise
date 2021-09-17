@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Filter By:"
+        android:text="@string/filter_by"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svEmployee" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:text="Sort By:"
+        android:text="@string/sort_by"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblFilter" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="ID"
+        android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="@+id/lblSort"
         app:layout_constraintStart_toEndOf="@+id/lblSort"
         app:layout_constraintTop_toTopOf="@+id/lblSort" />
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeId"
         app:layout_constraintStart_toEndOf="@+id/btnEmployeeId"
         app:layout_constraintTop_toTopOf="@+id/btnEmployeeId"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Date"
+        android:text="@string/date"
         app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeName"
         app:layout_constraintStart_toEndOf="@+id/btnEmployeeName"
         app:layout_constraintTop_toTopOf="@+id/btnEmployeeName"
@@ -91,9 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="8 record(s)"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterDate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterDate"
+        tools:text="8 record(s)" />
 
     <View
         android:id="@+id/div1"
@@ -146,6 +146,7 @@
         android:layout_marginEnd="300dp"
         android:backgroundTint="@color/color_drawer"
         android:clickable="true"
+        android:contentDescription="@string/add_new_employee"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/color_drawer"
         app:layout_constraintEnd_toEndOf="parent"

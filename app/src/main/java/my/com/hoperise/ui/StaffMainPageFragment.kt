@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -41,6 +42,13 @@ class StaffMainPageFragment : Fragment() {
         binding.cardStaff.setOnClickListener { nav.navigate(R.id.viewStaffProfileFragment) }
         binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
         binding.cardVolunteerM.setOnClickListener { nav.navigate(R.id.volunteerListingFragment) }
+
+        // For alert dialog navigation purpose
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                getActivity()?.finish()
+            }
+        })
 
         return binding.root
     }

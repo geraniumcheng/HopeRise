@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Please enter the One Time Password (OTP) that we've sent to your email to confirm your reset password request."
+        android:text="@string/profile_reset_password"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -45,8 +45,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp2"
@@ -58,8 +58,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp3"
@@ -71,8 +71,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp4"
@@ -84,8 +84,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp5"
@@ -97,8 +97,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
         <EditText
             android:id="@+id/edtOtp6"
@@ -110,8 +110,8 @@
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="Label for"/>
+            android:textSize="20sp"
+            tools:ignore="Label for,LabelFor"/>
 
     </LinearLayout>
 
@@ -119,12 +119,12 @@
         android:id="@+id/btnVerifyRequest"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:layout_marginTop="16dp"
         android:textAllCaps="false"
         android:background="#000"
         android:elevation="0dp"
-        android:text="Verify"
+        android:text="@string/verify"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"

@@ -57,5 +57,4 @@ class MainActivity : AppCompatActivity() {
         return nav.navigateUp() || super.onSupportNavigateUp()
     }
 
-
 }

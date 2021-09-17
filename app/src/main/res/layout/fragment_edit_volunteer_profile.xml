@@ -15,12 +15,11 @@
         android:cropToPadding="true"
         android:importantForAccessibility="no"
         android:padding="1dp"
-        android:src="@drawable/ic_default_profile_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck"/>
+        tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnPickImage"
@@ -30,6 +29,7 @@
         android:layout_marginEnd="110dp"
         android:backgroundTint="@color/color_drawer"
         android:clickable="true"
+        android:contentDescription="@string/pick_image"
         android:src="@drawable/ic_camera"
         app:backgroundTint="@color/color_drawer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Username:"
+        android:text="@string/username_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Email:"
+        android:text="@string/email_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -64,19 +64,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="teohshuzi"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView28"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView28" />
+        app:layout_constraintTop_toTopOf="@+id/textView28"
+        tools:text="teohshuzi" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Name:"
+        android:text="@string/name_"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Update"
+        android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
         app:layout_constraintTop_toTopOf="@+id/btnReset" />
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="Reset"
+        android:text="@string/reset"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/edtVolunteerName" />
 
@@ -115,11 +115,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/name"
+        android:importantForAutofill="no"
         android:inputType="textCapWords"
+        android:maxLength="35"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.523" />
 
     <EditText
         android:id="@+id/edtVolunteerEmail"
@@ -127,8 +130,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textCapWords"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/textView29"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/textView29" />

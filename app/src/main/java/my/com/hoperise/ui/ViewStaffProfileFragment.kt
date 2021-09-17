@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -54,6 +55,13 @@ class ViewStaffProfileFragment : Fragment() {
         binding.btnReset.setOnClickListener { loadProfileData(userId) }
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnUpdate.setOnClickListener { updateStaff(userId) }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.navigate(R.id.staffMainPageFragment)
+            }
+        })
+
         return binding.root
     }
 
@@ -204,8 +212,7 @@ class ViewStaffProfileFragment : Fragment() {
     }
 
     private fun logout(){
-        // TODO(4): Logout -> auth.logout(...)
-        //          Clear navigation backstack
+
         AlertDialog.Builder(requireContext())
             .setTitle("Logout")
             .setMessage("Are you sure want to log out?" )

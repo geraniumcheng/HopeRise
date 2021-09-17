@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,13 @@ class LoginFragment : Fragment() {
         binding.btnForgetPassword.setOnClickListener { nav.navigate(R.id.requestResetPasswordFragment) }
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegister.setOnClickListener {  nav.navigate(R.id.registerFragment) }
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                getActivity()?.finish()
+            }
+        })
+
         return binding.root
     }
 
