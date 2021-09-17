@@ -1,7 +1,5 @@
 package my.com.hoperise.ui
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,10 +28,9 @@ class RequestResetPasswordFragment : Fragment() {
         binding = FragmentRequestResetPasswordBinding.inflate(inflater, container, false)
 
         binding.edtResetPassEmail.requestFocus()
-        binding.btnSendOtpResetPass.setOnClickListener {
-            sendOtpResetPassword()
-        }
+        binding.btnSendOtpResetPass.setOnClickListener { sendOtpResetPassword() }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 nav.popBackStack(R.id.loginFragment, false)
@@ -42,7 +39,6 @@ class RequestResetPasswordFragment : Fragment() {
 
         return binding.root
     }
-
 
     private fun sendOtpResetPassword() {
         var email = binding.edtResetPassEmail.text.toString()
@@ -84,8 +80,8 @@ class RequestResetPasswordFragment : Fragment() {
                     }
 
                 vm.updateOtp(userId,otpCode.toInt())
-                vm.setLoginFailedId(userId)
-                nav.navigate(R.id.confirmResetPasswordRequestFragment)
+                vm.setLoginFailedId(userId) // Set the id that belongs to the entered email
+                nav.navigate(R.id.confirmResetPasswordRequestFragment) // Redirect to enter OTP screen
             }
       }
     }
@@ -93,6 +89,4 @@ class RequestResetPasswordFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
-
-
 }

@@ -34,17 +34,16 @@ class RegisterSuccessFragment : Fragment() {
         val activity: LoginActivity = activity as LoginActivity
         val loggedInId: String = activity.getFailedLoginId()
 
-        //toast(loggedInId)
-        //binding.lblOtpDetails.visibility = View.INVISIBLE
         binding.btnSendOtp.setOnClickListener {
-            if(loggedInId.equals("")){  // When user is direct from register
+            if(loggedInId.equals("")){  // When user is direct from register screen
                 var newlyRegister = vm.getNewlyRegisteredId()
                 sendActivateCode(newlyRegister)
             }else{
-                sendActivateCode(loggedInId) // When user is direct from login
+                sendActivateCode(loggedInId) // When user is direct from login screen
             }
         }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -61,7 +60,6 @@ class RegisterSuccessFragment : Fragment() {
             }
         })
 
-
         return binding.root
     }
 
@@ -72,38 +70,36 @@ class RegisterSuccessFragment : Fragment() {
         val fmt = DecimalFormat("000000")
         val activationCode = fmt.format(n)
 
-        //${System.currentTimeMillis()}"
         lifecycleScope.launch {
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
                 toast("Opps! Something wrong!")
                 return@launch
             } else {
-            val email = emp.email
-            val user = emp.id
-            //toast(email)
+                val email = emp.email
+                val user = emp.id
 
-            val subject = "Thank You For Registering With Hope Rise! @ ${currentDateandTime}"
-            val content = """
-            <p>Hello <b>$loggedInId</b> 🤩 </p>
-            <p>Welcome to <i>Hope Rise</i>!</p>
-            <p>Confirm your account registration by entering the following <b> activation code</b>:</p>
-            <h1 style="color: orange">$activationCode</h1>
-            <p>One step closer to make charity with us! See you there! 🤗</p>
-            <p> </p>
-            <p><i>Hope Rise Team</i></p>
-            <p> </p>
-            <p> </p>
-        """.trimIndent()
+                val subject = "Thank You For Registering With Hope Rise! @ ${currentDateandTime}"
+                val content = """
+                <p>Hello <b>$loggedInId</b> 🤩 </p>
+                <p>Welcome to <i>Hope Rise</i>!</p>
+                <p>Confirm your account registration by entering the following <b> activation code</b>:</p>
+                <h1 style="color: orange">$activationCode</h1>
+                <p>One step closer to make charity with us! See you there! 🤗</p>
+                <p> </p>
+                <p><i>Hope Rise Team</i></p>
+                <p> </p>
+                <p> </p>
+            """.trimIndent()
 
-        SendEmail()
-            .to(email)
-            .subject(subject)
-            .content(content)
-            .isHtml()
-            .send() {
-            }
-
+            SendEmail()
+                .to(email)
+                .subject(subject)
+                .content(content)
+                .isHtml()
+                .send() {
+                }
+                // Update the generated activation code to firebase
                 vm.updateActivationCode(user, activationCode.toInt())
                 AlertDialog.Builder(requireContext())
                     .setTitle("Hurray")
@@ -112,14 +108,11 @@ class RegisterSuccessFragment : Fragment() {
                     .setPositiveButton(android.R.string.yes, object :
                         DialogInterface.OnClickListener {
                         override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.navigate(R.id.activateAccountFragment)
+                            nav.navigate(R.id.activateAccountFragment) // If they received it, can press yes to continue for verification
                         }
                     })
-                    .setNegativeButton("I didnt receive it", null).show()
-
-                //binding.lblOtpDetails.visibility = View.VISIBLE
-                //binding.lblOtpDetails.text = "OTP Code is was sent to you on " + currentDateandTime
-
+                    .setNegativeButton("I didnt receive it", null).show() // If they press on this button, they will remain on the screen;
+                                                                                     // When click on the send OTP button, a new activation code will be sent
             }
     }
 }

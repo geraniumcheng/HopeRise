@@ -17,6 +17,7 @@ class StaffActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupActionBarWithNavController(nav)
 
+        // Pass login user's data (Method 2)
         loggedInId = intent.getStringExtra("loggedInId") ?:""
 
 //        binding.cardEmployee.setOnClickListener {  }

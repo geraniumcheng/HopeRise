@@ -13,23 +13,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import my.com.hoperise.R
+import my.com.hoperise.data.CAMERA
+import my.com.hoperise.data.GALLERY
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentRegisterEmployeeBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
 
-
 class RegisterEmployeeFragment : Fragment() {
     private lateinit var binding: FragmentRegisterEmployeeBinding
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
-    private val GALLERY = 1
-    private val CAMERA = 2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRegisterEmployeeBinding.inflate(inflater, container, false)
@@ -38,6 +37,14 @@ class RegisterEmployeeFragment : Fragment() {
         binding.btnRegisterEmployee.setOnClickListener{ registerEmployee() }
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnReset.setOnClickListener { reset() }
+
+        // For prevent back press error happen
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.navigate(R.id.employeeListingFragment)
+            }
+        })
+
 
         return binding.root
     }
@@ -85,7 +92,6 @@ class RegisterEmployeeFragment : Fragment() {
     }
 
     private fun registerEmployee() {
-        // TODO: Insert (set)
         val emp = User(
             id    = binding.edtEmployeeId.text.toString().lowercase().trim(),
             email = binding.edtEmployeeEmail.text.toString().trim(),
@@ -94,7 +100,7 @@ class RegisterEmployeeFragment : Fragment() {
             role = binding.spnEmployeeRole.selectedItem as String,
             status = "Unactivated",
             count = 3,
-            photo = binding.imgEmployeePhoto.cropToBlob(300, 300),
+            photo = binding.imgEmployeePhoto.cropToBlob(500, 500),
             otp = 0,
             activateCode = 0,
         )

@@ -2,15 +2,12 @@ package my.com.hoperise.data
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObjects
-import com.google.firebase.ktx.Firebase
 import android.util.Patterns
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FieldPath
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-
 
 class UserViewModel: ViewModel() {
     // Local copy for filter and sort
@@ -25,7 +22,6 @@ class UserViewModel: ViewModel() {
     val newlyRegister = MutableLiveData<String>()
     // Live data for verify newly register email
     val verifyingEmail = MutableLiveData<String>()
-
 
     private var name = ""       // Search purpose
     private var status = ""     // Filter purpose
@@ -60,6 +56,7 @@ class UserViewModel: ViewModel() {
         return loginFailed.value.toString()
     }
 
+    // For those newly registered account that direct to activate account screen
     fun setNewlyRegisteredId(id: String){
         newlyRegister.value = id
     }
@@ -68,6 +65,7 @@ class UserViewModel: ViewModel() {
         return newlyRegister.value.toString()
     }
 
+    // For those email that newly updated and need for verification
     fun getNewlyVerifiedEmail(): String{
         return verifyingEmail.value.toString()
     }
@@ -75,7 +73,6 @@ class UserViewModel: ViewModel() {
     fun setNewlyVerifiedEmail(id: String){
         verifyingEmail.value = id
     }
-
 
     // Update the filtered and sorted Employee List
     private fun updateResult() {
@@ -125,6 +122,7 @@ class UserViewModel: ViewModel() {
         return employeeResult.value?.find { emp -> emp.id == id }
     }
 
+    // Get login user details by id
     suspend fun getLogIn(id: String): User? {
         val user = USER
             .whereEqualTo(FieldPath.documentId(), id)
@@ -136,6 +134,7 @@ class UserViewModel: ViewModel() {
         return user
     }
 
+    // Verify whether user with this email exists
     suspend fun getUserByEmail(email:String): User?{
         val user = USER
             .whereEqualTo("email", email)
@@ -196,7 +195,8 @@ class UserViewModel: ViewModel() {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun validate(emp: User, insert: Boolean = true): String { // since its insert new record so true
+    // For register new employee
+    fun validate(emp: User, insert: Boolean = true): String { // Since its insert new record so true
         val regexId = Regex("""^[a-zA-Z0-9]{8,20}${'$'}""")
         val regexTemporaryPassword = Regex("""^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$""")
 
@@ -204,7 +204,7 @@ class UserViewModel: ViewModel() {
 
         if (insert) {
             e += if (emp.id == "") "- Username is required.\n"
-            else if (!emp.id.matches(regexId)) "- Username format is invalid.\n" //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+            else if (!emp.id.matches(regexId)) "- Username format is invalid.\n" // Limited to 20 characters, contain only letters and numbers; Space , symbols or punctuation is prohibited
             else if (idExists(emp.id)) "- Username is duplicated.\n"
             else ""
             e += if (emp.email == "") "- Email is required.\n"
@@ -212,7 +212,7 @@ class UserViewModel: ViewModel() {
             else if (emailExists(emp.email)) "- Email is duplicated.\n"
             else ""
             e += if (emp.password == "") "- Temporary password is required.\n"
-            else if (!emp.password.matches(regexTemporaryPassword)) "- Temporary password format is invalid.\n"
+            else if (!emp.password.matches(regexTemporaryPassword)) "- Temporary password format is invalid.\n" // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
             else ""
         }
 
@@ -225,4 +225,5 @@ class UserViewModel: ViewModel() {
 
         return e
     }
+
 }

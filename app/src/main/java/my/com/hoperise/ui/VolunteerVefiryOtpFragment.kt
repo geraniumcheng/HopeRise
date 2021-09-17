@@ -21,7 +21,6 @@ import my.com.hoperise.R
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentVolunteerVefiryOtpBinding
 
-
 class VolunteerVefiryOtpFragment : Fragment() {
     private lateinit var binding: FragmentVolunteerVefiryOtpBinding
     private val nav by lazy { findNavController() }
@@ -53,6 +52,7 @@ class VolunteerVefiryOtpFragment : Fragment() {
         setUpOtpInput()
         binding.btnVerifyRequest.setOnClickListener { verifyPasswordResetOtp(userId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -74,6 +74,7 @@ class VolunteerVefiryOtpFragment : Fragment() {
 
     private fun verifyPasswordResetOtp(userId: String) {
         lifecycleScope.launch {
+            var formattedOtp = 0
             val vol = vm.getLogIn(userId)
             if (vol == null) {
                 toast("Opps! Something wrong!")
@@ -82,7 +83,14 @@ class VolunteerVefiryOtpFragment : Fragment() {
                 val otpCode = vol.otp
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
-                if(otpCode!!.equals(enteredOtp.toInt())){
+                // Format for validation purpose
+                if(enteredOtp.equals("")){
+                    formattedOtp = 0
+                }else{
+                    formattedOtp = enteredOtp.toInt()
+                }
+
+                if(otpCode!!.equals(formattedOtp)){
                     nav.navigate(R.id.volunteerForgetPasswordFragment)
                 }else{
                     toast("OTP mismatch, please try again!")
@@ -90,7 +98,6 @@ class VolunteerVefiryOtpFragment : Fragment() {
             }
         }
     }
-
 
     private fun setUpOtpInput() {
         otp1.addTextChangedListener(object : TextWatcher {

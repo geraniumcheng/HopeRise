@@ -1,6 +1,5 @@
 package my.com.hoperise.ui
 
-import android.app.Activity
 import android.app.Activity.RESULT_CANCELED
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -13,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -32,14 +30,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.Bitmap
 import android.net.Uri
+import androidx.activity.OnBackPressedCallback
+import my.com.hoperise.data.CAMERA
+import my.com.hoperise.data.GALLERY
 
 class EditVolunteerProfileFragment : Fragment() {
    private lateinit var binding: FragmentEditVolunteerProfileBinding
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
-    var currentEmail = ""
-    private val GALLERY = 1
-    private val CAMERA = 2
+    var currentEmail = "" // For compare purpose
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEditVolunteerProfileBinding.inflate(inflater, container, false)
@@ -52,6 +51,15 @@ class EditVolunteerProfileFragment : Fragment() {
         binding.btnReset.setOnClickListener { loadProfileData(userId) }
         binding.btnPickImage.setOnClickListener { showSelection() }
         binding.btnConfirm.setOnClickListener { updateVolunteer(userId) }
+
+        // For prevent back press error happen
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
+
+            }
+        })
+
         return binding.root
     }
 

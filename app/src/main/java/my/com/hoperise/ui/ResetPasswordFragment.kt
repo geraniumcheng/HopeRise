@@ -30,9 +30,9 @@ class ResetPasswordFragment : Fragment() {
         binding.btnResetNow.setOnClickListener {
             val loggedInId = vm.getLoginFailedId()
             validatePassword(loggedInId)
-            //nav.navigate(R.id.resetPasswordSuccessFragment)
         }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -69,6 +69,7 @@ class ResetPasswordFragment : Fragment() {
                 val newPass = binding.edtNewPassword.text.toString()
                 val confirmNewPass = binding.edtConfirmNewPassword.text.toString()
 
+                // Catch empty password
                 if(newPass.equals("") || confirmNewPass.equals("")){
                     errorDialog("Please filled in your new password!")
                 }

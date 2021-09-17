@@ -32,9 +32,9 @@ class AccountBlockFragment : Fragment() {
         binding.btnSendOtpUnlock.setOnClickListener {
             val loggedInId = vm.getLoginFailedId()
             sendOtpUnbockAccount(loggedInId)
-            //nav.navigate(R.id.unblockAccountFragment)
         }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 nav.popBackStack(R.id.loginFragment, false)
@@ -51,7 +51,6 @@ class AccountBlockFragment : Fragment() {
         val fmt = DecimalFormat("000000")
         val unblockOtpCode = fmt.format(n).toString()
 
-        //${System.currentTimeMillis()}"
         lifecycleScope.launch {
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
@@ -60,32 +59,10 @@ class AccountBlockFragment : Fragment() {
             } else {
                 val email = emp.email
                 val user = emp.id
-                //toast(email)
 
                 sendEmail(email,user,unblockOtpCode,currentDateandTime)
-//                val subject = "Unblock Hope Rise Account Request @ ${currentDateandTime}"
-//                val content = """
-//                    <p>Greetings from Hope Rise 😇 </p>
-//                    <p>Dear <b>$user</b>,</p>
-//                    <p>We are sorry to tell you that we are compelled to block your account due to the exceeding login attempts that made by your account 😩</p>
-//                    <p>In order to unblock your Hope Rise account, please entered the <b>OTP</b> code to continue for your account unblock request:</p>
-//                    <h1 style="color: orange">$unblockOtpCode</h1>
-//                    <p>Thank you! 😁</p>
-//                    <p> </p>
-//                    <p><i>Hope Rise Team</i></p>
-//                    <p> </p>
-//                    <p> </p>
-//                """.trimIndent()
-//
-//                SendEmail()
-//                    .to(email)
-//                    .subject(subject)
-//                    .content(content)
-//                    .isHtml()
-//                    .send() {
-//                    }
 
-                vm.updateOtp(user, unblockOtpCode.toInt())
+                vm.updateOtp(user, unblockOtpCode.toInt()) // Update the generated OTP to database
                 AlertDialog.Builder(requireContext())
                     .setTitle("Hurray")
                     .setMessage("An otp code was sent to your account's registered email on " + currentDateandTime + " successfully ✨ \nUnblock your account now?" )
@@ -96,7 +73,7 @@ class AccountBlockFragment : Fragment() {
                             nav.navigate(R.id.unblockAccountFragment)
                         }
                     })
-                    .setNegativeButton("I didnt receive it", null).show()
+                    .setNegativeButton("I didn't receive it", null).show()
             }
         }
     }
@@ -128,6 +105,5 @@ class AccountBlockFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
-
 
 }

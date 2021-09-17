@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -59,7 +58,7 @@ class ViewVolunteerProfileFragment : Fragment() {
             val emp = vm.getLogIn(userId)
 
             if (emp == null) {
-                nav.navigateUp() //if no record then return to previous page
+                nav.navigateUp()
                 return@launch
             }
             loadProfile(emp)
@@ -89,8 +88,4 @@ class ViewVolunteerProfileFragment : Fragment() {
             })
             .setNegativeButton("Stay", null).show()
     }
-    private fun toast(text: String) {
-        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
-    }
-
 }

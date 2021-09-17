@@ -54,6 +54,7 @@ class VolunteerVerifyEmailFragment : Fragment() {
 
             binding.btnVerifyRequest.setOnClickListener { verifyOtp(userId) }
 
+            // For prevent back press error happen
             activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     AlertDialog.Builder(requireContext())
@@ -75,6 +76,7 @@ class VolunteerVerifyEmailFragment : Fragment() {
 
     private fun verifyOtp(userId: String) {
         lifecycleScope.launch {
+            var formattedOtp = 0
             val emp = vm.getLogIn(userId)
             if (emp == null) {
                 toast("Opps! Something wrong!")
@@ -83,7 +85,14 @@ class VolunteerVerifyEmailFragment : Fragment() {
                 val otpCode = emp.otp
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
-                if(otpCode!!.equals(enteredOtp.toInt())){
+                // Format for validation purpose
+                if(enteredOtp.equals("")){
+                    formattedOtp = 0
+                }else{
+                    formattedOtp = enteredOtp.toInt()
+                }
+
+                if(otpCode!!.equals(formattedOtp)){
                     val newEmail = vm.getNewlyVerifiedEmail()
                     vm.updateEmail(userId, newEmail)
                     nav.navigate(R.id.viewVolunteerProfileFragment)

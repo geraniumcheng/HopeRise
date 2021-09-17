@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.SearchView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -15,10 +16,6 @@ import my.com.hoperise.R
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentEmployeeListingBinding
 import my.com.hoperise.util.EmployeeAdapter
-
-
-
-
 
 class EmployeeListingFragment : Fragment() {
     private lateinit var binding: FragmentEmployeeListingBinding
@@ -84,6 +81,14 @@ class EmployeeListingFragment : Fragment() {
         binding.btnEmployeeId.setOnClickListener { sort("id")}
         binding.btnEmployeeName.setOnClickListener { sort("name") }
         binding.btnRegisterDate.setOnClickListener { sort("registerDate") }
+
+        // For prevent back press error happen
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.navigate(R.id.staffMainPageFragment)
+            }
+        })
+
 
         return binding.root
     }

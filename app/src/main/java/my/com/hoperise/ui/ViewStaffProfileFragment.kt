@@ -15,23 +15,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.LoginActivity
 import my.com.hoperise.R
-import my.com.hoperise.data.UserViewModel
-import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentViewStaffProfileBinding
 import my.com.hoperise.StaffActivity
-import my.com.hoperise.data.LoginViewModel
+import my.com.hoperise.data.*
 import my.com.hoperise.util.*
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class ViewStaffProfileFragment : Fragment() {
    private lateinit var binding: FragmentViewStaffProfileBinding
@@ -39,8 +35,6 @@ class ViewStaffProfileFragment : Fragment() {
     private val vm: UserViewModel by activityViewModels()
     private val loginVm: LoginViewModel by activityViewModels()
     var currentEmail = ""
-    private val GALLERY = 1
-    private val CAMERA = 2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewStaffProfileBinding.inflate(inflater, container, false)
@@ -49,13 +43,12 @@ class ViewStaffProfileFragment : Fragment() {
 
         loadProfileData(userId)
         binding.btnLogout.setOnClickListener { logout() }
-        binding.btnChangePassword.setOnClickListener {
-            nav.navigate(R.id.employeeChangePasswordFragment)
-        }
+        binding.btnChangePassword.setOnClickListener { nav.navigate(R.id.employeeChangePasswordFragment) }
         binding.btnReset.setOnClickListener { loadProfileData(userId) }
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnUpdate.setOnClickListener { updateStaff(userId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 nav.navigate(R.id.staffMainPageFragment)
@@ -65,6 +58,7 @@ class ViewStaffProfileFragment : Fragment() {
         return binding.root
     }
 
+    // Let user select upload their profile from gallery or take photo
     private fun showSelection() {
         var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
         AlertDialog.Builder(requireContext())
@@ -108,7 +102,7 @@ class ViewStaffProfileFragment : Fragment() {
                     role = employeeOri!!.role,
                     status = employeeOri!!.status,
                     count = employeeOri!!.count,
-                    photo = binding.imgEmployeePhoto.cropToBlob(300, 300),
+                    photo = binding.imgEmployeePhoto.cropToBlob(500, 500),
                     otp = employeeOri!!.otp,
                     activateCode = employeeOri!!.activateCode,
                     registerDate = employeeOri.registerDate
@@ -126,12 +120,12 @@ class ViewStaffProfileFragment : Fragment() {
                  if(vm.getUserByEmail(enteredEmail) != null && !currentEmail.equals(enteredEmail)){
                      errorDialog("Email exist! Try another one!")
                   }else{
-                      if(currentEmail.equals(enteredEmail)){
+                      if(currentEmail.equals(enteredEmail)){ // If user not modifying his email
                          vm.update(emp)
                          toast("Profile updated successfully!")
                       }else{
                          vm.update(emp)
-                         verifyEmail(enteredEmail,userId)
+                         verifyEmail(enteredEmail,userId) // If user is modifying email, will ask for confirmation and send an OTP through email
                          vm.setNewlyVerifiedEmail(enteredEmail)
                       }
                     }
@@ -193,7 +187,7 @@ class ViewStaffProfileFragment : Fragment() {
             val emp = vm.getLogIn(userId)
 
         if (emp == null) {
-            nav.navigateUp() //if no record then return to previous page
+            nav.navigateUp() // If no record then return to previous page
             return@launch
         }
         loadProfile(emp)
@@ -212,7 +206,6 @@ class ViewStaffProfileFragment : Fragment() {
     }
 
     private fun logout(){
-
         AlertDialog.Builder(requireContext())
             .setTitle("Logout")
             .setMessage("Are you sure want to log out?" )
@@ -250,5 +243,4 @@ class ViewStaffProfileFragment : Fragment() {
             }
         }
     }
-
 }

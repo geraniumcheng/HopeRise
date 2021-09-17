@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +18,6 @@ import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.databinding.FragmentLoginBinding
 import my.com.hoperise.util.errorDialog
 import my.com.hoperise.util.hideKeyboard
-
 
 class LoginFragment : Fragment() {
 
@@ -36,6 +34,7 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegister.setOnClickListener {  nav.navigate(R.id.registerFragment) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 getActivity()?.finish()
@@ -53,25 +52,20 @@ class LoginFragment : Fragment() {
         val password = binding.edtLoginPassword.text.toString().trim()
         val remember = binding.chkRememberMe.isChecked
 
+        // Catch empty login credentials
         if(id.equals("") || password.equals(""))
         {
             errorDialog("Please filled in your login credentials!")
             return
         }
 
-        // TODO(3): Login -> auth.login(...)
-        //          Clear navigation backstack
         lifecycleScope.launch {
             val success = loginVm.login(ctx, id, password, remember)
-            if (success) {
-
-            }
-            else {
-                // If password mismatched + 0 attempts left will go here
+            if (!success) { // When login credentials mismatched will go here
                 lifecycleScope.launch {
                     val user = vm.getLogIn(id)
                     if (user == null) {
-                       errorDialog("Invalid login credentials.")
+                        errorDialog("Invalid login credentials.")
                     }else if(user.status.equals("Deactivated")){
                         // If password mismatched + user account has been deactivated
                         AlertDialog.Builder(requireContext())
@@ -85,25 +79,22 @@ class LoginFragment : Fragment() {
                                 }
                             }).show()
                     }
-                    else{
+                    else if(user.status.equals("Active")){ // If password mismatched + 0 attempts left will redirect to account block screen from here
                         vm.setLoginFailedId(user.id)
-                        //toast("Yes user exists")
                         var timesLeft = user.count
                         timesLeft = timesLeft - 1
-                        //toast(timesLeft.toString())
                         vm.updateCount(user.id,timesLeft)
                         if(timesLeft > 0 )
-                             errorDialog("Invalid login credentials! " + timesLeft + " attempts left! ")
+                            errorDialog("Invalid login credentials! " + timesLeft + " attempts left! ")
                         if(timesLeft <= 0 ){
                             nav.navigate(R.id.accountBlockFragment)
                         }
                     }
+                    else{
+                        errorDialog("Invalid login credentials.")
+                    }
                 }
             }
         }
-    }
-
-    private fun toast(text: String) {
-        Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
     }
 }

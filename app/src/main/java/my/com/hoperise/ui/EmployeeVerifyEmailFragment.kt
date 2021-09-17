@@ -21,7 +21,6 @@ import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.databinding.FragmentEmployeeVerifyEmailBinding
 
-
 class EmployeeVerifyEmailFragment : Fragment() {
 
     private lateinit var binding: FragmentEmployeeVerifyEmailBinding
@@ -34,7 +33,6 @@ class EmployeeVerifyEmailFragment : Fragment() {
     private lateinit var otp4: EditText
     private lateinit var otp5: EditText
     private lateinit var otp6: EditText
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEmployeeVerifyEmailBinding.inflate(inflater, container, false)
@@ -54,6 +52,7 @@ class EmployeeVerifyEmailFragment : Fragment() {
 
         binding.btnVerify.setOnClickListener { verifyOtp(userId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -75,6 +74,7 @@ class EmployeeVerifyEmailFragment : Fragment() {
 
     private fun verifyOtp(userId: String) {
         lifecycleScope.launch {
+            var formattedOtp = 0
             val emp = vm.getLogIn(userId)
             if (emp == null) {
                 toast("Opps! Something wrong!")
@@ -83,7 +83,14 @@ class EmployeeVerifyEmailFragment : Fragment() {
                 val otpCode = emp.otp
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
-                if(otpCode!!.equals(enteredOtp.toInt())){
+                // Format for validation purpose
+                if(enteredOtp.equals("")){
+                    formattedOtp = 0
+                }else{
+                    formattedOtp = enteredOtp.toInt()
+                }
+
+                if(otpCode!!.equals(formattedOtp)){
                     val newEmail = vm.getNewlyVerifiedEmail()
                     vm.updateEmail(userId, newEmail)
                     nav.navigateUp()
@@ -155,6 +162,4 @@ class EmployeeVerifyEmailFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
-
-
 }

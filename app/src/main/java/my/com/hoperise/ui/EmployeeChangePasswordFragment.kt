@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,7 +16,6 @@ import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.UserViewModel
-import my.com.hoperise.data.LoginViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentEmployeeChangePasswordBinding
 import my.com.hoperise.util.SendEmail
@@ -28,24 +28,31 @@ class EmployeeChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentEmployeeChangePasswordBinding
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
-    private val loginVm: LoginViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEmployeeChangePasswordBinding.inflate(inflater, container, false)
 
         val userId = (activity as StaffActivity).loggedInId
+
         resetErrorMessage()
         binding.edtCurrentPass.requestFocus()
 
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword(userId) }
         binding.btnForgetPassword.setOnClickListener { sendOtpResetPassword(userId) }
 
+        // For prevent back press error happen
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.popBackStack(R.id.viewStaffProfileFragment, false)
+
+            }
+        })
+
         return binding.root
     }
 
     private fun sendOtpResetPassword(userId: String) {
         lifecycleScope.launch {
-
             val emp = vm.getLogIn(userId)
             var email = emp!!.email
 
@@ -98,7 +105,7 @@ class EmployeeChangePasswordFragment : Fragment() {
             val emp = vm.getLogIn(userId)
 
             if (emp == null) {
-                nav.navigateUp() //if no record then return to previous page
+                nav.navigateUp() // If no record then return to previous page
                 return@launch
             }
             changePassword(emp)
@@ -145,8 +152,6 @@ class EmployeeChangePasswordFragment : Fragment() {
             binding.lblCurrentPasswordWarning.text = "Password mismatched. Please try again"
             binding.edtCurrentPass.requestFocus()
         }
-
-
     }
 
     private fun resetErrorMessage() {

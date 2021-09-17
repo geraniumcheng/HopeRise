@@ -19,6 +19,7 @@ class ResetPasswordSuccessFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener { nav.navigate(R.id.loginFragment) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 nav.popBackStack(R.id.loginFragment, false)

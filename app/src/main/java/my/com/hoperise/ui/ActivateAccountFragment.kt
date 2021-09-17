@@ -51,14 +51,15 @@ class ActivateAccountFragment : Fragment() {
         setUpOtpInput()
 
         binding.btnActivateAccount.setOnClickListener {
-            if(loggedInId.equals("")){  // When user is direct from register
+            if(loggedInId.equals("")){  // When user is direct from register screen
                 var newlyRegister = vm.getNewlyRegisteredId()
                 verifyActivationCode(newlyRegister)
             }else{
-                verifyActivationCode(loggedInId) // When user is direct from login
+                verifyActivationCode(loggedInId) // When user is direct from login screen
             }
         }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -80,6 +81,7 @@ class ActivateAccountFragment : Fragment() {
 
     private fun verifyActivationCode(loggedInId: String) {
         lifecycleScope.launch {
+            var formattedOtp = 0
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
                 toast("Opps! Something wrong!")
@@ -89,28 +91,24 @@ class ActivateAccountFragment : Fragment() {
                 val user = emp.id
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
-                if(activationCode!!.equals(enteredOtp.toInt())){
-//                    if(!emp.role.equals("Volunteer")){
-//                        vm.updateStatus(user, "Active")
-//                        nav.navigate(R.id.verifyAccountSuccessFragment)
-//                    }else{
-//                        vm.updateStatus(user, "Unverified")
-//                        nav.navigate(R.id.verifyAccountSuccessFragment)
-//                    }
+                // Format for validation purpose
+                if(enteredOtp.equals("")){
+                    formattedOtp = 0
+                }else{
+                    formattedOtp = enteredOtp.toInt()
+                }
+                // Verify entered OTP
+                if(activationCode!!.equals(formattedOtp)){
                     vm.updateStatus(user, "Active")
                     nav.navigate(R.id.verifyAccountSuccessFragment)
                 }else{
                     toast("OTP mismatch, please try again!")
-                    //return@launch
                 }
-
-            // toast(activationCode.toString() + user + enteredOtp )
-               // vm.updateActivationCode(user, activationCode.toInt())
-
             }
         }
     }
 
+    // Cursor move next when number is entered
     private fun setUpOtpInput() {
         otp1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -171,6 +169,4 @@ class ActivateAccountFragment : Fragment() {
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
-
-
 }

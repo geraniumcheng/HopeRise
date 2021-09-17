@@ -1,5 +1,6 @@
 package my.com.hoperise.data
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -21,6 +22,8 @@ val PHOTO = Firebase.firestore.collection("photo")
 val USER = Firebase.firestore.collection("user")
 val EMPLOYEE = Firebase.firestore.collection("user").whereIn("role", listOf("Manager","Employee"))
 var currentUser: User? = null
+const val GALLERY = 1
+const val CAMERA = 2
 
 data class Location(
     var location: String = "",
@@ -177,29 +180,13 @@ fun RESTORE_DATA(ctx: Context) {
     USER.get().addOnSuccessListener { snap ->
         snap.documents.forEach { doc -> USER.document(doc.id).delete() }
 
-//        val users = listOf(
-//            User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, null, null, "453612", Date()),
-//            User("chewhongyu", "hyhyhy@gmail.com", "Chew Hong Yu", "Abcd123!", "Manager", "Active", 3, null, null, "587851", Date()),
-//            User("teohshuzi", "shuzizizi@gmail.com", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, null, null, "201478", Date()),
-//            User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, null, null, "698741", Date()),
-//            User("employeeno2", "employee2@gmail.com", "Employee Two", "Abcd123!", "Employee", "Deactivated", 3, null, null, "214784", Date()),
-//            User("volunteer1", "volunteerno1@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, null, null, "998524", Date()),
-//            User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Unverified", 3, null, null, "777558", Date()),
-//            User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Pending", 3, null, null, "575757", Date()),
-//            User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Verified", 3, null, null, "827222", Date()),
-//            User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Verified", 3, null, null, "827222", Date()),
-//            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Verified", 3, null, null, "827222", Date()),
-//            User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Verified", 3, null, null, "827222", Date()),
-//            User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Verified", 3, null, null, "827222", Date()),
-//        )
-
         val users = listOf(
             User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff1).toBlob(), null, null, Date()),
             User("chewhongyu", "hyhyhy@gmail.com", "Chew Hong Yu", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff2).toBlob(), null, null, Date()),
-            User("teohshuzi", "shuzizizi@gmail.com", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff3).toBlob(), null, null, Date()),
+            User("teohshuzi", "teohs-am18@student.tarc.edu.my", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff3).toBlob(), null, null, Date()),
             User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff4).toBlob(), null, null, Date()),
             User("employeeno2", "employee2@gmail.com", "Employee Two", "Abcd123!", "Employee", "Deactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff5).toBlob(), null, null, Date()),
-            User("volunteer1", "volunteerno1@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user1).toBlob(), null, null, Date()),
+            User("volunteer1", "shuzi1717@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user1).toBlob(), null, null, Date()),
             User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user2).toBlob(), null, null, Date()),
             User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user3).toBlob(), null, null, Date()),
             User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user4).toBlob(), null, null, Date()),

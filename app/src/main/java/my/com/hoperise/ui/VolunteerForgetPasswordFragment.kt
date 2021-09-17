@@ -35,6 +35,7 @@ class VolunteerForgetPasswordFragment : Fragment() {
         requireActivity().title = "Reset Password"
         binding.btnResetNow.setOnClickListener { validatePassword(userId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireActivity())

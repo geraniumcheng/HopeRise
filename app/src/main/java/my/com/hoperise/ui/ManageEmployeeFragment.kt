@@ -13,11 +13,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
+import my.com.hoperise.data.CAMERA
+import my.com.hoperise.data.GALLERY
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentManageEmployeeBinding
@@ -29,8 +30,6 @@ class ManageEmployeeFragment : Fragment() {
     private lateinit var binding: FragmentManageEmployeeBinding
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
-    private val GALLERY = 1
-    private val CAMERA = 2
 
     private val id by lazy { requireArguments().getString("id") ?: "" }
 
@@ -43,6 +42,7 @@ class ManageEmployeeFragment : Fragment() {
         binding.btnReset.setOnClickListener { reset() }
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnDeactivate.setOnClickListener { deactivate(currentStatus) }
+
         return binding.root
     }
 
@@ -117,7 +117,7 @@ class ManageEmployeeFragment : Fragment() {
         val emp = vm.get(id)
 
         if (emp == null) {
-            nav.navigateUp() //if no record then return to previous page
+            nav.navigateUp() // If no record then return to previous page
             return
         }
 
@@ -132,7 +132,7 @@ class ManageEmployeeFragment : Fragment() {
         binding.imgEmployeePhoto.setImageBitmap(emp.photo?.toBitmap())
         binding.lblEmployeeStatus.setText(emp.status)
 
-        if(emp.status.equals("Unactivated")){
+        if(emp.status.equals("Unactivated")){ // If the user haven't activate their email, temporary password will be display
             binding.lblTempPass.visibility = View.VISIBLE
             binding.lblTemporaryPassword.visibility = View.VISIBLE
             binding.lblTemporaryPassword.text = emp.password
@@ -163,13 +163,12 @@ class ManageEmployeeFragment : Fragment() {
             role = binding.spnEmployeeRole.selectedItem as String,
             status = empOri!!.status,
             count = empOri!!.count,
-            photo = binding.imgEmployeePhoto.cropToBlob(300, 300),
+            photo = binding.imgEmployeePhoto.cropToBlob(500, 500),
             otp = empOri!!.otp,
             activateCode = empOri!!.activateCode,
             registerDate = empOri.registerDate
         )
 
-        // means its not inserting a new record
         val err = vm.validate(emp, false)
         if (err != "") {
             errorDialog(err)
@@ -201,5 +200,4 @@ class ManageEmployeeFragment : Fragment() {
             }
         }
     }
-
 }

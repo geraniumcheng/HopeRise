@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
@@ -26,7 +25,6 @@ class EmployeeForgetPasswordFragment : Fragment() {
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEmployeeForgetPasswordBinding.inflate(inflater, container, false)
 
@@ -34,6 +32,7 @@ class EmployeeForgetPasswordFragment : Fragment() {
         val userId = (activity as StaffActivity).loggedInId
         binding.btnResetNow.setOnClickListener { validatePassword(userId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireActivity())

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -32,17 +31,23 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         resetErrorMessage()
-        binding.btnConfirmRegister.setOnClickListener {
-            registerVolunteer()
-        }
-        binding.btnLogin.setOnClickListener{
-            verifyEnteredDetails()
-            //nav.navigate(R.id.loginFragment)
-        }
+        binding.btnConfirmRegister.setOnClickListener { registerVolunteer() }
+        binding.btnLogin.setOnClickListener{ verifyEnteredDetails() }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                nav.popBackStack(R.id.loginFragment, false)
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Hmmm")
+                    .setMessage("Just one step away to register with Hope Rise! Are you sure you want to leave now?" )
+                    .setIcon(R.drawable.ic_leave_confirm_dialog)
+                    .setPositiveButton(android.R.string.yes, object :
+                        DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                            nav.navigate(R.id.loginFragment)
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show()
             }
         })
 
@@ -58,6 +63,7 @@ class RegisterFragment : Fragment() {
         binding.lblConfirmPasswordWarning.visibility = View.GONE
     }
 
+    // For prevent mistakes or slip made by user when they accidentally press the login button after they registering in half way
     private fun verifyEnteredDetails(){
         val enteredEmail = binding.edtEmail.text.toString()
         val enteredUsername = binding.edtUsername.text.toString()
@@ -90,11 +96,11 @@ class RegisterFragment : Fragment() {
 
 
         lifecycleScope.launch {
-
+            // Catch empty registration error
             if(enteredEmail.equals("") || enteredUsername.equals("") || enteredPassword.equals("") || enteredConfirmPassword.equals("")){
                 errorDialog("Please filled up all your personal details!")
             }
-            else {
+            else { // New account validations
                 if (vm.getUserByEmail(enteredEmail) == null) {
                     binding.lblEmailWarning.visibility = View.GONE
                   if(Patterns.EMAIL_ADDRESS.matcher(enteredEmail).matches()){
@@ -122,7 +128,7 @@ class RegisterFragment : Fragment() {
                                       )
                                       vm.set(volunteer)
                                       vm.setNewlyRegisteredId(enteredUsername)
-                                      nav.navigate(R.id.registerSuccessFragment)
+                                      nav.navigate(R.id.registerSuccessFragment) // Redirect user to register success screen to obtain OTP to activate their account
                                   } else {
                                       binding.lblConfirmPasswordWarning.visibility = View.VISIBLE
                                       binding.lblConfirmPasswordWarning.text = "Please ensure your new password is matched!"
@@ -155,9 +161,4 @@ class RegisterFragment : Fragment() {
 
         }
     }
-
-    private fun toast(text: String) {
-        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
-    }
-
 }

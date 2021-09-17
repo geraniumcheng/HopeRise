@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -36,8 +37,18 @@ class VolunteerChangePasswordFragment : Fragment() {
         val userId = (activity as MainActivity).loggedInId
 
         resetErrorMessage()
+
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }
         binding.btnForgetPassword.setOnClickListener { sendOtpResetPassword(userId) }
+
+        // For prevent back press error happen
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
+
+            }
+        })
+
         return binding.root
     }
 
@@ -96,7 +107,7 @@ class VolunteerChangePasswordFragment : Fragment() {
             val emp = vm.getLogIn(userId)
 
             if (emp == null) {
-                nav.navigateUp() //if no record then return to previous page
+                nav.navigateUp()
                 return@launch
             }
             changePassword(emp)
@@ -121,8 +132,6 @@ class VolunteerChangePasswordFragment : Fragment() {
                     return
                 }
                 if(enteredNewPass.equals(enteredConfirmNewPass)){
-                    //toast("You are all set")
-                    //resetErrorMessage()
                     hideKeyboard()
                     vm.changePass(emp.id,enteredConfirmNewPass)
                     nav.navigateUp()
@@ -144,8 +153,6 @@ class VolunteerChangePasswordFragment : Fragment() {
             binding.lblCurrentPasswordWarning.text = "Password mismatched. Please try again"
             binding.edtCurrentPassword.requestFocus()
         }
-
-
     }
 
     private fun resetErrorMessage() {

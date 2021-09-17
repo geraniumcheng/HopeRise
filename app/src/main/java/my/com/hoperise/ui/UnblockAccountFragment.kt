@@ -48,11 +48,9 @@ class UnblockAccountFragment : Fragment() {
 
         setUpOtpInput()
 
-        binding.btnVerifyUnblock.setOnClickListener {
-            verifyOtpCode(loggedInId)
-        //nav.navigate(R.id.unblockAccountSuccessFragment)
-        }
+        binding.btnVerifyUnblock.setOnClickListener { verifyOtpCode(loggedInId) }
 
+        // For prevent back press error happen
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
@@ -74,6 +72,7 @@ class UnblockAccountFragment : Fragment() {
 
     private fun verifyOtpCode(loggedInId: String) {
         lifecycleScope.launch {
+            var formattedOtp = 0
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
                 toast("Opps! Something wrong!")
@@ -83,21 +82,19 @@ class UnblockAccountFragment : Fragment() {
                 val user = emp.id
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
-                if(otp!!.equals(enteredOtp.toInt())){
+                // Format for validation purpose
+                if(enteredOtp.equals("")){
+                    formattedOtp = 0
+                }else{
+                    formattedOtp = enteredOtp.toInt()
+                }
+
+                if(otp!!.equals(formattedOtp)){
                     vm.updateCount(user,3)
                     nav.navigate(R.id.unblockAccountSuccessFragment)
-//                    if(!emp.role.equals("Volunteer")){
-//                        vm.updateStatus(user, "Active")
-//                    }else{
-//                        vm.updateStatus(user, "Unverified")
-//                    }
                 }else{
                     toast("OTP mismatch, please try again!")
                 }
-
-                // toast(activationCode.toString() + user + enteredOtp )
-                // vm.updateActivationCode(user, activationCode.toInt())
-
             }
         }
     }

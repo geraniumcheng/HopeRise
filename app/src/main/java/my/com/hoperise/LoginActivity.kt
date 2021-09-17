@@ -6,18 +6,14 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
-import my.com.hoperise.data.UserViewModel
-import my.com.hoperise.data.LoginViewModel
-import my.com.hoperise.data.User
-import my.com.hoperise.data.currentUser
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.ActivityLoginBinding
-import my.com.hoperise.util.errorDialog
 import java.util.*
+import android.net.ConnectivityManager
 
 @Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
@@ -34,15 +30,20 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        checkInternetConnection()
+
+        // Retrieve remember me user
         lifecycleScope.launch { loginVm.loginFromPreferences(this@LoginActivity) }
 
         loginVm.getUserLiveData().observe(this) { user ->
-            if (user == null) {
+            if (user == null) { // When there have no user record in shared preferences
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
-            } else {
+            } else { // When login credentials match will go here (else will go to Login Fragment to further validate the conditions)
+                // Pass login user's data (Method 1)
                 currentUser = User(user.id,user.email,user.name,user.password,user.role,user.status,user.count,user.photo,user.otp,user.activateCode,user.registerDate)
+                // Show progress dialog when login user from shared preferences
                 progressDialog = ProgressDialog(this@LoginActivity)
                 progressDialog?.setTitle("Logging In")
                 progressDialog?.setMessage("Please wait a moment ...")
@@ -50,12 +51,12 @@ class LoginActivity : AppCompatActivity() {
                 val role = user.role
                 val status = user.status
                 val count = user.count
-                if(status.equals("Unactivated")){
-                    failedLoggedInId = user.id
+                if(status.equals("Unactivated")){ // When user status is unactivated, will redirect to register success (send OTP) screen
+                    failedLoggedInId = user.id // Get the id of the user that failed to login
                     nav.navigate(R.id.registerSuccessFragment)
                     progressDialog?.dismiss()
                 }
-                else if(status.equals("Deactivated")){
+                else if(status.equals("Deactivated")){ // When user status is deactivated, will pop up an alert dialog and prevent them for logging in
                     AlertDialog.Builder(this@LoginActivity)
                         .setTitle("Attention")
                         .setMessage("Please be informed that your account has been deactivated by the manager!")
@@ -68,20 +69,22 @@ class LoginActivity : AppCompatActivity() {
                         }).show()
                     progressDialog?.dismiss()
                 }
-                else if(count <= 0){
-                    // If password matched + 0 attempts left will go here
+                else if(count <= 0){ // If there are no login attempts left; redirect to account blocked screen
+                    // If password matched + 0 attempts left will redirect to account block screen from here (else will go to Login Fragment)
                     vm.setLoginFailedId(user.id)
                     nav.navigate(R.id.accountBlockFragment)
                     progressDialog?.dismiss()
                 }
-                else{
+                else{ // When the user passed all required login conditions
                     vm.updateCount(user.id,3)
-                    if (role.equals("Volunteer")) {
+                    if (role.equals("Volunteer")) { // Volunteer role will be redirect to Main Activity
+                        // Pass login user's data (Method 2)
                         val intent = Intent(this, MainActivity::class.java)
                             .putExtra("loggedInId", user.id)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-                    } else {
+                    } else { // Manager and employee role will be redirect to Staff Activity
+                        // Pass login user's data (Method 2)
                         val intent = Intent(this, StaffActivity::class.java)
                             .putExtra("loggedInId", user.id)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -90,7 +93,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        progressDialog?.dismiss()
     }
 
     fun getFailedLoginId(): String {
@@ -101,10 +103,6 @@ class LoginActivity : AppCompatActivity() {
         return nav.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun toast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {
@@ -112,4 +110,29 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (progressDialog != null) {
+            progressDialog?.dismiss()
+        }
+    }
+
+    fun checkInternetConnection(): Boolean {
+        val conMgr = applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = conMgr.activeNetworkInfo
+        if (netInfo == null || !netInfo.isConnected || !netInfo.isAvailable) {
+            AlertDialog.Builder(this@LoginActivity)
+                .setTitle("Opps!")
+                .setMessage("Seems like you are offline now.\nPlease turn on your Wi-Fi and come back again. 😥" )
+                .setIcon(R.drawable.ic_wifi_disconnect)
+                .setPositiveButton("OK", object :
+                    DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, whichButton: Int) {
+                        finish()
+                    }
+                }).show()
+            return false
+        }
+        return true
+    }
 }
