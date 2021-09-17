@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EmployeeListingFragment">
+
+
+    <SearchView
+        android:id="@+id/svEmployee"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/search_background"
+        android:iconifiedByDefault="false"
+        android:queryHint="Enter Employee Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
+    <TextView
+        android:id="@+id/lblFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/filter_by"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svEmployee" />
+
+    <Spinner
+        android:id="@+id/spnEmployeeStatus"
+        android:layout_width="126dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:entries="@array/staffStatus"
+        app:layout_constraintBottom_toBottomOf="@+id/lblFilter"
+        app:layout_constraintStart_toEndOf="@+id/lblFilter"
+        app:layout_constraintTop_toTopOf="@+id/lblFilter"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/lblSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="375dp"
+        android:text="@string/sort_by"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblFilter" />
+
+    <Button
+        android:id="@+id/btnEmployeeId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/id"
+        app:layout_constraintBottom_toBottomOf="@+id/lblSort"
+        app:layout_constraintStart_toEndOf="@+id/lblSort"
+        app:layout_constraintTop_toTopOf="@+id/lblSort" />
+
+    <Button
+        android:id="@+id/btnEmployeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeId"
+        app:layout_constraintStart_toEndOf="@+id/btnEmployeeId"
+        app:layout_constraintTop_toTopOf="@+id/btnEmployeeId"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnRegisterDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/date"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeName"
+        app:layout_constraintStart_toEndOf="@+id/btnEmployeeName"
+        app:layout_constraintTop_toTopOf="@+id/btnEmployeeName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/lblEmployeeRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterDate"
+        tools:text="8 record(s)" />
+
+    <View
+        android:id="@+id/div1"
+        android:layout_width="750dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblEmployeeRecord" />
+
+    <View
+        android:id="@+id/div2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvEmployeeList" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEmployeeList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/div1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_employee_listing" />
+
+    <Spinner
+        android:id="@+id/spnEmployeeRole"
+        android:layout_width="140dp"
+        android:layout_height="42dp"
+        android:entries="@array/staffRoleFilter"
+        app:layout_constraintBottom_toBottomOf="@+id/spnEmployeeStatus"
+        app:layout_constraintStart_toEndOf="@+id/spnEmployeeStatus"
+        app:layout_constraintTop_toTopOf="@+id/spnEmployeeStatus"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnRegisterEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="610dp"
+        android:backgroundTint="@color/color_drawer"
+        android:clickable="true"
+        android:contentDescription="@string/add_new_employee"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/color_drawer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/white"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,7 +57,6 @@ class EditVolunteerProfileFragment : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
-
             }
         })
 
