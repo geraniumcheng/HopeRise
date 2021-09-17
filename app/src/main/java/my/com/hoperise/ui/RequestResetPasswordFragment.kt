@@ -48,10 +48,10 @@ class RequestResetPasswordFragment : Fragment() {
         lifecycleScope.launch {
             val emp = vm.getUserByEmail(email)
             if (emp == null) {
-             toast("Please ensure that you enter your email address correctly!")
-             return@launch
-             } else {
-                 val userId = emp.id
+                toast("Please ensure that you enter your email address correctly!")
+                return@launch
+            } else {
+                val userId = emp.id
 
                 val n = (0..999999).random()
                 val fmt = DecimalFormat("000000")
@@ -83,7 +83,7 @@ class RequestResetPasswordFragment : Fragment() {
                 vm.setLoginFailedId(userId) // Set the id that belongs to the entered email
                 nav.navigate(R.id.confirmResetPasswordRequestFragment) // Redirect to enter OTP screen
             }
-      }
+        }
     }
 
     private fun toast(text: String) {

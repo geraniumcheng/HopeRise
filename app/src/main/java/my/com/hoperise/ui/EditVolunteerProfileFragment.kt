@@ -31,6 +31,7 @@ import java.util.*
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.MutableLiveData
 import my.com.hoperise.data.CAMERA
 import my.com.hoperise.data.GALLERY
 

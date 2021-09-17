@@ -21,11 +21,6 @@
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" />
     <fragment
-        android:id="@+id/requestResetPasswordFragment"
-        android:name="my.com.hoperise.ui.RequestResetPasswordFragment"
-        android:label="fragment_request_reset_password"
-        tools:layout="@layout/fragment_request_reset_password" />
-    <fragment
         android:id="@+id/activateAccountFragment"
         android:name="my.com.hoperise.ui.ActivateAccountFragment"
         android:label="fragment_activate_account"
@@ -65,4 +60,9 @@
         android:name="my.com.hoperise.ui.ConfirmResetPasswordRequestFragment"
         android:label="fragment_confirm_reset_password_request"
         tools:layout="@layout/fragment_confirm_reset_password_request" />
+    <fragment
+        android:id="@+id/requestResetPasswordFragment"
+        android:name="my.com.hoperise.ui.RequestResetPasswordFragment"
+        android:label="fragment_request_reset_password"
+        tools:layout="@layout/fragment_request_reset_password" />
 </navigation>
