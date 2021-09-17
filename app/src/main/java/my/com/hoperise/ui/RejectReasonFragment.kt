@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import my.com.hoperise.R
 import my.com.hoperise.data.reason
 import my.com.hoperise.databinding.FragmentRejectReasonBinding
-import my.com.hoperise.databinding.FragmentTimeDialogBinding
 
 class RejectReasonFragment : DialogFragment() {
 

@@ -49,4 +49,9 @@
         android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
         android:label="Submit Application"
         tools:layout="@layout/fragment_volunteer_submit_application" />
+    <fragment
+        android:id="@+id/eventNearMeFragment"
+        android:name="my.com.hoperise.ui.EventNearMeFragment"
+        android:label="fragment_event_near_me"
+        tools:layout="@layout/fragment_event_near_me" />
 </navigation>

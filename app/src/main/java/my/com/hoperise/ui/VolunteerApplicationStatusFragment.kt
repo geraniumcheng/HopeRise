@@ -57,9 +57,7 @@ class VolunteerApplicationStatusFragment : Fragment() {
                     "status" to status,
                     "id" to id
                 )
-//                val fragmentManager: FragmentManager = parentFragmentManager
-//                fragmentManager.beginTransaction().remove(this).commit()
-//                fragmentManager.popBackStack()
+
                 nav.navigate(R.id.volunteerSubmitApplicationFragment, args)
             }
         }

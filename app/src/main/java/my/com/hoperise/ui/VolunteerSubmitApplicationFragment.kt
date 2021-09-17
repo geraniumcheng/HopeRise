@@ -1,8 +1,12 @@
 package my.com.hoperise.ui
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,31 +32,76 @@ class VolunteerSubmitApplicationFragment : Fragment() {
     private val vm: VolunteerApplicationViewModel by activityViewModels()
     private val status by lazy { requireArguments().getString("status") ?: "" }
     private val id by lazy { requireArguments().getString("id") ?: "" }
+    private var imageFor : String = ""
 
 
-    private val launcherSelfie = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            binding.imgSelfie.setImageURI(it.data?.data)
-        }
-    }
-    private val launcherFrontIC = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            binding.imgFrontIC.setImageURI(it.data?.data)
-        }
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVolunteerSubmitApplicationBinding.inflate(inflater, container, false)
 
-        binding.imgSelfie.setOnClickListener { select("Selfie") }
-        binding.imgFrontIC.setOnClickListener { select("IC") }
+        binding.imgSelfie.setOnClickListener { showSelection("Selfie") }
+        binding.imgFrontIC.setOnClickListener { showSelection("IC") }
         binding.btnReset.setOnClickListener { reset() }
         binding.btnSubmit.setOnClickListener {
             lifecycleScope.launch{
                 submit()
             }
         }
-
         return binding.root
+    }
+
+    private fun showSelection(field: String) {
+        imageFor = field
+        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Change profile photo")
+            //.setIcon(R.drawable.ic_select_photo)
+            .setSingleChoiceItems(items, 3) { d, n ->
+                if (n == 0) {
+                    pickImage(n)
+                    d?.dismiss()
+                } else if(n == 1){
+                    pickImage(n)
+                    d?.dismiss()
+                }else{
+                    d?.dismiss()
+                }
+            }
+            .setNegativeButton("Cancel", null).show()    }
+
+    private fun pickImage(n: Int) {
+        if(n == 0){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA)
+        }else{
+            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
+            galleryIntent.type = "image/*"
+            startActivityForResult(galleryIntent, GALLERY)
+        }
+
+    }
+
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val photoURI: Uri? = data.data
+                if(imageFor == "IC"){
+                   binding.imgFrontIC.setImageURI(photoURI)
+               }else{
+                    binding.imgSelfie.setImageURI(photoURI)
+               }
+            }
+        } else if (requestCode == CAMERA) {
+            if(resultCode != Activity.RESULT_CANCELED){
+                val thumbnail = data!!.extras!!["data"] as Bitmap?
+                if(imageFor == "IC"){
+                    binding.imgFrontIC.setImageBitmap(thumbnail)
+                }else{
+                    binding.imgSelfie.setImageBitmap(thumbnail)
+                }
+            }
+        }
     }
 
     private suspend fun submit() {
@@ -64,7 +113,7 @@ class VolunteerSubmitApplicationFragment : Fragment() {
             status = "Pending",
             reason = "",
             date = Date(),
-            userID = "volunteer4"//currentUser.id
+            userID = currentUser?.id!!
         )
 
         val err = vm.validate(va)
@@ -88,13 +137,4 @@ class VolunteerSubmitApplicationFragment : Fragment() {
         binding.imgFrontIC.setImageDrawable(null)
     }
 
-    private fun select(item: String) {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        if(item == "Selfie"){
-            launcherSelfie.launch(intent)
-        }else{
-            launcherFrontIC.launch(intent)
-        }
-    }
 }

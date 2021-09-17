@@ -18,6 +18,7 @@ import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.VOLUNTEERAPPLICATION
 import my.com.hoperise.data.VolunteerApplication
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentAccountBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,7 +26,6 @@ import java.util.*
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
     private val nav by lazy { findNavController() }
-    private val id by lazy { requireArguments().getString("id") ?: "" }
     private var status = ""
     private var date = ""
     private var reason = ""
@@ -38,7 +38,7 @@ class AccountFragment : Fragment() {
 
         //var counter = 0
         lifecycleScope.launch {
-            val volApp = VOLUNTEERAPPLICATION.whereEqualTo("userID", "volunteer4").get().await().toObjects<VolunteerApplication>()
+            val volApp = VOLUNTEERAPPLICATION.whereEqualTo("userID", currentUser?.id!!).get().await().toObjects<VolunteerApplication>()
             val format = SimpleDateFormat("dd-MM-yyyy")
             if(volApp.isNotEmpty()){
                 application = volApp[0]
@@ -47,26 +47,6 @@ class AccountFragment : Fragment() {
                 date = format.format(application.date)
                 reason = application.reason
             }
-//            if(volApp.find { v -> v.status == "Approved" } != null){
-//                application = volApp.find { v -> v.status == "Approved" }!!
-//                date = format.format(application.date)
-//                status = "Approved"
-//                return@launch
-//            }
-//            if(volApp.find { v -> v.status == "Pending" } != null){
-//                application = volApp.find { v -> v.status == "Pending" }!!
-//                date = format.format(application.date)
-//                status = "Pending"
-//                return@launch
-//            }
-//            if(volApp.find { v -> v.status == "Rejected" } != null){
-//                application = volApp.find { v -> v.status == "Rejected" }!!
-//                vaID = application.id
-//                status = "Rejected"
-//                date = format.format(application.date)
-//                reason = application.reason
-//                return@launch
-//            }
         }
 
         binding.button.setOnClickListener {
@@ -74,8 +54,6 @@ class AccountFragment : Fragment() {
             activity?.startActivity(intent)
         }
         binding.btnVolunteerApplication.setOnClickListener {
-
-            Log.d("status", status)
             val args = bundleOf(
                 "vaID" to vaID,
                 "status" to status,

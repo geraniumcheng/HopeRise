@@ -24,7 +24,6 @@ class OrphanageListingFragment : Fragment() {
     private val nav by lazy { findNavController() }
 
     private val vm: OrphanageViewModel by activityViewModels()
-    //private lateinit var adapter: OrphanageAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentOrphanageListingBinding.inflate(inflater, container, false)

@@ -35,6 +35,7 @@ import java.util.*
 class MapsFragment : Fragment() {
 
     private var currentMarker: Marker? = null
+    //use to retrieve the last location
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private var currentLocation: Location? = null
     private var defaultLocation: Location? = null
@@ -54,13 +55,9 @@ class MapsFragment : Fragment() {
         binding.btnReset.setOnClickListener { reset() }
         binding.btnSubmit.setOnClickListener { submit() }
         binding.btnCancel.setOnClickListener { nav.navigateUp() }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
         fetchLocation()
+        return binding.root
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -74,7 +71,7 @@ class MapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
         map!!.mapType = GoogleMap.MAP_TYPE_NORMAL
-        Log.d("Map", location.toString())
+        Log.d("location", currentLocation.toString())
          if(location != "") {
              searchLocation(location!!)
          }
@@ -106,6 +103,7 @@ class MapsFragment : Fragment() {
             }
             return
         }
+
         val task = fusedLocationProviderClient?.lastLocation
         task?.addOnSuccessListener {
                 location -> if(location != null){
@@ -126,7 +124,7 @@ class MapsFragment : Fragment() {
             .snippet(getAddress(latlong.latitude, latlong.longitude)).draggable(true)
 
         map!!.animateCamera(CameraUpdateFactory.newLatLng(latlong))
-        map!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latlong, 15f))
+        map!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latlong, 16f))
         currentMarker = map!!.addMarker(markerOption)
         currentMarker?.showInfoWindow()
     }
@@ -134,12 +132,6 @@ class MapsFragment : Fragment() {
     private fun getAddress(lat: Double, lon: Double): String? {
         val geoCoder = Geocoder(requireContext(), Locale.getDefault())
         val addresses = geoCoder.getFromLocation(lat, lon, 1)
-
-//        val address = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//        val city = addresses[0].locality
-//        val state = addresses[0].adminArea
-//        val country = addresses[0].countryName
-//        val postalCode = addresses[0].postalCode
 
         return addresses[0].getAddressLine(0)
     }
@@ -154,6 +146,7 @@ class MapsFragment : Fragment() {
                 return
             }else{
                 addressList = geoCoder.getFromLocationName(location, 1)
+                Log.d("size", addressList.size.toString())
             }
         }else{
             addressList = geoCoder.getFromLocationName(loc, 1)
@@ -168,7 +161,6 @@ class MapsFragment : Fragment() {
             drawMarker(newLatLong)
             Toast.makeText(context, address.getAddressLine(0) + "\n " + address.latitude.toString() + " , " + address.longitude, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun reset() {

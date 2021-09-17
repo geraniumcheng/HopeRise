@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.firebase.geofire.GeoFireUtils
+import com.firebase.geofire.GeoLocation
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -19,8 +21,6 @@ class OrphanageViewModel: ViewModel() {
     private var name = ""
 
     init {
-        //ORPHANAGE.addSnapshotListener { snap, _ -> orphanage.value = snap?.toObjects<Orphanage>() }
-
         viewModelScope.launch {
             //return all orphanage item from firebase
             val orphanages = ORPHANAGE.get().await().toObjects<Orphanage>()
@@ -28,6 +28,9 @@ class OrphanageViewModel: ViewModel() {
             //realtime
             ORPHANAGE.addSnapshotListener { snap, _ -> if( snap == null) return@addSnapshotListener
                 orp = snap.toObjects<Orphanage>()
+                for(a in orp){
+                    a.geohash = GeoFireUtils.getGeoHashForLocation(GeoLocation(a.latitude, a.longitude))
+                }
                 lastID = if(orp.last().id == ""){
                     "OR0000"
                 }else{

@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.gms.maps.model.LatLng
 import my.com.hoperise.data.SharedViewModel
+import my.com.hoperise.data.cameraPhoto
+import my.com.hoperise.data.galleryPhoto
 import my.com.hoperise.databinding.ActivityStaffBinding
 
 class StaffActivity : AppCompatActivity() {
@@ -33,7 +35,8 @@ class StaffActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        vmShared.insertTempPhoto(null)
+        galleryPhoto = null
+        cameraPhoto = null
         vmShared.insertLocation("",  LatLng(0.0,0.0))
         return nav.navigateUp() || super.onSupportNavigateUp()
     }

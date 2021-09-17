@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.EventViewModel
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentEventListingBinding
 import my.com.hoperise.util.EventAdapter
 
@@ -22,12 +23,15 @@ class EventListingFragment : Fragment() {
     private lateinit var binding: FragmentEventListingBinding
     private val nav by lazy { findNavController() }
     private val vmEvent: EventViewModel by activityViewModels()
+    private var role = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentEventListingBinding.inflate(inflater, container, false)
         vmEvent.search("")
         vmEvent.filterCategory("")
         requireActivity().title = "Event Listing"
+        role = currentUser?.role ?: ""
+
         binding.sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(value: String) = true
             override fun onQueryTextChange(value: String): Boolean {
@@ -55,11 +59,9 @@ class EventListingFragment : Fragment() {
         binding.btnID.setOnClickListener { sort("id") }
         binding.btnName.setOnClickListener { sort("name") }
         binding.btnDate.setOnClickListener { sort("date") }
+        setHasOptionsMenu(true)
 
-        val role = "staff"
-        if(role == "staff"){
-            setHasOptionsMenu(true)
-        }else{
+        if(role == "Volunteer"){
             binding.spStatus.isVisible = false
             vmEvent.filterStatus("Current")
         }
@@ -98,16 +100,21 @@ class EventListingFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        //menu.clear()
-        inflater.inflate(R.menu.menu_add, menu)
+        if(role == "Volunteer"){
+            inflater.inflate(R.menu.menu_event_near_me, menu)
+        }else{
+            inflater.inflate(R.menu.menu_add, menu)
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.add)
             nav.navigate(R.id.chooseOrphanageForEventFragment)
+        else if(item.itemId == R.id.eventNearMe)
+            nav.navigate(R.id.eventNearMeFragment)
         else
-            return false
+        return false
 
         return super.onOptionsItemSelected(item)
     }

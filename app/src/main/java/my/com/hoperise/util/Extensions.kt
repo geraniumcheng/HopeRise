@@ -1,6 +1,7 @@
 package my.com.hoperise.util
 
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,7 +11,10 @@ import androidx.core.graphics.scale
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.Blob
 import my.com.hoperise.R
+import my.com.hoperise.data.Event
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 // Usage: Show an error dialog from fragment
 fun Fragment.errorDialog(text: String) {
@@ -80,6 +84,15 @@ fun ImageView.cropToBlob(width: Int, height: Int): Blob {
         return this.drawable.toBitmap().crop(width, height).toBlob()
 }
 
-private fun generateID(entity: String){
+@SuppressLint("SimpleDateFormat")
+fun parseEventDateTime(event: Event): Date {
+    return SimpleDateFormat("dd-MM-yyyy HH:mm").parse(event.date + " " + event.time)!!
+}
 
+fun getEventEndTime(eventDate: Date): Date {
+    val cal  = Calendar.getInstance()
+    cal.time = eventDate
+    cal.add(Calendar.DAY_OF_MONTH, 1)
+
+    return cal.time
 }

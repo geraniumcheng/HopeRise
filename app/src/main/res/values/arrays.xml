@@ -12,9 +12,7 @@
     <array name="volunteer">
         <item>All</item>
         <item>Unactivated</item>
-        <item>Unverified</item>
-        <item>Pending</item>
-        <item>Verified</item>
+        <item>Active</item>
     </array>
 
     <array name="volunteerApplication">

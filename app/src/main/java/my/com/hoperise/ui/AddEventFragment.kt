@@ -25,10 +25,8 @@ class AddEventFragment : Fragment(){
     private lateinit var binding: FragmentAddEventBinding
     private val nav by lazy { findNavController() }
     private val vmEvent: EventViewModel by activityViewModels()
-    private val vmShared: SharedViewModel by activityViewModels()
     private val id by lazy { requireArguments().getString("id") ?: "" }
     private val name by lazy { requireArguments().getString("name") ?: "" }
-    //private val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
 
     private val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur"))
     private val year = calendar.get(Calendar.YEAR)
@@ -44,10 +42,6 @@ class AddEventFragment : Fragment(){
 
         binding.lblOrpName.text = "Add Event for $name"
         binding.btnDate.setOnClickListener {
-//            var dialog = DateDialogFragment()
-//            val fm = parentFragmentManager
-//            dialog.show(fm, "Date")
-
             val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 date = setDate(month, day, year)
                 binding.lblDate.text = date
@@ -57,9 +51,6 @@ class AddEventFragment : Fragment(){
         }
 
         binding.btnTime.setOnClickListener {
-//            var dialog = TimeDialogFragment()
-//            val fm = parentFragmentManager
-//            dialog.show(fm, "Time")
             val tpd = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hour, min ->
                 time = setTime(hour,min)
                 binding.lblTime.text = time
@@ -126,9 +117,7 @@ class AddEventFragment : Fragment(){
         }
         vmEvent.set(e)
         reset()
-//        val fragmentManager: FragmentManager = parentFragmentManager
-//        fragmentManager.beginTransaction().remove(this).commit()
-//        fragmentManager.popBackStack()
+
         Toast.makeText(context, "Event added successfully", Toast.LENGTH_SHORT).show()
         nav.navigateUp()
     }
@@ -140,12 +129,6 @@ class AddEventFragment : Fragment(){
         binding.edtVolunteerNo.text.clear()
         binding.spinner.setSelection(0)
 
-        //clear date and time vmShared class
-
     }
-
-//    override fun onDateSelected(date: Long?) {
-//        binding.lblDate.text =  dateFormatter.format(date)
-//    }
 
 }

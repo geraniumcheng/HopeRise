@@ -12,6 +12,28 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import com.firebase.geofire.GeoFire
+import com.firebase.geofire.GeoFireUtils
+
+import com.google.firebase.database.FirebaseDatabase
+
+import com.google.firebase.database.DatabaseReference
+import com.firebase.geofire.GeoLocation
+import com.google.android.gms.tasks.OnCompleteListener
+
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+
+import com.google.firebase.firestore.QuerySnapshot
+
+import com.google.android.gms.tasks.Tasks
+
+import com.firebase.geofire.GeoQueryBounds
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.Query
+import my.com.hoperise.util.getEventEndTime
+import my.com.hoperise.util.parseEventDateTime
+
 
 class EventViewModel: ViewModel() {
 
@@ -19,15 +41,14 @@ class EventViewModel: ViewModel() {
     private var ev = listOf<Event>()
     private var lastID = ""
 
-    private var name = ""       // Search
-    private var status = ""     // Filter
-    private var category = "" // Filter2
-    private var field = ""      // Sort
-    private var reverse = false // Sort
+    private var name = ""
+    private var status = ""
+    private var category = ""
+    private var field = ""
+    private var reverse = false
 
     init {
         viewModelScope.launch {
-            //val event = EVENT.get().await().toObjects<Event>()
             EVENT.addSnapshotListener { snap, _ -> if( snap == null) return@addSnapshotListener
                 ev = snap.toObjects<Event>()
 
@@ -45,8 +66,9 @@ class EventViewModel: ViewModel() {
     }
 
     private fun checkStatus(status: Event): String {
-        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(status.date)
-        return if(date1.after(Date())){
+        val eventDate    = parseEventDateTime(status)
+        val eventEndDate = getEventEndTime(eventDate)
+        return if(eventEndDate.after(Date()) || eventDate.after(Date())){
             "Current"
         }else {
             "Completed"
@@ -66,7 +88,7 @@ class EventViewModel: ViewModel() {
         list = when(field){
             "id" -> list.sortedBy { e -> e.id }
             "name" -> list.sortedBy { e -> e.name }
-            "date" -> sortDate(list)//list.sortedBy { e -> e.date } //need to change func check year>month>date
+            "date" -> list.sortedBy { e -> parseEventDateTime(e) }
             else -> list
         }
 
@@ -76,35 +98,6 @@ class EventViewModel: ViewModel() {
 
         event.value = list
     }
-    private fun sortDate(list: List<Event>): List<Event>{
-//        val dateTimeStrToLocalDateTime: (String) -> LocalDateTime = {
-//            LocalDateTime.parse(it, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-//        }
-        val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
-        list.sortedBy { LocalDate.parse(it.date+" "+it.time, dateTimeFormatter) }
-        Log.d("list",list.toString())
-        Log.d("list",list[0].date + " " + list[0].time)
-        Log.d("list",list[1].date+ " " + list[1].time)
-        Log.d("list",list[2].date+ " " + list[2].time)
-        Log.d("list",list[3].date+ " " + list[3].time)
-        Log.d("list",list[4].date+ " " + list[4].time)
-        Log.d("list",list[5].date+ " " + list[5].time)
-
-//        val cmp = compareBy<String> { LocalDateTime.parse(it , DateTimeFormatter.ofPattern("dd-MM-yyyy")) }
-//        list.sortedWith(cmp)
-
-       //list.sortedBy {dateTimeStrToLocalDateTime }
-//        var year = 0
-//        var month = 0
-//        var day = 0
-//        var hour = 0
-//        var minute = 0
-//        for(e in list){
-//            if(e.year > year)
-//        }
-        return list
-    }
-
 
     fun search(name: String) {
         this.name = name

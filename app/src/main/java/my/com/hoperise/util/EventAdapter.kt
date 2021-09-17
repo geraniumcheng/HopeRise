@@ -50,13 +50,14 @@ class EventAdapter (
         holder.eventDateTime.text = eventItem.date + " " + eventItem.time
         holder.eventName.text = eventItem.name
 
-        val date1 = SimpleDateFormat("dd-MM-yyyy hh:mm").parse("${eventItem.date} ${eventItem.time}")
-        if(date1.after(Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur"), ).time)){
+        val eventDate    = parseEventDateTime(eventItem)
+        val eventEndDate = getEventEndTime(eventDate)
+        if(eventEndDate.after(Date()) || eventDate.after(Date())){
             holder.eventStatus.text = "Current"
         }else {
             holder.eventStatus.text = "Completed"
         }
-        Log.d("date", Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur")).time.toString())
+
         fn(holder, eventItem)
     }
 }

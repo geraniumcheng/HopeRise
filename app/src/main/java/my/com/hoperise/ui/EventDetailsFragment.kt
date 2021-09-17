@@ -16,6 +16,8 @@ import my.com.hoperise.R
 import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentEventBinding
 import my.com.hoperise.databinding.FragmentEventDetailsBinding
+import my.com.hoperise.util.getEventEndTime
+import my.com.hoperise.util.parseEventDateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,11 +30,13 @@ class EventDetailsFragment : Fragment() {
     private val vm: EventViewModel by activityViewModels()
     private var orphanageID = ""
     private var status = ""
-
+    private var role = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEventDetailsBinding.inflate(inflater, container, false)
         requireActivity().title = "Event Details"
+
+        role = currentUser?.role ?: ""
 
         if(returnFragment){
             EVENT.document(id).get().addOnSuccessListener {
@@ -45,8 +49,7 @@ class EventDetailsFragment : Fragment() {
 
         vm.get(id)?.let { load(it) }
 
-        val user = "staff"
-        if(user == "staff"){
+        if(role == "Employee" || role == "Manager"){
             binding.btnEditOrJoin.text = "Edit"
         }else{
             binding.btnEditOrJoin.text = "Join"
@@ -56,10 +59,7 @@ class EventDetailsFragment : Fragment() {
         if(status == "Completed") binding.btnEditOrJoin.isVisible = false
 
         binding.btnEditOrJoin.setOnClickListener {
-            if(user == "staff"){
-//                val fragmentManager: FragmentManager = parentFragmentManager
-//                fragmentManager.beginTransaction().remove(this).commit()
-//                fragmentManager.popBackStack()
+            if(role == "Employee" || role == "Manager"){
                 nav.navigate(R.id.editEventFragment, bundleOf("id" to id))
             }else{
                 //nav.navigate() join event
@@ -92,8 +92,9 @@ class EventDetailsFragment : Fragment() {
         binding.lblEventVolunteerNeed.text = e.volunteerRequired.toString()
         binding.lblEventVolunteerCount.text = e.volunteerCount.toString()
 
-        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(e.date)
-        if(date1.after(Date())){
+        val eventDate    = parseEventDateTime(e)
+        val eventEndDate = getEventEndTime(eventDate)
+        if(eventEndDate.after(Date()) || eventDate.after(Date())){
             binding.lblEventStatus.text =  "Current"
             status = "Current"
         }else {

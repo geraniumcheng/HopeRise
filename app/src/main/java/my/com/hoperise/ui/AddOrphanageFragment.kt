@@ -1,9 +1,14 @@
 package my.com.hoperise.ui
 
 import android.app.Activity
+import android.app.Activity.RESULT_CANCELED
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +18,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import my.com.hoperise.R
-import my.com.hoperise.data.SharedViewModel
-import my.com.hoperise.data.Orphanage
-import my.com.hoperise.data.OrphanageViewModel
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentAddOrphanageBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
-import kotlin.coroutines.CoroutineContext
 
 class AddOrphanageFragment : Fragment() {
 
@@ -32,12 +32,6 @@ class AddOrphanageFragment : Fragment() {
     private val vmOrphanage: OrphanageViewModel by activityViewModels()
 
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            binding.orpPhoto.setImageURI(it.data?.data)
-            vmShared.insertTempPhoto(it.data?.data)
-        }
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAddOrphanageBinding.inflate(inflater, container, false)
 
@@ -45,11 +39,15 @@ class AddOrphanageFragment : Fragment() {
         if(vmShared.location.location != ""){
             binding.edtLocation.text = vmShared.location.location
         }
-        if(vmShared.photo.photo != null){
-            binding.orpPhoto.setImageURI(vmShared.getTempPhoto())
+        if(galleryPhoto != null || cameraPhoto != null){
+            if(galleryPhoto != null){
+                binding.orpPhoto.setImageURI(galleryPhoto)
+            }
+            else{
+                binding.orpPhoto.setImageBitmap(cameraPhoto)
+            }
         }
-
-        binding.orpPhoto.setOnClickListener { select() }
+        binding.orpPhoto.setOnClickListener { showSelection() }
         binding.btnReset.setOnClickListener { reset() }
         binding.btnSubmit.setOnClickListener { submit() }
         binding.btnLocation.setOnClickListener {
@@ -59,10 +57,54 @@ class AddOrphanageFragment : Fragment() {
         return binding.root
     }
 
-    private fun select() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        launcher.launch(intent)
+    private fun showSelection() {
+        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Change profile photo")
+            //.setIcon(R.drawable.ic_select_photo)
+            .setSingleChoiceItems(items, 3) { d, n ->
+                if (n == 0) {
+                    pickImage(n)
+                    d?.dismiss()
+                } else if(n == 1){
+                    pickImage(n)
+                    d?.dismiss()
+                }else{
+                    d?.dismiss()
+                }
+            }
+            .setNegativeButton("Cancel", null).show()    }
+
+    private fun pickImage(n: Int) {
+        if(n == 0){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA)
+        }else{
+            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
+            galleryIntent.type = "image/*"
+            startActivityForResult(galleryIntent, GALLERY)
+        }
+
+    }
+
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val photoURI: Uri? = data.data
+                binding.orpPhoto.setImageURI(photoURI)
+                galleryPhoto = photoURI
+                cameraPhoto = null
+            }
+        } else if (requestCode == CAMERA) {
+            if(resultCode != RESULT_CANCELED){
+                val thumbnail = data!!.extras!!["data"] as Bitmap?
+                binding.orpPhoto.setImageBitmap(thumbnail)
+                cameraPhoto = thumbnail
+                galleryPhoto = null
+            }
+        }
     }
 
     private fun reset() {
@@ -70,7 +112,8 @@ class AddOrphanageFragment : Fragment() {
         binding.edtName.requestFocus()
         binding.orpPhoto.setImageDrawable(null)
         binding.edtLocation.text  = ""
-        vmShared.insertTempPhoto(null)
+        galleryPhoto = null
+        cameraPhoto = null
         vmShared.insertLocation("",  LatLng(0.0,0.0))
     }
 

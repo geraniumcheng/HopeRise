@@ -13,6 +13,7 @@ import my.com.hoperise.data.User
 import my.com.hoperise.data.VolunteerViewModel
 import my.com.hoperise.databinding.FragmentVolunteerDetailsBinding
 import my.com.hoperise.databinding.FragmentVolunteerListingBinding
+import my.com.hoperise.util.toBitmap
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +41,7 @@ class VolunteerDetailsFragment : Fragment() {
         binding.lblVolName.text = u.name
         binding.lblVolEmail.text = u.email
         binding.lblVolStatus.text = u.status
+        binding.imgVol.setImageBitmap(u.photo?.toBitmap())
 
     }
 

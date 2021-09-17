@@ -29,9 +29,11 @@ class OrphanageDetailsFragment : Fragment() {
     private val isEvent by lazy { requireArguments().getBoolean("isEvent")  }
     private val nav by lazy { findNavController() }
     private var geoLocation = ""
+    private var role = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentOrphanageDetailsBinding.inflate(inflater, container, false)
+        role = currentUser?.role ?: ""
 
         if(returnFragment){
             ORPHANAGE.document(id).get().addOnSuccessListener {
@@ -42,13 +44,11 @@ class OrphanageDetailsFragment : Fragment() {
             }
             returnFragment = false
         }
-        val user = "staff"
-        if(user == "user"){
+        if(role == "Volunteer"){
             binding.btnEdit.text = "Back"
             binding.btnDelete.isVisible = false
         }
-        Log.d("id", id)
-        Log.d("boolean", isEvent.toString())
+
         if(isEvent){
             ORPHANAGE.document(id).get().addOnSuccessListener {
                 snap ->
@@ -61,13 +61,9 @@ class OrphanageDetailsFragment : Fragment() {
         }
 
         binding.btnEdit.setOnClickListener {
-
-            if(user == "user"){
+            if(role == "Volunteer"){
                 nav.navigateUp()
             }else{
-//                val fragmentManager: FragmentManager = parentFragmentManager
-//                fragmentManager.beginTransaction().remove(this).commit()
-//                fragmentManager.popBackStack()
                 val args = bundleOf("id" to id)
                 nav.navigate(R.id.editOrphanageFragment, args)
             }
@@ -89,7 +85,7 @@ class OrphanageDetailsFragment : Fragment() {
     }
 
     private fun delete() {
-        //delete event as well
+        //delete events as well
         vmEvent.deleteEvents(id)
         vmOrphanage.delete(id)
         nav.navigateUp()

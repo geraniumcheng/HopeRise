@@ -1,8 +1,12 @@
 package my.com.hoperise.ui
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +17,7 @@ import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.model.LatLng
 import my.com.hoperise.R
-import my.com.hoperise.data.Orphanage
-import my.com.hoperise.data.OrphanageViewModel
-import my.com.hoperise.data.SharedViewModel
-import my.com.hoperise.data.returnFragment
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentEditOrphanageBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
@@ -42,7 +43,15 @@ class EditOrphanageFragment : Fragment() {
         if(vmShared.location.location != ""){
             binding.lblOrpLocation.text = vmShared.location.location
         }
-        binding.orpPhotoListing.setOnClickListener { select() }
+        if(galleryPhoto != null || cameraPhoto != null){
+            if(galleryPhoto != null){
+                binding.orpPhotoListing.setImageURI(galleryPhoto)
+            }
+            else{
+                binding.orpPhotoListing.setImageBitmap(cameraPhoto)
+            }
+        }
+        binding.orpPhotoListing.setOnClickListener { showSelection() }
         binding.btnMap.setOnClickListener {
             val args = bundleOf(
                 "location" to vmOrphanage.get(id)!!.location
@@ -50,24 +59,62 @@ class EditOrphanageFragment : Fragment() {
             nav.navigate(R.id.mapsFragment, args)
         }
         binding.btnReset.setOnClickListener {
-            vmShared.insertTempPhoto(null)
+            galleryPhoto = null
+            cameraPhoto = null
             vmShared.insertLocation("",  LatLng(0.0,0.0))
             reset()
         }
         binding.btnConfirm.setOnClickListener { submit() }
         return binding.root
     }
+    private fun showSelection() {
+        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Change profile photo")
+            //.setIcon(R.drawable.ic_select_photo)
+            .setSingleChoiceItems(items, 3) { d, n ->
+                if (n == 0) {
+                    pickImage(n)
+                    d?.dismiss()
+                } else if(n == 1){
+                    pickImage(n)
+                    d?.dismiss()
+                }else{
+                    d?.dismiss()
+                }
+            }
+            .setNegativeButton("Cancel", null).show()    }
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            binding.orpPhotoListing.setImageURI(it.data?.data)
+    private fun pickImage(n: Int) {
+        if(n == 0){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA)
+        }else{
+            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
+            galleryIntent.type = "image/*"
+            startActivityForResult(galleryIntent, GALLERY)
         }
+
     }
 
-    private fun select() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        launcher.launch(intent)
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val photoURI: Uri? = data.data
+                binding.orpPhotoListing.setImageURI(photoURI)
+                galleryPhoto = photoURI
+                cameraPhoto = null
+            }
+        } else if (requestCode == CAMERA) {
+            if(resultCode != Activity.RESULT_CANCELED){
+                val thumbnail = data!!.extras!!["data"] as Bitmap?
+                binding.orpPhotoListing.setImageBitmap(thumbnail)
+                cameraPhoto = thumbnail
+                galleryPhoto = null
+            }
+        }
     }
 
     private fun reset(){
@@ -77,7 +124,6 @@ class EditOrphanageFragment : Fragment() {
             return
         }
         load(o)
-
     }
 
     private fun load(o: Orphanage) {
@@ -118,10 +164,10 @@ class EditOrphanageFragment : Fragment() {
             return
         }
         vmOrphanage.set(o)
-        vmShared.insertTempPhoto(null)
+        galleryPhoto = null
+        cameraPhoto = null
         vmShared.insertLocation("",  LatLng(0.0,0.0))
         Toast.makeText(context, "Orphanage updated successfully", Toast.LENGTH_SHORT).show()
-
         returnFragment = true
         nav.navigateUp()
     }

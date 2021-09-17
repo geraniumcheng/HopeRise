@@ -1,15 +1,15 @@
 package my.com.hoperise.data
 
 import android.content.Context
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.location.Location
 import android.net.Uri
+import com.firebase.geofire.core.GeoHash
 import com.google.firebase.firestore.Blob
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import my.com.hoperise.R
-import my.com.hoperise.util.toBlob
 import java.util.*
 
 val ORPHANAGE = Firebase.firestore.collection("orphanage")
@@ -19,18 +19,21 @@ val VOLUNTEER = Firebase.firestore.collection("volunteer")
 val MESSAGE = Firebase.firestore.collection("message")
 val PHOTO = Firebase.firestore.collection("photo")
 val USER = Firebase.firestore.collection("user")
-var currentUser: User? = null
+
+const val GALLERY = 1
+const val CAMERA = 2
+//var currentUser: User? = User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, null, null, 453612, Date())
+var currentUser: User? = User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Active")
 var reason: String = ""
 var returnFragment: Boolean = false
 var returnVAID: String = ""
+var cameraPhoto: Bitmap? = null
+var galleryPhoto: Uri? = null
+
 data class Location(
     var location: String = "",
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
-)
-
-data class TempPhoto(
-    var photo: Uri? = null
 )
 
 data class Orphanage(
@@ -43,7 +46,9 @@ data class Orphanage(
     var photo: Blob? = Blob.fromBytes(ByteArray(0))
 ){
     @get:Exclude
-    var count: Int = 0
+    var geohash: String = ""
+    @get:Exclude
+    var distance: Double = 0.0
 }
 
 data class Event(
