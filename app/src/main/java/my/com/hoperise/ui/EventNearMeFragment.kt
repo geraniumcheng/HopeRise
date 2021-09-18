@@ -44,6 +44,16 @@ import my.com.hoperise.util.EventNearMeAdapter
 import my.com.hoperise.util.OrphanageAdapter
 import java.util.*
 import kotlin.collections.ArrayList
+import android.graphics.Typeface
+
+import android.text.style.StyleSpan
+
+import android.text.style.UnderlineSpan
+
+import android.text.SpannableString
+
+
+
 
 
 class EventNearMeFragment : Fragment() {
@@ -53,8 +63,6 @@ class EventNearMeFragment : Fragment() {
     private val vm: EventNearMeViewModel by activityViewModels()
 
     private val nav by lazy { findNavController() }
-    private var nearbyEvent = ArrayList<Event>()
-    private var event = listOf<Event>()
     private var filterEvent = ArrayList<Event>()
 
     private var currentLocation: Location? = null
@@ -76,7 +84,12 @@ class EventNearMeFragment : Fragment() {
             var addressList: List<Address>? = null
             val geoCoder = Geocoder(context)
             addressList = geoCoder.getFromLocationName(area, 1)
-            address = addressList!![0]
+
+            if(addressList.isEmpty()){
+                Toast.makeText(context, "Area not found! Sorry.", Toast.LENGTH_SHORT).show()
+            }else{
+                address = addressList!![0]
+            }
 
             doCallback(10)
         }
@@ -102,11 +115,8 @@ class EventNearMeFragment : Fragment() {
             task?.addOnSuccessListener {
                 location ->
                 if(location != null) {
-                //userLocation = location
-                //this.currentLocation = location
                 loc = location
                 currentLocation = location
-                //Log.d("current location value in listener", currentLocation!!.latitude.toString() + " " + currentLocation!!.longitude.toString())
                 }
                 callback.invoke(loc)
             }
@@ -118,99 +128,82 @@ class EventNearMeFragment : Fragment() {
         fetchLocation {
                 result -> currentLocation = result
 
+            val geoCoder = Geocoder(requireContext(), Locale.getDefault())
+            var addresses: MutableList<Address>? = null
+            var userLocation: GeoLocation? = null
+            val radiusMetre = (distance * 1000).toDouble()
+
+            filterEvent.clear()
+            setBold(distance)
+
             if(address != null){
-                //Log.d("current location value inside callback", currentLocation!!.latitude.toString() + " " + currentLocation!!.longitude.toString())
-                filterEvent.clear()
-                val geoCoder = Geocoder(requireContext(), Locale.getDefault())
-                val addresses = geoCoder.getFromLocation(address!!.latitude, address!!.longitude, 1)
-                //Toast.makeText(context, addresses[0].getAddressLine(0), Toast.LENGTH_SHORT).show()
+                addresses = geoCoder.getFromLocation(address!!.latitude, address!!.longitude, 1)
                 binding.lblAddress.text = addresses[0].getAddressLine(0)
+                userLocation = GeoLocation(address!!.latitude, address!!.longitude)
 
-                vm.getAll().observe(viewLifecycleOwner) {
-                        event -> //adapter.submitList(event)
-                    //this.event = event
-
-                    val userLocation = GeoLocation(address!!.latitude, address!!.longitude)
-                    val radiusMetre = (distance * 1000).toDouble()
-                    var list = event
-
-                    list = list.filter {e -> e.status == "Current"}
-
-                    for(e in list){
-                        val orpLocation = GeoLocation(e.orphanage.latitude,e.orphanage.longitude )
-                        val distanceMetre = GeoFireUtils.getDistanceBetween(orpLocation, userLocation)
-                        if (distanceMetre <= radiusMetre) {
-                            e.orphanage.distance = distanceMetre / 1000.0
-                            filterEvent.add(e)
-                        }
-                    }
-                    binding.lblNearMeRecords.text = filterEvent.size.toString() + " record(s)"
-
-                    val adapter = EventNearMeAdapter(){
-                            holder, event -> holder.root.setOnClickListener {
-                        val args = bundleOf(
-                            "id" to event.id,
-                            "isEvent" to false
-                        )
-                        nav.navigate(R.id.eventDetailsFragment, args)
-                    }
-                    }
-                    binding.rvEvNearMe.adapter = adapter
-                    binding.rvEvNearMe.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-                    binding.rvEvNearMe.removeItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
-                    adapter.submitList(filterEvent)
-                    // binding.lblNearMeRecords.text = vm.getNearbyEvent(currentLocation!!.latitude, currentLocation!!.longitude).toString()
-                }
             }else{
-                //Log.d("current location value inside callback", currentLocation!!.latitude.toString() + " " + currentLocation!!.longitude.toString())
-                filterEvent.clear()
-                val geoCoder = Geocoder(requireContext(), Locale.getDefault())
-                val addresses = geoCoder.getFromLocation(currentLocation!!.latitude, currentLocation!!.longitude, 1)
-                //Toast.makeText(context, addresses[0].getAddressLine(0), Toast.LENGTH_SHORT).show()
+                addresses = geoCoder.getFromLocation(currentLocation!!.latitude, currentLocation!!.longitude, 1)
                 binding.lblAddress.text = addresses[0].getAddressLine(0)
+                userLocation = GeoLocation(currentLocation!!.latitude, currentLocation!!.longitude)
 
-                vm.getAll().observe(viewLifecycleOwner) {
-                        event -> //adapter.submitList(event)
-                    //this.event = event
-
-                    val userLocation = GeoLocation(currentLocation!!.latitude, currentLocation!!.longitude)
-                    val radiusMetre = (distance * 1000).toDouble()
-                    var list = event
-
-                    list = list.filter {e -> e.status == "Current"}
-
-                    for(e in list){
-                        val orpLocation = GeoLocation(e.orphanage.latitude,e.orphanage.longitude )
-                        val distanceMetre = GeoFireUtils.getDistanceBetween(orpLocation, userLocation)
-                        if (distanceMetre <= radiusMetre) {
-                            e.orphanage.distance = distanceMetre / 1000.0
-                            filterEvent.add(e)
-                        }
-                    }
-                    binding.lblNearMeRecords.text = filterEvent.size.toString() + " record(s)"
-
-                    val adapter = EventNearMeAdapter(){
-                            holder, event -> holder.root.setOnClickListener {
-                        val args = bundleOf(
-                            "id" to event.id,
-                            "isEvent" to false
-                        )
-                        nav.navigate(R.id.eventDetailsFragment, args)
-                    }
-                    }
-                    binding.rvEvNearMe.adapter = adapter
-                    binding.rvEvNearMe.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
-                    adapter.submitList(filterEvent)
-                    // binding.lblNearMeRecords.text = vm.getNearbyEvent(currentLocation!!.latitude, currentLocation!!.longitude).toString()
-                }
             }
 
+            vm.getAll().observe(viewLifecycleOwner) {
+                    event ->
+                var list = event
+                list = list.filter {e -> e.status == "Current"}
+
+                for(e in list){
+                    val orpLocation = GeoLocation(e.orphanage.latitude,e.orphanage.longitude )
+                    val distanceMetre = GeoFireUtils.getDistanceBetween(orpLocation, userLocation)
+                    if (distanceMetre <= radiusMetre) {
+                        e.orphanage.distance = distanceMetre / 1000.0
+                        filterEvent.add(e)
+                    }
+                }
+                binding.lblNearMeRecords.text = filterEvent.size.toString() + " record(s)"
+
+                val adapter = EventNearMeAdapter(){
+                        holder, event -> holder.root.setOnClickListener {
+                    val args = bundleOf(
+                        "id" to event.id,
+                        "isEvent" to false
+                    )
+                    nav.navigate(R.id.eventDetailsFragment, args)
+                }
+                }
+                binding.rvEvNearMe.adapter = adapter
+                binding.rvEvNearMe.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                adapter.submitList(filterEvent)
+            }
 
         }
     }
 
+    private fun setBold(distance: Int) {
+        when (distance) {
+            5 -> {
+                binding.txt5.setTypeface(null, Typeface.BOLD)
+                binding.txt10.setTypeface(null, Typeface.NORMAL)
+                binding.txt15.setTypeface(null, Typeface.NORMAL)
+            }
+            10 -> {
+                binding.txt5.setTypeface(null, Typeface.NORMAL)
+                binding.txt10.setTypeface(null, Typeface.BOLD)
+                binding.txt15.setTypeface(null, Typeface.NORMAL)
+            }
+            15 -> {
+                binding.txt5.setTypeface(null, Typeface.NORMAL)
+                binding.txt10.setTypeface(null, Typeface.NORMAL)
+                binding.txt15.setTypeface(null, Typeface.BOLD)
+            }
+            else -> {
+                binding.txt5.setTypeface(null, Typeface.NORMAL)
+                binding.txt10.setTypeface(null, Typeface.NORMAL)
+                binding.txt15.setTypeface(null, Typeface.NORMAL)
+            }
+        }
+    }
 
 
 }
