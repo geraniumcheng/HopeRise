@@ -151,7 +151,7 @@ class RegisterFragment : Fragment() {
                   }
                     else{
                       binding.lblEmailWarning.visibility = View.VISIBLE
-                      binding.lblEmailWarning.text = "Please entered an valid email."
+                      binding.lblEmailWarning.text = "Please entered a valid email."
                     }
                 } else {
                     binding.lblEmailWarning.visibility = View.VISIBLE
