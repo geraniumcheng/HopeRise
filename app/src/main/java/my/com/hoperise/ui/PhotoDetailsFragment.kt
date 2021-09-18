@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import my.com.hoperise.R
 import my.com.hoperise.data.EventGalleyViewModel
 import my.com.hoperise.data.Photo
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentPhotoDetailsBinding
 import my.com.hoperise.util.errorDialog
 import my.com.hoperise.util.snackbar
@@ -35,6 +37,10 @@ class PhotoDetailsFragment : Fragment() {
         val p = vmGallery.get(id)!!
 
         load(p)
+
+        /* Check is volunteer, or staff with status or not */
+        binding.btnDelete.isVisible = !(currentUser!!.role == getString(R.string.volunteer) ||
+                (currentUser!!.role != getString(R.string.volunteer) && currentUser!!.status != getString(R.string.active)))
 
         binding.btnDelete.setOnClickListener { delete() }
         binding.btnSave.setOnClickListener   { saveToPhone(p) }

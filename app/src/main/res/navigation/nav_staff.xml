@@ -84,20 +84,10 @@
         android:label="Edit Orphanage"
         tools:layout="@layout/fragment_edit_orphanage" />
     <fragment
-        android:id="@+id/chooseOrphanageForEventFragment"
-        android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
-        android:label="Choose Orphanage"
-        tools:layout="@layout/fragment_choose_orphanage_for_event" />
-    <fragment
         android:id="@+id/eventDetailsFragment"
         android:name="my.com.hoperise.ui.EventDetailsFragment"
         android:label="Event Details"
         tools:layout="@layout/fragment_event_details" />
-    <fragment
-        android:id="@+id/editEventFragment"
-        android:name="my.com.hoperise.ui.EditEventFragment"
-        android:label="Edit Event"
-        tools:layout="@layout/fragment_edit_event" />
     <fragment
         android:id="@+id/scanAttendanceFragment"
         android:name="my.com.hoperise.ui.ScanAttendanceFragment"

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/ic_error.xml" value="0.2546875" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/loading_img.xml" value="0.2824074074074074" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/message_backgroun.xml" value="0.2796296296296296" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/search_background.xml" value="0.2898148148148148" />
@@ -29,18 +30,26 @@
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_attendance.xml" value="0.31979166666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_event_chat_room.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_participation.xml" value="0.3307291666666667" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/item_employee_listing.xml" value="0.2328042328042328" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/item_message_from.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/item_message_to.xml" value="0.3307291666666667" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/activity_login.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/activity_main.xml" value="0.536" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.34646739130434784" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/bubble_in.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_account.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_account_block.xml" value="0.2375" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_activate_account.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_add_event.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_add_orphanage.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_attendance.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_choose_orphanage_for_event.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_confirm_reset_password_request.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_date_dialog.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_edit_event.xml" value="0.28351449275362317" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_edit_orphanage.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_listing.xml" value="0.2375" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_verify_otp.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event.xml" value="0.2828125" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_chat_room.xml" value="0.296875" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_details.xml" value="0.4" />
@@ -50,6 +59,7 @@
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_q_r_code.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_volunteer_listing.xml" value="0.4" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_whole_q_r_code.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_manage_employee.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_manager_manage_application_request.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_manager_volunteer_application_listing.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_maps.xml" value="0.3546195652173913" />
@@ -59,21 +69,28 @@
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_photo.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_photo_details.xml" value="0.4" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reject_reason.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reset_password.xml" value="0.275" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_scan_attendance.xml" value="0.32518115942028986" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_staff_main_page.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_time_dialog.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_unblock_account_success.xml" value="0.2375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_application_status.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_details.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_forget_password.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_listing.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_submit_application.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_vefiry_otp.xml" value="0.2375" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_verify_email.xml" value="0.275" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_choose_orphanage_for_event.xml" value="0.3078125" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_employee_listing.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_event_listing.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_event_listing2.xml" value="0.27760416666666665" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_event_report.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_event_volunteer_listing.xml" value="0.4" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_gallery_photo.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_message.xml" value="0.536" />
-        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_message_from.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_message_to.xml" value="0.2786458333333333" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_message_from.xml" value="0.4" />
+        <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_message_to.xml" value="0.4" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_orphanage_listing.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_volunteer_application_list.xml" value="0.34646739130434784" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_volunteer_list.xml" value="0.34646739130434784" />
@@ -82,54 +99,6 @@
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/menu/menu_capture.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/mipmap-anydpi-v26/iu_1.xml" value="0.2824074074074074" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/xml/provider_paths.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/ic_logout.xml" value="0.35625" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/drawable/ic_default_profile_picture.xml" value="0.21145833333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/drawable/ic_launcher_background.xml" value="0.35625" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/drawable/ic_select_photo.xml" value="0.14010416666666667" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/drawable/ic_warning.xml" value="0.2552083333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_edit_volunteer_profile.xml" value="0.3796875" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_employee_listing.xml" value="0.3796875" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_login.xml" value="0.24864864864864866" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/fragment_request_reset_password.xml" value="0.24864864864864866" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/item_employee_listing.xml" value="0.3796875" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout-land/item_volunteer_list.xml" value="0.3796875" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.41690962099125367" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_account_block.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_activate_account.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_add_orphanage.xml" value="0.17864583333333334" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_confirm_reset_password_request.xml" value="0.3359375" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_edit_volunteer_profile.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_change_password.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_forget_password.xml" value="0.3237597911227154" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_listing.xml" value="0.536" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_verify_email.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_employee_verify_otp.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_event_details.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_login.xml" value="0.43448275862068964" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_manage_employee.xml" value="0.536" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_register.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_register_employee.xml" value="0.14285714285714285" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_register_success.xml" value="0.20885416666666667" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_request_reset_password.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reset_password.xml" value="0.4738955823293173" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reset_password_success.xml" value="0.19479166666666667" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_staff_forget_password.xml" value="0.19895833333333332" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_staff_main_page.xml" value="0.72" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_staff_verify_email.xml" value="0.18177083333333333" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_unblock_account.xml" value="0.6" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_unblock_account_success.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_verify_account_success.xml" value="0.19479166666666667" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_view_staff_profile.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_view_volunteer_profile.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_change_password.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_forget_password.xml" value="0.6" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_vefiry_otp.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_volunteer_verify_email.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_employee_listing.xml" value="0.17037037037037037" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/item_volunteer_list.xml" value="0.4" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35625" />
-        <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.35625" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.11488250652741515" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_account.xml" value="0.3546875" />

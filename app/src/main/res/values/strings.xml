@@ -37,7 +37,7 @@
     <string name="error">Error</string>
     <string name="cancel">Cancel</string>
     <string name="cancelAction">You have cancel the action</string>
-    <string name="warning">Warning</string>
+    <string name="warning">Warning!</string>
     <string name="eventGallery">Event Gallery</string>
     <string name="verifyFirst">You have to verify your IC first then only can join event!</string>
     <string name="info">Information</string>
@@ -52,6 +52,7 @@
     <string name="photoUploaded">Photo %s has been uploaded</string>
     <string name="convertFailed">Convert Failed!</string>
     <string name="featureFileUnavailable">This features is unavailable since the file permission denied</string>
+    <string name="featureCameraUnavailable">This features is unavailable since the camera permission denied</string>
     <string name="enter_message">Enter Message</string>
     <string name="send">SEND</string>
     <string name="noJoinEvent">You have not joined any event.</string>
@@ -136,4 +137,10 @@
     <string name="name">Name</string>
     <string name="date">Date</string>
     <string name="confirm">Confirm</string>
+    <string name="restore">Restore</string>
+    <string name="employee_management">Employee Management</string>
+    <string name="staff_profile">Staff Profile</string>
+    <string name="employee">Employee</string>
+    <string name="noAuthority">"You don't have the authority of manage employees! "</string>
+    <string name="dataRestoreSucess">Data Restored Successfully~</string>
 </resources>

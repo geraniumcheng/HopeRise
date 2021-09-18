@@ -197,7 +197,7 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> USER.document(doc.id).delete() }
 
         val users = listOf(
-            User("chengzhiying", "czy2k@gmail.com", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff1).toBlob(), null, null, Date()),
+            User("chengzhiying", "chengzy-am18@student.tarc.edu.my", "Cheng Zhi Ying", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff1).toBlob(), null, null, Date()),
             User("chewhongyu", "hyhyhy@gmail.com", "Chew Hong Yu", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff2).toBlob(), null, null, Date()),
             User("teohshuzi", "teohs-am18@student.tarc.edu.my", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff3).toBlob(), null, null, Date()),
             User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff4).toBlob(), null, null, Date()),
@@ -207,7 +207,7 @@ fun RESTORE_DATA(ctx: Context) {
             User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user3).toBlob(), null, null, Date()),
             User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user4).toBlob(), null, null, Date()),
             User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user5).toBlob(), null, null, Date()),
-            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user6).toBlob(), null, null, Date()),
+            User("volunteer6", "geraniumcheng@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user6).toBlob(), null, null, Date()),
             User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user7).toBlob(), null, null, Date()),
             User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user8).toBlob(), null, null, Date()),
         )

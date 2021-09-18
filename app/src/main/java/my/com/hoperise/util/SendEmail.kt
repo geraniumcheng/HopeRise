@@ -11,11 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Properties
-import javax.mail.Authenticator
-import javax.mail.Message
-import javax.mail.PasswordAuthentication
-import javax.mail.Session
-import javax.mail.Transport
+import javax.mail.*
 import javax.mail.internet.MimeMessage
 
 class SendEmail(
@@ -84,7 +80,7 @@ class SendEmail(
         val msg = getMessage()
         msg.setFrom(from)
         msg.setRecipients(Message.RecipientType.TO, to)
-        msg.setSubject(subject)
+        msg.subject = subject
         msg.setContent(content, type)
 
         CoroutineScope(Dispatchers.IO).launch {

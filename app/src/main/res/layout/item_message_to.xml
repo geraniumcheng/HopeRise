@@ -7,15 +7,29 @@
     android:layout_marginBottom="12dp">
 
     <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="XXX" />
+
+    <TextView
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@color/background_message_to"
         android:maxWidth="240dp"
         android:padding="16dp"
         app:layout_constraintEnd_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName"
         tools:ignore="TextContrastCheck"
         tools:text="XXXXXXXXXXXXXX" />
 

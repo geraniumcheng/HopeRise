@@ -1,11 +1,15 @@
 package my.com.hoperise.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,7 +34,7 @@ class ScanAttendanceFragment : Fragment() {
     private val result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         val content = IntentIntegrator.parseActivityResult(it.resultCode, it.data).contents
         if (content == null) {
-            errorDialog(getString(R.string.scanFailed))
+            snackbar(getString(R.string.scanFailed))
             nav.navigateUp()
         }
         else {
@@ -62,6 +66,14 @@ class ScanAttendanceFragment : Fragment() {
         }
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) scanQRCode()
+        else {
+            snackbar(getString(R.string.featureCameraUnavailable))
+            nav.navigateUp()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         requireActivity().title = getString(R.string.scanAttendance)
 
@@ -84,13 +96,19 @@ class ScanAttendanceFragment : Fragment() {
     }
 
     private fun scanQRCode() {
-        val intent = IntentIntegrator.forSupportFragment(this)
-            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-            .setPrompt(getString(R.string.promptQRScan))
-            .setBeepEnabled(true)
-            .createScanIntent()
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+        else {
+            val intent = IntentIntegrator.forSupportFragment(this)
+                .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+                .setPrompt(getString(R.string.promptQRScan))
+                .setBeepEnabled(true)
+                .createScanIntent()
 
-        result.launch(intent)
+            result.launch(intent)
+        }
     }
 
     private fun failedGetRecord() {
@@ -105,7 +123,7 @@ class ScanAttendanceFragment : Fragment() {
     }
 
     private fun takeAttendance() {
-        val err     = vmParticipation.isInEventDuration(volunteer!!)
+        val err = vmParticipation.isInEventDuration(volunteer!!)
 
         if (err != "")
             warningDialog(err, { signedAttendance() }) { snackbar(getString(R.string.cancelAction)) }

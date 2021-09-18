@@ -25,8 +25,9 @@ class EventChatRoomAdapter : ListAdapter<Message, EventChatRoomAdapter.ViewHolde
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val txtMessage : TextView =  view.findViewById(R.id.txtMessage)
-        val imgAvatar  : ImageView = view.findViewById(R.id.imgAvatar)
+        val txtMessage  : TextView =  view.findViewById(R.id.txtMessage)
+        val txtUserName : TextView =  view.findViewById(R.id.txtUserName)
+        val imgAvatar   : ImageView = view.findViewById(R.id.imgAvatar)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -53,7 +54,8 @@ class EventChatRoomAdapter : ListAdapter<Message, EventChatRoomAdapter.ViewHolde
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val messageItem = getItem(position)
 
-        holder.txtMessage.text = messageItem.content
+        holder.txtUserName.text = messageItem.user.name
+        holder.txtMessage.text  = messageItem.content
         holder.imgAvatar.load(messageItem.user.photo!!.toBitmap()!!) { placeholder(R.drawable.loading_ani) }
     }
 }

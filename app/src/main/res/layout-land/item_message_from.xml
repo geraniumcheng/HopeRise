@@ -6,15 +6,29 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="XXX" />
+
+    <TextView
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
         android:maxWidth="500dp"
         android:padding="16dp"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName"
         tools:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
 
     <ImageView

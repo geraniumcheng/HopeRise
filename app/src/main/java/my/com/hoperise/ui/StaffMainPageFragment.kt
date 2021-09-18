@@ -1,8 +1,6 @@
 package my.com.hoperise.ui
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,30 +11,23 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
-import my.com.hoperise.LoginActivity
 import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.RESTORE_DATA
 import my.com.hoperise.databinding.FragmentStaffMainPageBinding
-
+import my.com.hoperise.util.snackbar
 
 class StaffMainPageFragment : Fragment() {
     private lateinit var binding: FragmentStaffMainPageBinding
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentStaffMainPageBinding.inflate(inflater, container, false)
 
         binding.cardEmployee.setOnClickListener { nav.navigate(R.id.accountFragment) }
         binding.cardScanAttendance.setOnClickListener { nav.navigate(R.id.scanAttendanceFragment) }
-
         binding.cardEmployee.setOnClickListener { checkEmployeeAccessibility() }
         binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }
         binding.cardOnScreen.setOnClickListener { nav.navigate(R.id.eventOnScreenReportFragment) }
@@ -45,11 +36,15 @@ class StaffMainPageFragment : Fragment() {
         binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
         binding.cardVolunteerM.setOnClickListener { nav.navigate(R.id.volunteerListingFragment) }
 
-        binding.btnRestore.setOnClickListener { RESTORE_DATA(requireContext()) }
+        binding.btnRestore.setOnClickListener {
+            RESTORE_DATA(requireContext())
+            snackbar(getString(R.string.dataRestoreSucess))
+        }
+
         // For alert dialog navigation purpose
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+        requireActivity().onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                getActivity()?.finish()
+                requireActivity().finish()
             }
         })
 
@@ -61,18 +56,15 @@ class StaffMainPageFragment : Fragment() {
 
         lifecycleScope.launch {
             val emp = vm.getLogIn(userId)
-            if (emp!!.role.equals("Employee")) {
+            if (emp!!.role == getString(R.string.employee)) {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Warning!")
-                    .setMessage("You don't have the authority of manage employees! " )
+                    .setTitle(getString(R.string.warning))
+                    .setMessage(getString(R.string.noAuthority))
                     .setIcon(R.drawable.ic_warning)
-                    .setPositiveButton("OK", null).show()
+                    .setPositiveButton(getString(R.string.ok), null).show()
             }
-            else{
+            else
                 nav.navigate(R.id.employeeListingFragment)
-            }
         }
     }
-
-
 }

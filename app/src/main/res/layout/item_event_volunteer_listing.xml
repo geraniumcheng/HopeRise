@@ -25,36 +25,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="16dp"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtUserName"
         app:layout_constraintStart_toEndOf="@+id/imgPhoto"
+        app:layout_constraintTop_toTopOf="@+id/imgPhoto"
         tools:text="XXX" />
 
     <TextView
         android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgPhoto"
-        app:layout_constraintStart_toEndOf="@+id/imgPhoto"
-        app:layout_constraintTop_toTopOf="@+id/imgPhoto"
+        app:layout_constraintStart_toStartOf="@+id/txtUserID"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserID"
         tools:text="XXX" />
 
     <TextView
         android:id="@+id/txtUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/imgPhoto"
+        app:layout_constraintStart_toStartOf="@+id/txtUserName"
         app:layout_constraintTop_toBottomOf="@+id/txtUserName"
         tools:text="XXX" />
 

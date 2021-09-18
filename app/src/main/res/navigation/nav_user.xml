@@ -55,11 +55,6 @@
         android:label="Event Chat Room"
         tools:layout="@layout/fragment_event_chat_room" />
     <fragment
-        android:id="@+id/eventQRCodeFragment"
-        android:name="my.com.hoperise.ui.EventQRCodeFragment"
-        android:label="QR Code"
-        tools:layout="@layout/fragment_event_q_r_code" />
-    <fragment
         android:id="@+id/eventWholeQRCode"
         android:name="my.com.hoperise.ui.EventWholeQRCode"
         android:label="QR Code"
@@ -104,4 +99,14 @@
         android:name="my.com.hoperise.ui.VolunteerVefiryOtpFragment"
         android:label="Forget Password"
         tools:layout="@layout/fragment_volunteer_vefiry_otp" />
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="my.com.hoperise.ui.EditEventFragment"
+        android:label="Edit Event"
+        tools:layout="@layout/fragment_edit_event" />
+    <fragment
+        android:id="@+id/chooseOrphanageForEventFragment"
+        android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
+        android:label="Choose Orphanage"
+        tools:layout="@layout/fragment_choose_orphanage_for_event" />
 </navigation>

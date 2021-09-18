@@ -72,7 +72,7 @@ class EventViewModel: ViewModel() {
 
 
         list = list.filter {
-            e -> e.name.contains(name, true)
+                e -> e.name.contains(name, true)
                 && (category == "All" || category == e.category)
                 && (status == "All" || status == e.status)
         }
@@ -107,7 +107,7 @@ class EventViewModel: ViewModel() {
 //        val cmp = compareBy<String> { LocalDateTime.parse(it , DateTimeFormatter.ofPattern("dd-MM-yyyy")) }
 //        list.sortedWith(cmp)
 
-       //list.sortedBy {dateTimeStrToLocalDateTime }
+        //list.sortedBy {dateTimeStrToLocalDateTime }
 //        var year = 0
 //        var month = 0
 //        var day = 0
@@ -186,16 +186,16 @@ class EventViewModel: ViewModel() {
         }
 
         err += if(e.date == "") "- Please choose a date!\n"
-                else ""
+        else ""
 
         err += if(e.time == "") "- Please choose a time!\n"
-                else ""
+        else ""
 
         err += if(e.volunteerRequired == 0) "- Please set a number for the volunteer capacity!\n"
-                else ""
+        else ""
 
         err += if(e.description == "") "- Please fill in some description for the event!\n"
-                else ""
+        else ""
 
         return err
     }
