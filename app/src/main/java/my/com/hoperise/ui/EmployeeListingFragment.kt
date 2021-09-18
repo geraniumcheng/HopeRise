@@ -82,14 +82,6 @@ class EmployeeListingFragment : Fragment() {
         binding.btnEmployeeName.setOnClickListener { sort("name") }
         binding.btnRegisterDate.setOnClickListener { sort("registerDate") }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.navigate(R.id.staffMainPageFragment)
-            }
-        })
-
-
         return binding.root
     }
 

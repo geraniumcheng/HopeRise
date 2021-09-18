@@ -48,13 +48,6 @@ class ViewStaffProfileFragment : Fragment() {
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnUpdate.setOnClickListener { updateStaff(userId) }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.navigate(R.id.staffMainPageFragment)
-            }
-        })
-
         return binding.root
     }
 

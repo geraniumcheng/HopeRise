@@ -41,13 +41,6 @@ class StaffMainPageFragment : Fragment() {
             snackbar(getString(R.string.dataRestoreSucess))
         }
 
-        // For alert dialog navigation purpose
-        requireActivity().onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().finish()
-            }
-        })
-
         return binding.root
     }
 
