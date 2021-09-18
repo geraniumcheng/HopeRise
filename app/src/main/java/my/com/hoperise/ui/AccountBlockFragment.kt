@@ -1,7 +1,7 @@
 package my.com.hoperise.ui
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +26,7 @@ class AccountBlockFragment : Fragment() {
     private val nav by lazy { findNavController() }
     private val vm: UserViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAccountBlockBinding.inflate(inflater, container, false)
 
         binding.btnSendOtpUnlock.setOnClickListener {
@@ -44,9 +44,10 @@ class AccountBlockFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun sendOtpUnbockAccount(loggedInId: String) {
-        var sdf = SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
-        var currentDateandTime: String = sdf.format(Date())
+        val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
+        val currentDateandTime: String = sdf.format(Date())
         val n = (0..999999).random()
         val fmt = DecimalFormat("000000")
         val unblockOtpCode = fmt.format(n).toString()
@@ -54,7 +55,7 @@ class AccountBlockFragment : Fragment() {
         lifecycleScope.launch {
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
-                toast("Opps! Something wrong!")
+                toast(getString(R.string.somethingWrong))
                 return@launch
             } else {
                 val email = emp.email
@@ -64,22 +65,17 @@ class AccountBlockFragment : Fragment() {
 
                 vm.updateOtp(user, unblockOtpCode.toInt()) // Update the generated OTP to database
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Hurray")
-                    .setMessage("An otp code was sent to your account's registered email on " + currentDateandTime + " successfully ✨ \nUnblock your account now?" )
+                    .setTitle(getString(R.string.hurray))
+                    .setMessage(getString(R.string.optSent, currentDateandTime))
                     .setIcon(R.drawable.ic_otp_confirm_dialog)
-                    .setPositiveButton(android.R.string.yes, object :
-                        DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.navigate(R.id.unblockAccountFragment)
-                        }
-                    })
-                    .setNegativeButton("I didn't receive it", null).show()
+                    .setPositiveButton(getString(R.string.yes)) { _, _ -> nav.navigate(R.id.unblockAccountFragment) }
+                    .setNegativeButton(getString(R.string.didntReceive), null).show()
             }
         }
     }
 
     private fun sendEmail(email: String, user: String, unblockOtpCode: String, currentDateandTime: String) {
-        val subject = "Unblock Hope Rise Account Request @ ${currentDateandTime}"
+        val subject = "Unblock Hope Rise Account Request @ $currentDateandTime"
         val content = """
                     <p>Greetings from Hope Rise 😇 </p>
                     <p>Dear <b>$user</b>,</p>
@@ -98,12 +94,10 @@ class AccountBlockFragment : Fragment() {
                     .subject(subject)
                     .content(content)
                     .isHtml()
-                    .send() {
-                    }
+                    .send {}
     }
 
     private fun toast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
-
 }

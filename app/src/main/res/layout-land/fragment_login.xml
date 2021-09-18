@@ -22,14 +22,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/login" />
+        app:lottie_rawRes="@raw/login"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="309dp"
         android:layout_height="58dp"
         android:layout_marginTop="24dp"
-        android:text="WELCOME BACK TO HOEPRISE!"
+        android:text="@string/welcome_back_to_hoeprise"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -58,7 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:hint="Username">
+            android:hint="@string/username">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtLoginId"
@@ -75,7 +76,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:hint="Password"
+            android:hint="@string/password"
             app:passwordToggleDrawable="@drawable/icon_password_selector"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/color_logo">
@@ -95,7 +96,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginTop="5dp"
             android:buttonTint="@color/color_logo"
-            android:text="Remember Me" />
+            android:text="@string/remember_me" />
 
         <Button
             android:id="@+id/btnForgetPassword"
@@ -105,7 +106,7 @@
             android:background="#00000000"
             android:elevation="0dp"
             android:fontFamily="@font/georgia_regular"
-            android:text="Forget Password?"
+            android:text="@string/forget_password"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -120,7 +121,7 @@
             android:background="#000"
             android:elevation="0dp"
             android:fontFamily="@font/georgia_regular"
-            android:text="Log In"
+            android:text="@string/log_in"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
@@ -132,7 +133,7 @@
             android:layout_marginTop="8dp"
             android:background="#00000000"
             android:elevation="0dp"
-            android:text="Don't have an account?\nSign up Now!"
+            android:text="@string/don_t_have_an_account_nsign_up_now"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />

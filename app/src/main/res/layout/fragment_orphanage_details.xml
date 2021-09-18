@@ -51,7 +51,8 @@
         android:layout_marginTop="32dp"
         android:text="@string/edit"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblLong" />
+        app:layout_constraintTop_toBottomOf="@+id/lblLong"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnDelete"
@@ -61,7 +62,8 @@
         android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
         app:layout_constraintStart_toEndOf="@+id/btnEdit"
-        app:layout_constraintTop_toTopOf="@+id/btnEdit" />
+        app:layout_constraintTop_toTopOf="@+id/btnEdit"
+        tools:ignore="TextContrastCheck" />
 
 
     <TextView
@@ -168,9 +170,12 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="2dp"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
         android:src="@drawable/ic_location"
-        app:tint="@color/color_drawer"
         app:layout_constraintStart_toEndOf="@+id/orpLocationDetail"
-        app:layout_constraintTop_toTopOf="@+id/orpLocationDetail" />
+        app:layout_constraintTop_toTopOf="@+id/orpLocationDetail"
+        app:tint="@color/color_drawer"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import my.com.hoperise.R
 import my.com.hoperise.data.User
-import java.text.SimpleDateFormat
-import java.util.*
 
 class VolunteerAdapter (
     val fn: (ViewHolder, User) -> Unit = { _, _ -> }
@@ -24,10 +22,10 @@ class VolunteerAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val volListID  : TextView = view.findViewById(R.id.volListID)
-        val volListName  : TextView = view.findViewById(R.id.volListName)
+        val volListID     : TextView  = view.findViewById(R.id.volListID)
+        val volListName   : TextView  = view.findViewById(R.id.volListName)
         val volListPhoto  : ImageView = view.findViewById(R.id.volListPhoto)
-        val volListStatus  : TextView = view.findViewById(R.id.volListStatus)
+        val volListStatus : TextView  = view.findViewById(R.id.volListStatus)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,8 +38,8 @@ class VolunteerAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val volItem = getItem(position)
 
-        holder.volListID.text = volItem.id
-        holder.volListName.text = volItem.name
+        holder.volListID.text     = volItem.id
+        holder.volListName.text   = volItem.name
         holder.volListPhoto.setImageBitmap(volItem.photo?.toBitmap())
         holder.volListStatus.text = volItem.status
 

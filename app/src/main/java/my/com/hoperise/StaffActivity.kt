@@ -3,7 +3,6 @@ package my.com.hoperise
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.gms.maps.model.LatLng
@@ -26,21 +25,11 @@ class StaffActivity : AppCompatActivity() {
 
         // Pass login user's data (Method 2)
         loggedInId = intent.getStringExtra("loggedInId") ?:""
-
-//        binding.cardEmployee.setOnClickListener {  }
-//        binding.cardEventHistory.setOnClickListener {  }
-//        binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }
-//        binding.cardOnScreen.setOnClickListener {  }
-//        binding.cardOrphanage.setOnClickListener { nav.navigate(R.id.orphanageListingFragment) }
-//        binding.cardStaff.setOnClickListener {  }
-//        binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
-//        binding.cardVolunteerM.setOnClickListener { nav.navigate(R.id.volunteerListingFragment) }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         galleryPhoto = null
-        cameraPhoto = null
+        cameraPhoto  = null
         vmShared.insertLocation("",  LatLng(0.0,0.0))
         return nav.navigateUp() || super.onSupportNavigateUp()
     }

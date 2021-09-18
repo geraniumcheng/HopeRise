@@ -60,16 +60,6 @@
         android:label="Add Event"
         tools:layout="@layout/fragment_add_event" />
     <fragment
-        android:id="@+id/dateDialogFragment"
-        android:name="my.com.hoperise.ui.DateDialogFragment"
-        android:label="fragment_date_dialog"
-        tools:layout="@layout/fragment_date_dialog" />
-    <fragment
-        android:id="@+id/timeDialogFragment"
-        android:name="my.com.hoperise.ui.TimeDialogFragment"
-        android:label="fragment_time_dialog"
-        tools:layout="@layout/fragment_time_dialog" />
-    <fragment
         android:id="@+id/mapsFragment"
         android:name="my.com.hoperise.ui.MapsFragment"
         android:label="Select Location" />
@@ -142,11 +132,6 @@
         android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
         android:label="Choose Orphanage"
         tools:layout="@layout/fragment_choose_orphanage_for_event" />
-    <fragment
-        android:id="@+id/eventDetailsFragment"
-        android:name="my.com.hoperise.ui.EventDetailsFragment"
-        android:label="Event Details"
-        tools:layout="@layout/fragment_event_details" />
     <fragment
         android:id="@+id/editEventFragment"
         android:name="my.com.hoperise.ui.EditEventFragment"

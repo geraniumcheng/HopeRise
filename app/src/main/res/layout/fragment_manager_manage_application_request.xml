@@ -47,7 +47,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/approve"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRejectReason" />
+        app:layout_constraintTop_toBottomOf="@+id/lblRejectReason"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <Button
         android:id="@+id/btnReject"
@@ -58,7 +59,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnApprove"
         app:layout_constraintStart_toEndOf="@+id/btnApprove"
         app:layout_constraintTop_toTopOf="@+id/btnApprove"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView8"
@@ -117,12 +119,14 @@
         android:layout_marginTop="8dp"
         android:background="#CCC"
         android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
         android:padding="1dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblIC"  />
+        app:layout_constraintTop_toBottomOf="@+id/lblIC" />
 
     <ImageView
         android:id="@+id/imgSelfie2"
@@ -131,6 +135,8 @@
         android:layout_marginTop="8dp"
         android:background="#CCC"
         android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
         android:padding="1dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"

@@ -22,7 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/register" />
+        app:lottie_rawRes="@raw/register"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView21"
@@ -63,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -91,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
                     android:maxLength="20"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -121,7 +124,8 @@
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -152,7 +156,8 @@
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

@@ -48,7 +48,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/id"
         app:layout_constraintStart_toEndOf="@+id/lblSort2"
-        app:layout_constraintTop_toBottomOf="@+id/spnVolStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVolStatus"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblVolRecord"
@@ -78,7 +79,8 @@
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/btnID"
         app:layout_constraintStart_toEndOf="@+id/btnID"
-        app:layout_constraintTop_toTopOf="@+id/btnID" />
+        app:layout_constraintTop_toTopOf="@+id/btnID"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVol"

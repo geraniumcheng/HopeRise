@@ -35,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/white"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView28"
@@ -97,7 +98,8 @@
         android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
-        app:layout_constraintTop_toTopOf="@+id/btnReset" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnReset"
@@ -107,7 +109,8 @@
         android:layout_marginTop="24dp"
         android:text="@string/reset"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerName" />
+        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerName"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtVolunteerName"
@@ -122,7 +125,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.523"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/edtVolunteerEmail"
@@ -135,6 +139,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/textView29"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView29" />
+        app:layout_constraintTop_toTopOf="@+id/textView29"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

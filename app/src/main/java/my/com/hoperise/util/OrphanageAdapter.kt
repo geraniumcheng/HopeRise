@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import my.com.hoperise.R
 import my.com.hoperise.data.Orphanage
 
-
 class OrphanageAdapter (
     val fn: (ViewHolder, Orphanage) -> Unit = { _, _ -> }
 ) : ListAdapter<Orphanage, OrphanageAdapter.ViewHolder>(DiffCallback) {
@@ -23,10 +22,10 @@ class OrphanageAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val orpName  : TextView = view.findViewById(R.id.orpName)
-        val orpPhoto : ImageView = view.findViewById(R.id.orpPhoto)
-        val orpID    : TextView = view.findViewById(R.id.orpId)
-        val orpAddress    : TextView = view.findViewById(R.id.orpAddress)
+        val orpName     : TextView  = view.findViewById(R.id.orpName)
+        val orpPhoto    : ImageView = view.findViewById(R.id.orpPhoto)
+        val orpID       : TextView  = view.findViewById(R.id.orpId)
+        val orpAddress  : TextView  = view.findViewById(R.id.orpAddress)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,11 +38,10 @@ class OrphanageAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val orphanageItem = getItem(position)
 
-        holder.orpID.text   = orphanageItem.id
-        holder.orpName.text = orphanageItem.name
-        holder.orpAddress.text = orphanageItem.location
+        holder.orpID.text       = orphanageItem.id
+        holder.orpName.text     = orphanageItem.name
+        holder.orpAddress.text  = orphanageItem.location
         holder.orpPhoto.setImageBitmap(orphanageItem.photo?.toBitmap())
-
 
         fn(holder, orphanageItem)
     }

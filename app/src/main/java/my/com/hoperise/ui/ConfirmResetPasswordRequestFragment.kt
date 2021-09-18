@@ -56,15 +56,10 @@ class ConfirmResetPasswordRequestFragment : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Leave now?")
-                    .setMessage("Your password will not be reset if you leave now." )
+                    .setTitle(getString(R.string.leaveNow))
+                    .setMessage(getString(R.string.passwordNotSave))
                     .setIcon(R.drawable.ic_leave_confirm_dialog)
-                    .setPositiveButton(android.R.string.yes, object :
-                        DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.navigate(R.id.loginFragment) // Redirect back to login screen
-                        }
-                    })
+                    .setPositiveButton(android.R.string.yes) { _, _ -> nav.navigate(R.id.loginFragment) } // Redirect back to login screen
                     .setNegativeButton(android.R.string.no, null).show()
             }
         })
@@ -77,24 +72,20 @@ class ConfirmResetPasswordRequestFragment : Fragment() {
             var formattedOtp = 0
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
-                toast("Opps! Something wrong!")
+                toast(getString(R.string.somethingWrong))
                 return@launch
             } else {
                 val otp = emp.otp
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
                 // Format for validation purpose
-                if(enteredOtp.equals("")){
-                    formattedOtp = 0
-                }else{
-                    formattedOtp = enteredOtp.toInt()
-                }
+                formattedOtp = if(enteredOtp == "") 0 else enteredOtp.toInt()
 
                 if(otp!!.equals(formattedOtp)){
                     hideKeyboard()
                     nav.navigate(R.id.resetPasswordFragment) // If OTP match then redirect to reset password screen
                 }else{
-                    toast("OTP mismatch, please try again!")
+                    toast(getString(R.string.otpNoMatch))
                 }
             }
         }

@@ -104,11 +104,13 @@
         android:layout_width="169dp"
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
-        tools:text="Go To Events Page / Resubmit Application"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrompt"
+        tools:ignore="TextContrastCheck"
+        tools:text="Go To Events Page / Resubmit Application" />
 
     <TextView
         android:id="@+id/lblReason"

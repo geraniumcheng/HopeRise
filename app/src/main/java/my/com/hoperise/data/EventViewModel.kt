@@ -1,16 +1,13 @@
 package my.com.hoperise.data
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
-import java.text.DecimalFormat
 import java.util.*
 import my.com.hoperise.util.getEventEndTime
 import my.com.hoperise.util.parseEventDateTime
-
 
 class EventViewModel: ViewModel() {
 
@@ -80,14 +77,17 @@ class EventViewModel: ViewModel() {
         this.name = name
         updateResult()
     }
+
     fun filterCategory(category: String) {
         this.category = category
         updateResult()
     }
+
     fun filterStatus(status: String) {
         this.status = status
         updateResult()
     }
+
     fun sort(field: String): Boolean {
         if(this.field == field)
             reverse = !reverse
@@ -108,6 +108,18 @@ class EventViewModel: ViewModel() {
 
     fun delete(id: String){
         EVENT.document(id).delete()
+        PHOTO.whereEqualTo("eventID", id).get().addOnSuccessListener {
+            for (doc in it.documents)
+                PHOTO.document(doc.id).delete()
+        }
+        MESSAGE.whereEqualTo("eventID", id).get().addOnSuccessListener {
+            for (doc in it.documents)
+                MESSAGE.document(doc.id).delete()
+        }
+        VOLUNTEER.whereEqualTo("eventID", id).get().addOnSuccessListener {
+            for (doc in it.documents)
+                VOLUNTEER.document(doc.id).delete()
+        }
     }
 
     fun deleteEvents(orpID: String){
@@ -143,14 +155,5 @@ class EventViewModel: ViewModel() {
         return err
     }
 
-    fun generateID(): String {
-
-        var idChar = lastID.takeWhile { it.isLetter() }
-        var idNum = lastID.takeLastWhile { !it.isLetter() }
-
-        val fmt = DecimalFormat("0000")
-        val str = fmt.format(idNum.toInt() + 1)
-        return idChar + str
-    }
-
+    fun generateID(): String = my.com.hoperise.util.generateID(lastID)
 }

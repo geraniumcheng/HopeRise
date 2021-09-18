@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/lblFilter"
         app:layout_constraintStart_toEndOf="@+id/lblFilter"
         app:layout_constraintTop_toTopOf="@+id/lblFilter"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/lblSort"
@@ -60,7 +60,8 @@
         android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="@+id/lblSort"
         app:layout_constraintStart_toEndOf="@+id/lblSort"
-        app:layout_constraintTop_toTopOf="@+id/lblSort" />
+        app:layout_constraintTop_toTopOf="@+id/lblSort"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnEmployeeName"
@@ -71,7 +72,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeId"
         app:layout_constraintStart_toEndOf="@+id/btnEmployeeId"
         app:layout_constraintTop_toTopOf="@+id/btnEmployeeId"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnRegisterDate"
@@ -82,7 +84,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnEmployeeName"
         app:layout_constraintStart_toEndOf="@+id/btnEmployeeName"
         app:layout_constraintTop_toTopOf="@+id/btnEmployeeName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblEmployeeRecord"
@@ -134,7 +137,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spnEmployeeStatus"
         app:layout_constraintStart_toEndOf="@+id/spnEmployeeStatus"
         app:layout_constraintTop_toTopOf="@+id/spnEmployeeStatus"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRegisterEmployee"
@@ -151,6 +155,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/white"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

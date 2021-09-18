@@ -86,6 +86,7 @@ class VolunteerApplicationViewModel: ViewModel() {
         }
         return err
     }
+
     private suspend fun getLastID(){
         val objects = VOLUNTEERAPPLICATION.get().await().toObjects<VolunteerApplication>()
         app = objects
@@ -98,8 +99,8 @@ class VolunteerApplicationViewModel: ViewModel() {
     }
     suspend fun generateID(): String {
         getLastID()
-        var idChar = lastID.takeWhile { it.isLetter() }
-        var idNum = lastID.takeLastWhile { !it.isLetter() }
+        val idChar = lastID.takeWhile { it.isLetter() }
+        val idNum = lastID.takeLastWhile { !it.isLetter() }
 
         val fmt = DecimalFormat("0000")
         val str = fmt.format(idNum.toInt() + 1)

@@ -20,6 +20,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:ems="10"
+        android:hint="@string/abc_orphanage"
         android:importantForAccessibility="no"
         android:importantForAutofill="no"
         android:inputType="none|textCapWords"
@@ -37,6 +38,8 @@
         android:layout_marginTop="24dp"
         android:background="#CCC"
         android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
         android:padding="1dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -50,7 +53,8 @@
         android:layout_marginTop="70dp"
         android:text="@string/reset"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/edtLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/edtLocation"
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnSubmit"
@@ -59,7 +63,8 @@
         android:layout_marginStart="8dp"
         android:text="@string/submit"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
-        app:layout_constraintTop_toTopOf="@+id/btnReset" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset"
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,7 +105,8 @@
         android:layout_marginTop="24dp"
         android:text="@string/select_location"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/orpPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/orpPhoto"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/edtLocation"

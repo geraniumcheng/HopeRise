@@ -80,7 +80,7 @@ class UserViewModel: ViewModel() {
 
         // Search Employee Name, Filter Employee Status and Role
         list = list.filter { emp ->
-            emp.name.contains(name, true) && (status.equals("All") || status.equals(emp.status)) && (role.equals("All") || role.equals(emp.role))
+            emp.name.contains(name, true) && (status == "All" || status == emp.status) && (role == "All" || role == emp.role)
         }
 
         // Sort Employee by Id, name and register date
@@ -216,9 +216,11 @@ class UserViewModel: ViewModel() {
             else ""
         }
 
-        e += if (emp.name == "") "- Name is required.\n"
-        else if (emp.name.length < 4) "- Name is too short.\n"
-        else ""
+        e += when {
+            emp.name == "" -> "- Name is required.\n"
+            emp.name.length < 4 -> "- Name is too short.\n"
+            else -> ""
+        }
 
         e += if (emp.photo?.toBytes()?.isEmpty() == true) "- Photo is required.\n"
         else ""

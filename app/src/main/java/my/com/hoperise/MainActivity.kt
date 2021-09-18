@@ -21,13 +21,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(nav)
 
         // Pass login user's data (Method 2)
-        loggedInId = intent.getStringExtra("loggedInId") ?:""
-
-
+        loggedInId = intent.getStringExtra("loggedInId") ?: ""
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return nav.navigateUp() || super.onSupportNavigateUp()
     }
-
 }

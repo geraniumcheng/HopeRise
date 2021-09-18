@@ -3,11 +3,7 @@ package my.com.hoperise.data
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.content.Context
 import android.graphics.Bitmap
-import android.location.Location
-import android.net.Uri
-import com.firebase.geofire.core.GeoHash
 import com.google.firebase.firestore.Blob
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.Exclude
@@ -37,37 +33,37 @@ var cameraPhoto: Bitmap? = null
 var galleryPhoto: Uri? = null
 
 data class Location(
-    var location: String = "",
-    var latitude: Double = 0.0,
+    var location: String  = "",
+    var latitude: Double  = 0.0,
     var longitude: Double = 0.0,
 )
 
 data class Orphanage(
     @DocumentId
-    var id: String = "",
-    var name: String = "",
-    var location: String = "",
-    var latitude: Double = 0.0,
+    var id: String        = "",
+    var name: String      = "",
+    var location: String  = "",
+    var latitude: Double  = 0.0,
     var longitude: Double = 0.0,
-    var photo: Blob? = Blob.fromBytes(ByteArray(0))
+    var photo: Blob?      = Blob.fromBytes(ByteArray(0))
 ){
     @get:Exclude
-    var geohash: String = ""
+    var geohash: String  = ""
     @get:Exclude
     var distance: Double = 0.0
 }
 
 data class Event(
     @DocumentId
-    var id: String = "",
-    var name: String = "",
-    var category: String = "",
-    var date: String = "",
-    var time: String = "",
+    var id: String             = "",
+    var name: String           = "",
+    var category: String       = "",
+    var date: String           = "",
+    var time: String           = "",
     var volunteerRequired: Int = 0,
-    var volunteerCount: Int = 0,
-    var description: String = "",
-    var orphanageID: String = "" //Foreign key
+    var volunteerCount: Int    = 0,
+    var description: String    = "",
+    var orphanageID: String    = "" //Foreign key
 ){
     @get:Exclude
     var status: String = ""
@@ -79,13 +75,13 @@ data class Event(
 
 data class VolunteerApplication(
     @DocumentId
-    var id: String = "",
-    var ICFrontPhoto: Blob? = Blob.fromBytes(ByteArray(0)),
+    var id: String           = "",
+    var ICFrontPhoto: Blob?  = Blob.fromBytes(ByteArray(0)),
     var ICSelfiePhoto: Blob? = Blob.fromBytes(ByteArray(0)),
-    var status: String = "",
-    var reason: String = "",
-    var date: Date = Date(),
-    var userID: String = "" //Foreign key
+    var status: String       = "",
+    var reason: String       = "",
+    var date: Date           = Date(),
+    var userID: String       = "" //Foreign key
 ){
     @get:Exclude
     var user: User = User()
@@ -99,7 +95,7 @@ data class Volunteer(
     var eventID: String     = "", //Foreign key
 ){
     @get:Exclude
-    var user: User = User()
+    var user: User   = User()
     @get:Exclude
     var event: Event = Event()
 }
@@ -124,24 +120,24 @@ data class Message(
     var eventID: String    = "", //Foreign key
 ){
     @get:Exclude
-    var user: User = User()
+    var user: User   = User()
     @get:Exclude
     var event: Event = Event()
 }
 
 data class User(
     @DocumentId
-    var id: String           = "",
-    var email: String        = "",
-    var name: String         = "",
-    var password: String     = "",
-    var role: String         = "",
-    var status: String       = "",
-    var count: Int           = 0,
-    var photo: Blob?         = Blob.fromBytes(ByteArray(0)),
-    var otp: Int?            = 0,
-    var activateCode: Int?   = 0,
-    var registerDate: Date   = Date(),
+    var id: String          = "",
+    var email: String       = "",
+    var name: String        = "",
+    var password: String    = "",
+    var role: String        = "",
+    var status: String      = "",
+    var count: Int          = 0,
+    var photo: Blob?        = Blob.fromBytes(ByteArray(0)),
+    var otp: Int?           = 0,
+    var activateCode: Int?  = 0,
+    var registerDate: Date  = Date(),
 )
 
 fun RESTORE_DATA(ctx: Context) {
@@ -232,7 +228,7 @@ fun RESTORE_DATA(ctx: Context) {
             VolunteerApplication("VA0004", null, null, "Approved", "", Date(), "volunteer7"),
             VolunteerApplication("VA0005", null, null, "Approved", "", Date(), "volunteer8"),
         )
-
+//        "December 10, 1815"
         for (va in volunteerApplications)
             VOLUNTEERAPPLICATION.document(va.id).set(va)
     }

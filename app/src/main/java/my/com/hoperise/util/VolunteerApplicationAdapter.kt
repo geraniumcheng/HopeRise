@@ -1,5 +1,6 @@
 package my.com.hoperise.util
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import my.com.hoperise.R
-import my.com.hoperise.data.User
 import my.com.hoperise.data.VolunteerApplication
 import java.text.SimpleDateFormat
 
@@ -25,9 +25,9 @@ class VolunteerApplicationAdapter (
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
         val volAppImage  : ImageView = view.findViewById(R.id.volAppImage)
-        val volAppName  : TextView = view.findViewById(R.id.volAppName)
-        val volAppDate  : TextView = view.findViewById(R.id.volAppDate)
-        val volAppStatus  : TextView = view.findViewById(R.id.volAppStatus)
+        val volAppName   : TextView  = view.findViewById(R.id.volAppName)
+        val volAppDate   : TextView  = view.findViewById(R.id.volAppDate)
+        val volAppStatus : TextView  = view.findViewById(R.id.volAppStatus)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,15 +37,15 @@ class VolunteerApplicationAdapter (
         return ViewHolder(view)
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val format = SimpleDateFormat("dd-MM-yyyy")
         val volAppItem = getItem(position)
         holder.volAppImage.setImageBitmap(volAppItem.user.photo?.toBitmap())
-        holder.volAppName.text = volAppItem.user.name
-        holder.volAppDate.text = format.format(volAppItem.date)
+        holder.volAppName.text   = volAppItem.user.name
+        holder.volAppDate.text   = format.format(volAppItem.date)
         holder.volAppStatus.text = volAppItem.status
 
         fn(holder, volAppItem)
     }
-
 }

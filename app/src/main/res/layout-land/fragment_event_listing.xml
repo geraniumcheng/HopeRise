@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/lblFilter"
         app:layout_constraintStart_toEndOf="@+id/lblFilter"
         app:layout_constraintTop_toTopOf="@+id/lblFilter"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/lblSort"
@@ -60,7 +60,8 @@
         android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="@+id/lblSort"
         app:layout_constraintStart_toEndOf="@+id/lblSort"
-        app:layout_constraintTop_toTopOf="@+id/lblSort" />
+        app:layout_constraintTop_toTopOf="@+id/lblSort"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnName"
@@ -70,7 +71,8 @@
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/btnID"
         app:layout_constraintStart_toEndOf="@+id/btnID"
-        app:layout_constraintTop_toTopOf="@+id/btnID" />
+        app:layout_constraintTop_toTopOf="@+id/btnID"
+        tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     <Button
         android:id="@+id/btnDate"
@@ -81,7 +83,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnName"
         app:layout_constraintStart_toEndOf="@+id/btnName"
         app:layout_constraintTop_toTopOf="@+id/btnName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblRecord"
@@ -123,6 +126,7 @@
         android:entries="@array/eventCategoryForFilter"
         app:layout_constraintBottom_toBottomOf="@+id/spStatus"
         app:layout_constraintStart_toEndOf="@+id/spStatus"
-        app:layout_constraintTop_toTopOf="@+id/spStatus" />
+        app:layout_constraintTop_toTopOf="@+id/spStatus"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

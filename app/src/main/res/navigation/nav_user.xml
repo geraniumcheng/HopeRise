@@ -15,11 +15,6 @@
         android:label="Participation"
         tools:layout="@layout/fragment_participation" />
     <fragment
-        android:id="@+id/accountFragment"
-        android:name="my.com.hoperise.ui.AccountFragment"
-        android:label="Account"
-        tools:layout="@layout/fragment_account" />
-    <fragment
         android:id="@+id/mapsFragment"
         android:name="my.com.hoperise.ui.MapsFragment"
         android:label="fragment_maps"
@@ -34,11 +29,6 @@
         android:name="my.com.hoperise.ui.EventDetailsFragment"
         android:label="Event Details"
         tools:layout="@layout/fragment_event_details" />
-    <fragment
-        android:id="@+id/orphanageDetailsFragment"
-        android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
-        android:label="Orphanage Details"
-        tools:layout="@layout/fragment_orphanage_details" />
     <fragment
         android:id="@+id/eventVolunteerListingFragment"
         android:name="my.com.hoperise.ui.EventVolunteerListingFragment"
@@ -110,11 +100,6 @@
         android:label="Choose Orphanage"
         tools:layout="@layout/fragment_choose_orphanage_for_event" />
     <fragment
-        android:id="@+id/eventDetailsFragment"
-        android:name="my.com.hoperise.ui.EventDetailsFragment"
-        android:label="Event Details"
-        tools:layout="@layout/fragment_event_details" />
-    <fragment
         android:id="@+id/orphanageDetailsFragment"
         android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
         android:label="Orphanage Details"
@@ -124,11 +109,6 @@
         android:name="my.com.hoperise.ui.VolunteerApplicationStatusFragment"
         android:label="Application Status"
         tools:layout="@layout/fragment_volunteer_application_status" />
-    <fragment
-        android:id="@+id/volunteerSubmitApplicationFragment"
-        android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
-        android:label="Submit Application"
-        tools:layout="@layout/fragment_volunteer_submit_application" />
     <fragment
         android:id="@+id/eventNearMeFragment"
         android:name="my.com.hoperise.ui.EventNearMeFragment"

@@ -1,5 +1,6 @@
 package my.com.hoperise
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -45,28 +46,24 @@ class LoginActivity : AppCompatActivity() {
                 currentUser = User(user.id,user.email,user.name,user.password,user.role,user.status,user.count,user.photo,user.otp,user.activateCode,user.registerDate)
                 // Show progress dialog when login user from shared preferences
                 progressDialog = ProgressDialog(this@LoginActivity)
-                progressDialog?.setTitle("Logging In")
-                progressDialog?.setMessage("Please wait a moment ...")
+                progressDialog?.setTitle(getString(R.string.logging))
+                progressDialog?.setMessage(getString(R.string.waitMoment))
                 progressDialog?.show()
                 val role = user.role
                 val status = user.status
                 val count = user.count
-                if(status.equals("Unactivated")){ // When user status is unactivated, will redirect to register success (send OTP) screen
+                if(status == getString(R.string.unactivated)){ // When user status is unactivated, will redirect to register success (send OTP) screen
                     failedLoggedInId = user.id // Get the id of the user that failed to login
                     nav.navigate(R.id.registerSuccessFragment)
                     progressDialog?.dismiss()
                 }
-                else if(status.equals("Deactivated")){ // When user status is deactivated, will pop up an alert dialog and prevent them for logging in
+                else if(status == getString(R.string.deactivated)){ // When user status is deactivated, will pop up an alert dialog and prevent them for logging in
                     AlertDialog.Builder(this@LoginActivity)
-                        .setTitle("Attention")
-                        .setMessage("Please be informed that your account has been deactivated by the manager!")
+                        .setTitle(getString(R.string.attention))
+                        .setMessage(getString(R.string.informManager))
                         .setIcon(R.drawable.ic_warning)
-                        .setPositiveButton("OK", object :
-                            DialogInterface.OnClickListener {
-                            override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                                return
-                            }
-                        }).show()
+                        .setPositiveButton(getString(R.string.ok),
+                            DialogInterface.OnClickListener { _, _ -> return@OnClickListener }).show()
                     progressDialog?.dismiss()
                 }
                 else if(count <= 0){ // If there are no login attempts left; redirect to account blocked screen
@@ -77,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else{ // When the user passed all required login conditions
                     vm.updateCount(user.id,3)
-                    if (role.equals("Volunteer")) { // Volunteer role will be redirect to Main Activity
+                    if (role == getString(R.string.volunteer)) { // Volunteer role will be redirect to Main Activity
                         // Pass login user's data (Method 2)
                         val intent = Intent(this, MainActivity::class.java)
                             .putExtra("loggedInId", user.id)
@@ -117,20 +114,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     fun checkInternetConnection(): Boolean {
         val conMgr = applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = conMgr.activeNetworkInfo
         if (netInfo == null || !netInfo.isConnected || !netInfo.isAvailable) {
             AlertDialog.Builder(this@LoginActivity)
-                .setTitle("Opps!")
+                .setTitle(getString(R.string.opps))
                 .setMessage("Seems like you are offline now.\nPlease turn on your Wi-Fi and come back again. 😥" )
                 .setIcon(R.drawable.ic_wifi_disconnect)
-                .setPositiveButton("OK", object :
-                    DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                        finish()
-                    }
-                }).show()
+                .setPositiveButton(getString(R.string.ok)
+                ) { _, _ -> finish() }.show()
             return false
         }
         return true

@@ -18,7 +18,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/check_email" />
+        app:lottie_rawRes="@raw/check_email"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView21"
@@ -74,7 +75,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor" />
+            tools:ignore="Label for,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/edtOtp2"
@@ -87,7 +88,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor"/>
+            tools:ignore="Label for,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/edtOtp3"
@@ -100,7 +101,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor"/>
+            tools:ignore="Label for,LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/edtOtp4"
@@ -113,7 +114,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor"/>
+            tools:ignore="Label for,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/edtOtp5"
@@ -126,7 +127,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor"/>
+            tools:ignore="Label for,LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/edtOtp6"
@@ -139,7 +140,7 @@
             android:maxLength="1"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:ignore="Label for,LabelFor"/>
+            tools:ignore="Label for,LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     </LinearLayout>
 

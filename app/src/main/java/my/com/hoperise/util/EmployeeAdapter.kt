@@ -15,9 +15,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-
-
 class EmployeeAdapter (
     val fn: (ViewHolder, User) -> Unit = { _, _ -> }
 ) : ListAdapter<User, EmployeeAdapter.ViewHolder>(DiffCallback) {
@@ -29,14 +26,14 @@ class EmployeeAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val empPhoto : ImageView = view.findViewById(R.id.imgEmployeePhoto)
-        val empId    : TextView = view.findViewById(R.id.lblEmployeeId)
-        val empEmail    : TextView = view.findViewById(R.id.lblEmployeeEmail)
-        val empName  : TextView = view.findViewById(R.id.lblEmployeeName)
-        val empStatus   : TextView = view.findViewById(R.id.lblEmployeeStatus)
+        val empPhoto        : ImageView = view.findViewById(R.id.imgEmployeePhoto)
+        val empId           : TextView  = view.findViewById(R.id.lblEmployeeId)
+        val empEmail        : TextView  = view.findViewById(R.id.lblEmployeeEmail)
+        val empName         : TextView  = view.findViewById(R.id.lblEmployeeName)
+        val empStatus       : TextView  = view.findViewById(R.id.lblEmployeeStatus)
         //val btnDelete: Button = view.findViewById(R.id.btnDelete)
-        val empRegisterDate   : TextView = view.findViewById(R.id.lblEmployeeRegisterDate)
-        val empRegisterRole   : TextView = view.findViewById(R.id.lblEmployeeRole)
+        val empRegisterDate : TextView  = view.findViewById(R.id.lblEmployeeRegisterDate)
+        val empRegisterRole : TextView  = view.findViewById(R.id.lblEmployeeRole)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,18 +46,17 @@ class EmployeeAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val employee = getItem(position)
 
-        var timeStamp = employee.registerDate
-        var sfd = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        var registerDate = sfd.format((timeStamp))
+        val timeStamp    = employee.registerDate
+        val sfd          = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val registerDate = sfd.format((timeStamp))
 
-        holder.empId.text   = employee.id
-        holder.empName.text = employee.name
-        holder.empEmail.text = employee.email
-        holder.empStatus.text  = employee.status
-        holder.empRegisterDate.text  = registerDate
-        holder.empRegisterRole.text  = employee.role
+        holder.empId.text           = employee.id
+        holder.empName.text         = employee.name
+        holder.empEmail.text        = employee.email
+        holder.empStatus.text       = employee.status
+        holder.empRegisterDate.text = registerDate
+        holder.empRegisterRole.text = employee.role
 
-//        // TODO: Photo (blob to bitmap)
         holder.empPhoto.setImageBitmap(employee.photo?.toBitmap())
 
         fn(holder, employee)

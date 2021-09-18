@@ -22,8 +22,8 @@ class OrphangeEventAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val lblOrphName  : TextView = view.findViewById(R.id.lblOrphName)
-        val OrphImg : ImageView = view.findViewById(R.id.OrphImg)
+        val lblOrphName : TextView  = view.findViewById(R.id.lblOrphName)
+        val OrphImg     : ImageView = view.findViewById(R.id.OrphImg)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,7 +38,6 @@ class OrphangeEventAdapter (
 
         holder.lblOrphName.text = orphanageItem.name
         holder.OrphImg.setImageBitmap(orphanageItem.photo?.toBitmap())
-
 
         fn(holder, orphanageItem)
     }

@@ -73,7 +73,9 @@
         android:hint="@string/name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+        android:importantForAutofill="no" />
 
     <Spinner
         android:id="@+id/spEventCategory"
@@ -83,7 +85,8 @@
         android:layout_marginTop="24dp"
         android:entries="@array/eventCategory"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/editEventName" />
+        app:layout_constraintTop_toBottomOf="@+id/editEventName"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editEventDesc"
@@ -95,7 +98,9 @@
         android:hint="@string/description"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/spEventCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/spEventCategory"
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btnEvDate"
@@ -105,7 +110,8 @@
         android:layout_marginTop="24dp"
         android:text="@string/date"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/editEventDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/editEventDesc"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/btnEvTime"
@@ -115,7 +121,8 @@
         android:layout_marginTop="24dp"
         android:text="@string/time"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btnEvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEvDate"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/lblEvDate"
@@ -148,7 +155,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editVolunteerNo" />
+        app:layout_constraintTop_toBottomOf="@+id/editVolunteerNo"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView25"
@@ -170,5 +178,7 @@
         android:hint="@string/hint_5"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btnEvTime" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEvTime"
+        tools:ignore="TouchTargetSizeCheck"
+        android:importantForAutofill="no" />
 </androidx.constraintlayout.widget.ConstraintLayout>

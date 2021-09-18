@@ -8,19 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.maps.model.LatLng
 import my.com.hoperise.R
 import my.com.hoperise.data.Event
 import my.com.hoperise.data.EventViewModel
-import my.com.hoperise.data.Orphanage
 import my.com.hoperise.data.returnFragment
 import my.com.hoperise.databinding.FragmentEditEventBinding
-import my.com.hoperise.databinding.FragmentEventBinding
-import my.com.hoperise.databinding.FragmentVolunteerSubmitApplicationBinding
-import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
 import java.util.*
 
@@ -47,7 +41,7 @@ class EditEventFragment : Fragment() {
 
         reset()
         binding.btnEvDate.setOnClickListener {
-            val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dpd = DatePickerDialog(requireContext(), { _, year, month, day ->
                 date = setDate(month, day, year)
                 binding.lblEvDate.text = date
             }, year, month, day)
@@ -55,7 +49,7 @@ class EditEventFragment : Fragment() {
             dpd.datePicker.minDate = System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 3)
         }
         binding.btnEvTime.setOnClickListener {
-            val tpd = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hour, min ->
+            val tpd = TimePickerDialog(requireContext(), { _, hour, min ->
                 time = setTime(hour,min)
                 binding.lblEvTime.text = time
             },hour, minute, false)
@@ -129,7 +123,7 @@ class EditEventFragment : Fragment() {
     }
     private fun submit(){
         if(binding.editVolunteerNo.text.toString() == ""){
-            errorDialog("Please fill in every field!")
+            errorDialog(getString(R.string.fillEvery))
             return
         }
         val e = Event(
@@ -150,7 +144,7 @@ class EditEventFragment : Fragment() {
             return
         }
         vm.set(e)
-        Toast.makeText(context, "Orphanage updated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.orphanageAdded), Toast.LENGTH_SHORT).show()
         returnFragment = true
         nav.navigateUp()
     }

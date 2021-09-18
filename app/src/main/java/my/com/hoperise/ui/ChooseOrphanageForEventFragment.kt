@@ -17,14 +17,12 @@ import my.com.hoperise.data.OrphanageViewModel
 import my.com.hoperise.databinding.FragmentChooseOrphanageForEventBinding
 import my.com.hoperise.util.OrphangeEventAdapter
 
-
 class ChooseOrphanageForEventFragment : Fragment() {
 
     private lateinit var binding: FragmentChooseOrphanageForEventBinding
     private val nav by lazy { findNavController() }
     private val vmOrphanage: OrphanageViewModel by activityViewModels()
     private val vmEvent: EventViewModel by activityViewModels()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentChooseOrphanageForEventBinding.inflate(inflater, container, false)
@@ -47,13 +45,10 @@ class ChooseOrphanageForEventFragment : Fragment() {
                 vmOrphanage.search(value)
                 return true
             }
-
         })
         binding.rvChooseOrp.adapter = adapter
         binding.rvChooseOrp.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        vmOrphanage.getAll().observe(viewLifecycleOwner){
-                orphanage -> adapter.submitList(orphanage)
-        }
+        vmOrphanage.getAll().observe(viewLifecycleOwner){ orphanage -> adapter.submitList(orphanage) }
 
         return binding.root
     }

@@ -80,8 +80,10 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="72dp"
         android:text="@string/back"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/lblVolStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/lblVolStatus"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblVolID"

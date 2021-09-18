@@ -13,15 +13,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.*
-import my.com.hoperise.databinding.FragmentAccountBinding
 import my.com.hoperise.databinding.FragmentVolunteerSubmitApplicationBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog

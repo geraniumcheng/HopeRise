@@ -35,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/white"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView13"
@@ -111,7 +112,8 @@
         android:maxLength="20"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtEmployeeEmail"
@@ -124,7 +126,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtEmployeeName"
@@ -137,7 +140,8 @@
         android:inputType="textCapWords"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Spinner
         android:id="@+id/spnEmployeeRole"
@@ -148,7 +152,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/edtTemporaryPassword"
@@ -162,7 +167,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/textView18"
-        tools:ignore="TextFields" />
+        tools:ignore="TextFields,TouchTargetSizeCheck,TextContrastCheck" />
 
     <Button
         android:id="@+id/btnRegisterEmployee"
@@ -172,7 +177,8 @@
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
-        app:layout_constraintTop_toTopOf="@+id/btnReset" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnReset"
@@ -181,6 +187,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/reset"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/edtTemporaryPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTemporaryPassword"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.toObject
-import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.*
@@ -20,7 +18,6 @@ import my.com.hoperise.databinding.FragmentEventDetailsBinding
 import my.com.hoperise.util.errorDialog
 import my.com.hoperise.util.infoDialog
 import my.com.hoperise.util.snackbar
-import java.text.SimpleDateFormat
 import java.util.*
 import my.com.hoperise.util.getEventEndTime
 import my.com.hoperise.util.parseEventDateTime
@@ -33,8 +30,8 @@ class EventDetailsFragment : Fragment() {
     private val vmEvent: EventViewModel by activityViewModels()
     private val vmParticipation: ParticipationViewModel by activityViewModels()
     private var orphanageID = ""
-    private var status = ""
-    private var role = ""
+    private var status      = ""
+    private var role        = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         requireActivity().title = getString(R.string.eventDetails)
@@ -131,15 +128,16 @@ class EventDetailsFragment : Fragment() {
         binding.lblEventDateTime.text = e.date + " " +e.time
         binding.lblEventVolunteerNeed.text = e.volunteerRequired.toString()
         binding.lblEventVolunteerCount.text = e.volunteerCount.toString()
+//        binding.lblEventStatus.text = e.status
 
         val eventDate    = parseEventDateTime(e)
         val eventEndDate = getEventEndTime(eventDate)
         if(eventEndDate.after(Date()) || eventDate.after(Date())){
-            binding.lblEventStatus.text =  "Current"
-            status = "Current"
+            binding.lblEventStatus.text = getString(R.string.current)
+            status = getString(R.string.current)
         }else {
-            binding.lblEventStatus.text =  "Completed"
-            status = "Completed"
+            binding.lblEventStatus.text = getString(R.string.completed)
+            status = getString(R.string.completed)
         }
     }
 

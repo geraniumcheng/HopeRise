@@ -17,7 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/account_blocked" />
+        app:lottie_rawRes="@raw/account_blocked"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView21"

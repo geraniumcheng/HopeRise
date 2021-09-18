@@ -26,7 +26,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/id"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnName"
@@ -36,11 +37,12 @@
         android:layout_marginTop="16dp"
         android:text="@string/name"
         app:layout_constraintStart_toEndOf="@+id/btnID"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <View
         android:id="@+id/divider5"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
         android:background="?android:attr/listDivider"

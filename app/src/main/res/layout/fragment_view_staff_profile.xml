@@ -14,11 +14,12 @@
         android:layout_marginTop="40dp"
         android:cropToPadding="true"
         android:importantForAccessibility="no"
+        app:civ_border_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:civ_border_width="0dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnPickImage"
@@ -34,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/white"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView13"
@@ -120,7 +122,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReset" />
+        app:layout_constraintTop_toBottomOf="@+id/btnReset"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
 
     <Button
         android:id="@+id/btnChangePassword"
@@ -133,7 +136,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintEnd_toStartOf="@+id/btnReset"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnReset" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtEmployeeEmail"
@@ -146,7 +150,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtEmployeeName"
@@ -159,7 +164,8 @@
         android:inputType="textCapWords"
         app:layout_constraintBottom_toBottomOf="@+id/textView31"
         app:layout_constraintStart_toEndOf="@+id/textView31"
-        app:layout_constraintTop_toTopOf="@+id/textView31" />
+        app:layout_constraintTop_toTopOf="@+id/textView31"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnReset"
@@ -169,7 +175,8 @@
         android:layout_marginEnd="12dp"
         android:text="@string/reset"
         app:layout_constraintEnd_toStartOf="@+id/btnUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/lblEmployeeRole" />
+        app:layout_constraintTop_toBottomOf="@+id/lblEmployeeRole"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnUpdate"
@@ -179,6 +186,7 @@
         android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="@+id/btnReset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnReset" />
+        app:layout_constraintTop_toTopOf="@+id/btnReset"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

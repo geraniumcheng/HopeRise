@@ -23,7 +23,7 @@ class EventVolunteerAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val root = view
-        val userID     : TextView =  view.findViewById(R.id.txtUserID)
+        val userID     : TextView  = view.findViewById(R.id.txtUserID)
         val userName   : TextView  = view.findViewById(R.id.txtUserName)
         val userEmail  : TextView  = view.findViewById(R.id.txtUserEmail)
         val userPhoto  : ImageView = view.findViewById(R.id.imgPhoto)

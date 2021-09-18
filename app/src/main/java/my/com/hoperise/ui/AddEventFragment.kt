@@ -7,17 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import my.com.hoperise.R
 import my.com.hoperise.data.Event
 import my.com.hoperise.data.EventViewModel
-import my.com.hoperise.data.SharedViewModel
 import my.com.hoperise.databinding.FragmentAddEventBinding
 import my.com.hoperise.util.errorDialog
-import java.text.DateFormat
 import java.util.*
 
 class AddEventFragment : Fragment(){
@@ -40,9 +37,9 @@ class AddEventFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
 
-        binding.lblOrpName.text = "Add Event for $name"
+        binding.lblOrpName.text = getString(R.string.addEventFor, name)
         binding.btnDate.setOnClickListener {
-            val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dpd = DatePickerDialog(requireContext(),  { _, year, month, day ->
                 date = setDate(month, day, year)
                 binding.lblDate.text = date
             }, year, month, day)
@@ -51,7 +48,7 @@ class AddEventFragment : Fragment(){
         }
 
         binding.btnTime.setOnClickListener {
-            val tpd = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hour, min ->
+            val tpd = TimePickerDialog(requireContext(), { _, hour, min ->
                 time = setTime(hour,min)
                 binding.lblTime.text = time
             },hour, minute, false)
@@ -94,7 +91,7 @@ class AddEventFragment : Fragment(){
 
     private fun submit() {
         if(binding.edtVolunteerNo.text.toString() == ""){
-            errorDialog("Please fill in every field!")
+            errorDialog(getString(R.string.fillEvery))
             return
         }
         val e = Event(
@@ -109,7 +106,6 @@ class AddEventFragment : Fragment(){
             orphanageID = id
         )
 
-
         val err = vmEvent.validate(e)
         if( err != ""){
             errorDialog(err)
@@ -118,7 +114,7 @@ class AddEventFragment : Fragment(){
         vmEvent.set(e)
         reset()
 
-        Toast.makeText(context, "Event added successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.eventAddSuccess), Toast.LENGTH_SHORT).show()
         nav.navigateUp()
     }
 
@@ -128,7 +124,5 @@ class AddEventFragment : Fragment(){
         binding.edtDesc.text.clear()
         binding.edtVolunteerNo.text.clear()
         binding.spinner.setSelection(0)
-
     }
-
 }

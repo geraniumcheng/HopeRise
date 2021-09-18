@@ -13,6 +13,5 @@ class SharedViewModel: ViewModel() {
     fun getSetLocation(): Location{
         return location
     }
-
 }
 

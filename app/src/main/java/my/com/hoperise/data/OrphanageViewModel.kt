@@ -1,15 +1,10 @@
 package my.com.hoperise.data
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.firebase.geofire.GeoFireUtils
-import com.firebase.geofire.GeoLocation
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import java.text.DecimalFormat
 
 class OrphanageViewModel: ViewModel() {
     private val orphanage = MutableLiveData<List<Orphanage>>()
@@ -106,11 +101,5 @@ class OrphanageViewModel: ViewModel() {
         return err
     }
 
-    fun generateID(): String {
-        var idChar = lastID.takeWhile { it.isLetter() }
-        var idNum = lastID.takeLastWhile { !it.isLetter() }
-        val fmt = DecimalFormat("0000")
-        val str = fmt.format(idNum.toInt() + 1)
-        return idChar + str
-    }
+    fun generateID(): String = my.com.hoperise.util.generateID(lastID)
 }

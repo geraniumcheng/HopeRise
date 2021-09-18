@@ -84,7 +84,8 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/edtVolunteerNo"
@@ -98,7 +99,8 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/btnTime"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        android:importantForAutofill="no" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,7 +119,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/date"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/edtDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/edtDesc"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnTime"
@@ -127,7 +130,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/time"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/btnDate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDate"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblDate"
@@ -159,7 +163,8 @@
         android:layout_marginTop="68dp"
         android:text="@string/submit"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
-        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo" />
+        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnReset"
@@ -169,7 +174,8 @@
         android:layout_marginTop="68dp"
         android:text="@string/reset"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo" />
+        app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/edtEventName"

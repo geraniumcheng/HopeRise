@@ -26,7 +26,6 @@ class StaffMainPageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentStaffMainPageBinding.inflate(inflater, container, false)
 
-        binding.cardEmployee.setOnClickListener { nav.navigate(R.id.accountFragment) }
         binding.cardScanAttendance.setOnClickListener { nav.navigate(R.id.scanAttendanceFragment) }
         binding.cardEmployee.setOnClickListener { checkEmployeeAccessibility() }
         binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }

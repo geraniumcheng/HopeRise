@@ -9,24 +9,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import my.com.hoperise.LoginActivity
 import my.com.hoperise.MainActivity
 import my.com.hoperise.R
-import my.com.hoperise.data.UserViewModel
-import my.com.hoperise.data.LoginViewModel
-import my.com.hoperise.data.User
+import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentViewVolunteerProfileBinding
 import my.com.hoperise.util.toBitmap
+import java.text.SimpleDateFormat
 
 class ViewVolunteerProfileFragment : Fragment() {
     private lateinit var binding: FragmentViewVolunteerProfileBinding
     private val nav by lazy { findNavController() }
     private val loginVm: LoginViewModel by activityViewModels()
     private val vm: UserViewModel by activityViewModels()
+
+    private var status = ""
+    private var date = ""
+    private var reason = ""
+    private var vaID = ""
+
+    private var application = VolunteerApplication()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewVolunteerProfileBinding.inflate(inflater, container, false)
@@ -41,6 +50,28 @@ class ViewVolunteerProfileFragment : Fragment() {
         }
         binding.btnLogOut.setOnClickListener{
             logout()
+        }
+
+        lifecycleScope.launch {
+            val volApp = VOLUNTEERAPPLICATION.whereEqualTo("userID", currentUser?.id!!).get().await().toObjects<VolunteerApplication>()
+            val format = SimpleDateFormat("dd-MM-yyyy")
+            if(volApp.isNotEmpty()){
+                application = volApp[0]
+                vaID = application.id
+                status = application.status
+                date = format.format(application.date)
+                reason = application.reason
+            }
+        }
+
+        binding.btnVolunteerApplication.setOnClickListener {
+            val args = bundleOf(
+                "vaID" to vaID,
+                "status" to status,
+                "date" to date,
+                "reason" to reason
+            )
+            nav.navigate(R.id.volunteerApplicationStatusFragment, args)
         }
 
         return binding.root

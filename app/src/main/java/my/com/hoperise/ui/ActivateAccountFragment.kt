@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -33,7 +32,7 @@ class ActivateAccountFragment : Fragment() {
     private lateinit var otp5: EditText
     private lateinit var otp6: EditText
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentActivateAccountBinding.inflate(inflater, container, false)
 
         val activity: LoginActivity = activity as LoginActivity
@@ -51,8 +50,8 @@ class ActivateAccountFragment : Fragment() {
         setUpOtpInput()
 
         binding.btnActivateAccount.setOnClickListener {
-            if(loggedInId.equals("")){  // When user is direct from register screen
-                var newlyRegister = vm.getNewlyRegisteredId()
+            if(loggedInId == ""){  // When user is direct from register screen
+                val newlyRegister = vm.getNewlyRegisteredId()
                 verifyActivationCode(newlyRegister)
             }else{
                 verifyActivationCode(loggedInId) // When user is direct from login screen
@@ -60,18 +59,13 @@ class ActivateAccountFragment : Fragment() {
         }
 
         // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+        activity.onBackPressedDispatcher.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Leave now?")
-                    .setMessage("Your account will not be activate if you leave now." )
+                    .setTitle(getString(R.string.leaveNow))
+                    .setMessage(getString(R.string.accountNoteActivate))
                     .setIcon(R.drawable.ic_leave_confirm_dialog)
-                    .setPositiveButton(android.R.string.yes, object :
-                        DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.navigate(R.id.loginFragment)
-                        }
-                    })
+                    .setPositiveButton(android.R.string.yes) { _, _ -> nav.navigate(R.id.loginFragment) }
                     .setNegativeButton(android.R.string.no, null).show()
             }
         })
@@ -84,7 +78,7 @@ class ActivateAccountFragment : Fragment() {
             var formattedOtp = 0
             val emp = vm.getLogIn(loggedInId)
             if (emp == null) {
-                toast("Opps! Something wrong!")
+                toast(getString(R.string.somethingWrong))
                 return@launch
             } else {
                 val activationCode = emp.activateCode
@@ -92,17 +86,14 @@ class ActivateAccountFragment : Fragment() {
                 val enteredOtp = otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
 
                 // Format for validation purpose
-                if(enteredOtp.equals("")){
-                    formattedOtp = 0
-                }else{
-                    formattedOtp = enteredOtp.toInt()
-                }
+                formattedOtp = if(enteredOtp == "") 0 else enteredOtp.toInt()
+
                 // Verify entered OTP
-                if(activationCode!!.equals(formattedOtp)){
-                    vm.updateStatus(user, "Active")
+                if(activationCode!! == formattedOtp){
+                    vm.updateStatus(user, getString(R.string.active))
                     nav.navigate(R.id.verifyAccountSuccessFragment)
                 }else{
-                    toast("OTP mismatch, please try again!")
+                    toast(getString(R.string.otpNoMatch))
                 }
             }
         }
