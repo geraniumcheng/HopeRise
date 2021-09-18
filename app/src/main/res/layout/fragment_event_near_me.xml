@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Your location:"
+        android:text="@string/location"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +32,8 @@
 
     <TextView
         android:id="@+id/lblAddress"
-        android:layout_width="265dp"
-        android:layout_height="64dp"
+        android:layout_width="289dp"
+        android:layout_height="66dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
@@ -49,7 +49,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Search by area eg. Kuala Lumpur"
+        android:hint="@string/hint_search_by_area_eg_kuala_lumpur"
         android:inputType="textPersonName"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="@+id/edtArea"
         app:layout_constraintStart_toEndOf="@+id/edtArea"
         app:layout_constraintTop_toTopOf="@+id/edtArea" />
@@ -92,7 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="5km"
+        android:text="@string/_5km"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtArea" />
 
@@ -101,7 +103,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="10km"
+        android:text="@string/_10km"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/txt5"
         app:layout_constraintStart_toEndOf="@+id/txt5"
         app:layout_constraintTop_toTopOf="@+id/txt5" />
@@ -111,7 +115,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="15km"
+        android:text="@string/_15km"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/txt10"
         app:layout_constraintStart_toEndOf="@+id/txt10"
         app:layout_constraintTop_toTopOf="@+id/txt10" />

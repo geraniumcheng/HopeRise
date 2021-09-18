@@ -62,7 +62,6 @@ data class Event(
     var id: String = "",
     var name: String = "",
     var category: String = "",
-    //var date: Date = Timestamp.now().toDate(),
     var date: String = "",
     var time: String = "",
     var volunteerRequired: Int = 0,
@@ -70,8 +69,6 @@ data class Event(
     var description: String = "",
     var orphanageID: String = "" //Foreign key
 ){
-    @get:Exclude
-    var count: Int = 0
     @get:Exclude
     var status: String = ""
     @get:Exclude
@@ -90,8 +87,6 @@ data class VolunteerApplication(
     var date: Date = Date(),
     var userID: String = "" //Foreign key
 ){
-    @get:Exclude
-    var count: Int = 0
     @get:Exclude
     var user: User = User()
 }

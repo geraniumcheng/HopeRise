@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name of Event"
+        android:text="@string/name_of_event"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/edtEventName"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/description"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/edtDesc"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category"
+        android:text="@string/category"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/spinner"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Date"
+        android:text="@string/select_date"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnDate"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volunteer Required:"
+        android:text="@string/volunteer_required"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/edtVolunteerNo"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -78,7 +78,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Description"
+        android:hint="@string/description"
         android:inputType="textPersonName"
         android:singleLine="false"
         android:textColor="@color/black"
@@ -93,7 +93,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="5"
+        android:hint="@string/hint_5"
         android:inputType="number"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -103,7 +103,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Time"
+        android:text="@string/select_time"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnTime"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Date"
+        android:text="@string/date"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/edtDesc" />
 
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Time"
+        android:text="@string/time"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/btnDate" />
 
@@ -157,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="68dp"
-        android:text="Submit"
+        android:text="@string/submit"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
         app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo" />
 
@@ -167,7 +167,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="68dp"
-        android:text="Reset"
+        android:text="@string/reset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtVolunteerNo" />
 
@@ -178,7 +178,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/name"
         android:importantForAccessibility="no"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
@@ -192,11 +192,11 @@
         android:layout_width="257dp"
         android:layout_height="82dp"
         android:layout_marginTop="24dp"
-        android:text="Add Event for HopeRise Orphanage"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Add Event for " />
 </androidx.constraintlayout.widget.ConstraintLayout>

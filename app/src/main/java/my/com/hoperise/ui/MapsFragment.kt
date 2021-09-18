@@ -175,5 +175,4 @@ class MapsFragment : Fragment() {
         Toast.makeText(context, "Address stored successfully", Toast.LENGTH_SHORT).show()
         nav.navigateUp()
     }
-
 }

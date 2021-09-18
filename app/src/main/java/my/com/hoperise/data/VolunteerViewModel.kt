@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import java.util.Collections.list
+
 
 class VolunteerViewModel: ViewModel() {
     private val volunteer = MutableLiveData<List<User>>()

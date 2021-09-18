@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -35,7 +36,6 @@ class VolunteerApplicationStatusFragment : Fragment() {
             VOLUNTEERAPPLICATION.document(returnVAID).get().addOnSuccessListener {
                     snap ->
                 val va = snap.toObject<VolunteerApplication>()!!
-                Log.d("check", va.toString())
                 val format = SimpleDateFormat("dd-MM-yyyy")
                 printResult(va.status, format.format(va.date), va.reason)
             }
@@ -65,46 +65,50 @@ class VolunteerApplicationStatusFragment : Fragment() {
     }
 
     private fun printResult(status: String, date: String, reason: String) {
-        Log.d("status", status)
-        if(status == "Approved"){
-            binding.txtApplicationHeader.text = "You application status is Approved!"
-            binding.lblVolAppDate.text = date
-            binding.lblVolAppStatus.text = "Approved"
-            binding.lblVolAppStatus.setTextColor(Color.parseColor("#00FF00"))
+        when (status) {
+            resources.getString(R.string.approved) -> {
 
-            binding.lblReason.isVisible = false
-            binding.lblVolAppReason.isVisible = false
-            binding.txtPrompt.text = "You can now participate in any events that you like!"
-            binding.btnNavigate.text = "Go to Event Page"
+                binding.txtApplicationHeader.text = resources.getString(R.string.your_application_status_is_approved)
+                binding.lblVolAppDate.text = date
+                binding.lblVolAppStatus.text = resources.getString(R.string.approved)
+                binding.lblVolAppStatus.setTextColor(Color.parseColor("#00FF00"))
 
-        }else if(status == "Pending"){
-            binding.txtApplicationHeader.text = "You application status is Pending!"
-            binding.lblVolAppDate.text = date
-            binding.lblVolAppStatus.text = "Pending"
-            binding.lblVolAppStatus.setTextColor(Color.parseColor("#FFA500"))
-            binding.lblReason.isVisible = false
-            binding.lblVolAppReason.isVisible = false
-            binding.txtPrompt.text = "Please wait patiently as the staff will update your status within 2 business days of your submission date! "
-            binding.btnNavigate.text = "Back"
+                binding.lblReason.isVisible = false
+                binding.lblVolAppReason.isVisible = false
+                binding.txtPrompt.text = resources.getString(R.string.you_can_now_participate_in_any_events_that_you_like)
+                binding.btnNavigate.text = resources.getString(R.string.go_to_event_page)
 
-        }else if(status == "Rejected"){
-            binding.txtApplicationHeader.text = "You application status is Rejected!"
-            binding.lblVolAppDate.text = date
-            binding.lblVolAppStatus.text = "Rejected"
-            binding.lblVolAppStatus.setTextColor(Color.parseColor("#FF0000"))
-            binding.lblVolAppReason.text = reason
-            binding.txtPrompt.text = "Kindly resubmit your application once again to participate in any events!"
-            binding.btnNavigate.text = "Resubmit Application"
+            }
+            resources.getString(R.string.pending) -> {
+                binding.txtApplicationHeader.text = resources.getString(R.string.your_application_status_is_pending)
+                binding.lblVolAppDate.text = date
+                binding.lblVolAppStatus.text = resources.getString(R.string.pending)
+                binding.lblVolAppStatus.setTextColor(Color.parseColor("#FFA500"))
+                binding.lblReason.isVisible = false
+                binding.lblVolAppReason.isVisible = false
+                binding.txtPrompt.text = resources.getString(R.string.please_wait_patiently)
+                binding.btnNavigate.text = resources.getString(R.string.back)
 
-        }else{
-            binding.txtApplicationHeader.text = "Submit application to be a volunteer now!"
-            binding.lblVolAppDate.text = "-"
-            binding.lblVolAppStatus.text = "N/A"
-            binding.lblReason.isVisible = false
-            binding.lblVolAppReason.isVisible = false
-            binding.txtPrompt.text = "Submit your application now to participate in any events!"
-            binding.btnNavigate.text = "Submit Application"
+            }
+            resources.getString(R.string.rejected) -> {
+                binding.txtApplicationHeader.text = resources.getString(R.string.your_application_status_is_rejected)
+                binding.lblVolAppDate.text = date
+                binding.lblVolAppStatus.text = resources.getString(R.string.rejected)
+                binding.lblVolAppStatus.setTextColor(Color.parseColor("#FF0000"))
+                binding.lblVolAppReason.text = reason
+                binding.txtPrompt.text = resources.getString(R.string.kindly_submit_your_application_once_again)
+                binding.btnNavigate.text = resources.getString(R.string.resubmit_application)
 
+            }
+            else -> {
+                binding.txtApplicationHeader.text = resources.getString(R.string.submit_application_to_be_a_volunteer_now)
+                binding.lblVolAppDate.text = resources.getString(R.string.dash)
+                binding.lblVolAppStatus.text = resources.getString(R.string.not_available)
+                binding.lblReason.isVisible = false
+                binding.lblVolAppReason.isVisible = false
+                binding.txtPrompt.text = resources.getString(R.string.submit_your_application_now)
+                binding.btnNavigate.text = resources.getString(R.string.submit_application)
+            }
         }
     }
 

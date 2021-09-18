@@ -19,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
+import my.com.hoperise.R
 import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentAccountBinding
 import my.com.hoperise.databinding.FragmentVolunteerSubmitApplicationBinding
@@ -126,7 +127,7 @@ class VolunteerSubmitApplicationFragment : Fragment() {
         if(status == "Rejected" && id != ""){
             VOLUNTEERAPPLICATION.document(id).delete()
         }
-        Toast.makeText(context, "Volunteer application submitted successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, resources.getString(R.string.volunteer_submit_application_success), Toast.LENGTH_SHORT).show()
         returnFragment = true
         returnVAID = newID
         nav.navigateUp()

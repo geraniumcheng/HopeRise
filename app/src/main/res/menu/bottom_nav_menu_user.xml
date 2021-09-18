@@ -3,23 +3,22 @@
 
     <item
         android:id="@+id/eventListingFragment"
-        android:title="Event"
+        android:title="@string/event"
         android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/attendanceFragment"
-        android:title="Attendance"
+        android:title="@string/attendance"
         android:icon="@drawable/ic_attendance"/>
 
     <item
         android:id="@+id/participationFragment"
-        android:title="Participation"
+        android:title="@string/participation"
         android:icon="@drawable/ic_participation"/>
 
     <item
         android:id="@+id/viewVolunteerProfileFragment"
         android:title="Profile"
         android:icon="@drawable/ic_account"/>
-
 
 </menu>
