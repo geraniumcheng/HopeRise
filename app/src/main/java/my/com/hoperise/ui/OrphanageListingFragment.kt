@@ -1,16 +1,22 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.OrphanageViewModel
+import my.com.hoperise.data.User
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentOrphanageListingBinding
 import my.com.hoperise.util.OrphanageAdapter
+import java.util.*
 
 class OrphanageListingFragment : Fragment() {
 
@@ -18,7 +24,6 @@ class OrphanageListingFragment : Fragment() {
     private val nav by lazy { findNavController() }
 
     private val vm: OrphanageViewModel by activityViewModels()
-    //private lateinit var adapter: OrphanageAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentOrphanageListingBinding.inflate(inflater, container, false)
@@ -45,7 +50,6 @@ class OrphanageListingFragment : Fragment() {
         binding.btnID.setOnClickListener { sort("id") }
         binding.btnName.setOnClickListener { sort("name") }
 
-
         return binding.root
     }
 
@@ -69,7 +73,7 @@ class OrphanageListingFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.capture){
+        if(item.itemId == R.id.add){
             nav.navigate(R.id.addOrphanageFragment)
         }
         else

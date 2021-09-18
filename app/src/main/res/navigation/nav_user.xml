@@ -109,4 +109,29 @@
         android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
         android:label="Choose Orphanage"
         tools:layout="@layout/fragment_choose_orphanage_for_event" />
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="my.com.hoperise.ui.EventDetailsFragment"
+        android:label="Event Details"
+        tools:layout="@layout/fragment_event_details" />
+    <fragment
+        android:id="@+id/orphanageDetailsFragment"
+        android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
+        android:label="Orphanage Details"
+        tools:layout="@layout/fragment_orphanage_details" />
+    <fragment
+        android:id="@+id/volunteerApplicationStatusFragment"
+        android:name="my.com.hoperise.ui.VolunteerApplicationStatusFragment"
+        android:label="Application Status"
+        tools:layout="@layout/fragment_volunteer_application_status" />
+    <fragment
+        android:id="@+id/volunteerSubmitApplicationFragment"
+        android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
+        android:label="Submit Application"
+        tools:layout="@layout/fragment_volunteer_submit_application" />
+    <fragment
+        android:id="@+id/eventNearMeFragment"
+        android:name="my.com.hoperise.ui.EventNearMeFragment"
+        android:label="fragment_event_near_me"
+        tools:layout="@layout/fragment_event_near_me" />
 </navigation>

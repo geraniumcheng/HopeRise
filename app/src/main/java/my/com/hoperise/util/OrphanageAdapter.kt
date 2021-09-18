@@ -17,8 +17,8 @@ class OrphanageAdapter (
 ) : ListAdapter<Orphanage, OrphanageAdapter.ViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Orphanage>() {
-        override fun areItemsTheSame(a: Orphanage, b: Orphanage)    = a.id == b.id
-        override fun areContentsTheSame(a: Orphanage, b: Orphanage) = a == b
+        override fun areItemsTheSame(oldItem: Orphanage, newItem: Orphanage)    = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Orphanage, newItem: Orphanage) = oldItem == newItem
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,14 +37,14 @@ class OrphanageAdapter (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val orphanageDetail = getItem(position)
+        val orphanageItem = getItem(position)
 
-        holder.orpID.text   = orphanageDetail.id
-        holder.orpName.text = orphanageDetail.name
-        holder.orpAddress.text = orphanageDetail.location
-        holder.orpPhoto.setImageBitmap(orphanageDetail.photo?.toBitmap())
+        holder.orpID.text   = orphanageItem.id
+        holder.orpName.text = orphanageItem.name
+        holder.orpAddress.text = orphanageItem.location
+        holder.orpPhoto.setImageBitmap(orphanageItem.photo?.toBitmap())
 
 
-        fn(holder, orphanageDetail)
+        fn(holder, orphanageItem)
     }
 }

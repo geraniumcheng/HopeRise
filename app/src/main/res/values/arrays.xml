@@ -9,11 +9,17 @@
         <item>Photo is invalid</item>
     </array>
 
-    <array name="filter">
-        <item>Pending</item>
-        <item>Verified</item>
-        <item>Rejected</item>
+    <array name="volunteer">
         <item>All</item>
+        <item>Unactivated</item>
+        <item>Active</item>
+    </array>
+
+    <array name="volunteerApplication">
+        <item>All</item>
+        <item>Pending</item>
+        <item>Approved</item>
+        <item>Rejected</item>
     </array>
 
     <array name="eventCategory">
@@ -63,5 +69,4 @@
         <item>Active</item>
         <item>Deactivated</item>
     </array>
-
 </resources>

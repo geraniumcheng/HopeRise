@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,7 +15,6 @@ import my.com.hoperise.R
 import my.com.hoperise.data.EventViewModel
 import my.com.hoperise.data.OrphanageViewModel
 import my.com.hoperise.databinding.FragmentChooseOrphanageForEventBinding
-import my.com.hoperise.databinding.FragmentDateDialogBinding
 import my.com.hoperise.util.OrphanageAdapter
 import my.com.hoperise.util.OrphangeEventAdapter
 
@@ -36,6 +36,9 @@ class ChooseOrphanageForEventFragment : Fragment() {
                 "id" to orphanage.id,
                 "name" to orphanage.name
             )
+            val fragmentManager: FragmentManager = parentFragmentManager
+            fragmentManager.beginTransaction().remove(this).commit()
+            fragmentManager.popBackStack()
             nav.navigate(R.id.addEventFragment, args)
         }
         }

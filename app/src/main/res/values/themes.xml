@@ -15,4 +15,5 @@
         <item name="android:fontFamily">@font/georgia_regular</item>
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

@@ -45,16 +45,13 @@ class EventAdapter (
         holder.eventName.text     = eventItem.name
         holder.eventStatus.text   = eventItem.status
 
-//        val date1: Date = SimpleDateFormat("dd-MM-yyyy").parse(eventItem.date)
-
-//        if (date1.after(Calendar.getInstance(TimeZone.getTimeZone("Asia/Kuala_Lumpur")).time)){
+//        val eventDate    = parseEventDateTime(eventItem)
+//        val eventEndDate = getEventEndTime(eventDate)
+//        if(eventEndDate.after(Date()) || eventDate.after(Date())){
 //            holder.eventStatus.text = "Current"
-//        }
-//        else {
+//        }else {
 //            holder.eventStatus.text = "Completed"
 //        }
-
-        //holder.eventStatus.text = "Completed"
 
         when (eventItem.status) {
             "Missed"       -> holder.eventStatus.setTextColor(Color.RED)

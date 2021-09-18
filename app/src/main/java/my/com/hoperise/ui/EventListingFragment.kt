@@ -5,12 +5,16 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.EventViewModel
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentEventListingBinding
 import my.com.hoperise.util.EventAdapter
 
@@ -19,6 +23,8 @@ class EventListingFragment : Fragment() {
     private lateinit var binding: FragmentEventListingBinding
     private val nav by lazy { findNavController() }
     private val vmEvent: EventViewModel by activityViewModels()
+    private val vmEvent: EventViewModel by activityViewModels()
+    private var role = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         requireActivity().title = "Event Listing"
@@ -57,6 +63,49 @@ class EventListingFragment : Fragment() {
         val role = "staff"
         if(role == "staff"){
             setHasOptionsMenu(true)
+        vmEvent.search("")
+        vmEvent.filterCategory("")
+        requireActivity().title = "Event Listing"
+        role = currentUser?.role ?: ""
+
+        binding.sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(value: String) = true
+            override fun onQueryTextChange(value: String): Boolean {
+                vmEvent.search(value)
+                return true
+            }
+        })
+
+        binding.spCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val category = binding.spCategory.selectedItem.toString()
+                vmEvent.filterCategory(category)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+        }
+
+        binding.spStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val status = binding.spStatus.selectedItem.toString()
+                vmEvent.filterStatus(status)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+        }
+
+        binding.btnID.setOnClickListener { sort("id") }
+        binding.btnName.setOnClickListener { sort("name") }
+        binding.btnDate.setOnClickListener { sort("date") }
+        setHasOptionsMenu(true)
+
+        if(role == "Volunteer"){
+            binding.spStatus.isVisible = false
+            vmEvent.filterStatus("Current")
+        }
+
+        val adapter = EventAdapter(){
+            holder, event -> holder.root.setOnClickListener {
+                nav.navigate(R.id.eventDetailsFragment, bundleOf("id" to event.id))
+        }
         }
 
         val adapter = EventAdapter(){
@@ -72,6 +121,13 @@ class EventListingFragment : Fragment() {
             binding.lblRecord.text = event.size.toString() + " record(s)"
         }
 
+        binding.rvEvent.adapter = adapter
+        binding.rvEvent.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+        vmEvent.getAll().observe(viewLifecycleOwner){
+                event -> adapter.submitList(event)
+            binding.lblRecord.text = event.size.toString() + " record(s)"
+        }
 
         return binding.root
     }
@@ -93,14 +149,19 @@ class EventListingFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        //menu.clear()
-        inflater.inflate(R.menu.menu_add, menu)
+        if(role == "Volunteer"){
+            inflater.inflate(R.menu.menu_event_near_me, menu)
+        }else{
+            inflater.inflate(R.menu.menu_add, menu)
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.capture)
+        if(item.itemId == R.id.add)
             nav.navigate(R.id.chooseOrphanageForEventFragment)
+        else if(item.itemId == R.id.eventNearMe)
+            nav.navigate(R.id.eventNearMeFragment)
         else
             return false
 

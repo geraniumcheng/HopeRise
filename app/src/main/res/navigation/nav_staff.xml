@@ -137,4 +137,34 @@
         android:name="my.com.hoperise.ui.EmployeeVerifyOtpFragment"
         android:label="Forget Password"
         tools:layout="@layout/fragment_employee_verify_otp" />
+    <fragment
+        android:id="@+id/chooseOrphanageForEventFragment"
+        android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
+        android:label="Choose Orphanage"
+        tools:layout="@layout/fragment_choose_orphanage_for_event" />
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="my.com.hoperise.ui.EventDetailsFragment"
+        android:label="Event Details"
+        tools:layout="@layout/fragment_event_details" />
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="my.com.hoperise.ui.EditEventFragment"
+        android:label="Edit Event"
+        tools:layout="@layout/fragment_edit_event" />
+    <fragment
+        android:id="@+id/volunteerDetailsFragment"
+        android:name="my.com.hoperise.ui.VolunteerDetailsFragment"
+        android:label="Volunteer Details"
+        tools:layout="@layout/fragment_volunteer_details" />
+    <fragment
+        android:id="@+id/managerManageApplicationRequestFragment"
+        android:name="my.com.hoperise.ui.ManagerManageApplicationRequestFragment"
+        android:label="Manage Volunteer Applcation"
+        tools:layout="@layout/fragment_manager_manage_application_request" />
+    <fragment
+        android:id="@+id/rejectReasonFragment"
+        android:name="my.com.hoperise.ui.RejectReasonFragment"
+        android:label="Reject Reason"
+        tools:layout="@layout/fragment_reject_reason" />
 </navigation>

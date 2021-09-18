@@ -1,6 +1,5 @@
 package my.com.hoperise.data
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,28 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import com.firebase.geofire.GeoFire
+import com.firebase.geofire.GeoFireUtils
+
+import com.google.firebase.database.FirebaseDatabase
+
+import com.google.firebase.database.DatabaseReference
+import com.firebase.geofire.GeoLocation
+import com.google.android.gms.tasks.OnCompleteListener
+
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+
+import com.google.firebase.firestore.QuerySnapshot
+
+import com.google.android.gms.tasks.Tasks
+
+import com.firebase.geofire.GeoQueryBounds
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.Query
+import my.com.hoperise.util.getEventEndTime
+import my.com.hoperise.util.parseEventDateTime
+
 
 class EventViewModel: ViewModel() {
 
@@ -20,20 +41,19 @@ class EventViewModel: ViewModel() {
     private var ev = listOf<Event>()
     private var lastID = ""
 
-    private var name = ""       // Search
-    private var status = ""     // Filter
-    private var category = "" // Filter2
-    private var field = ""      // Sort
-    private var reverse = false // Sort
+    private var name = ""
+    private var status = ""
+    private var category = ""
+    private var field = ""
+    private var reverse = false
 
     init {
         viewModelScope.launch {
-            //val event = EVENT.get().await().toObjects<Event>()
-            EVENT.addSnapshotListener { snap, _ -> if(snap == null) return@addSnapshotListener
+            EVENT.addSnapshotListener { snap, _ -> if( snap == null) return@addSnapshotListener
                 ev = snap.toObjects<Event>()
 
                 lastID = if(ev.last().id == ""){
-                    "EV0001"
+                    "EV0000"
                 }else{
                     ev.last().id
                 }
@@ -45,24 +65,12 @@ class EventViewModel: ViewModel() {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun checkStatus(status: Event): String {
-//        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(status.date)
-//        return if(date1.after(Date())){
-//            "Current"
-//        }else {
-//            "Completed"
-//        }
-
-        val eventDate  = SimpleDateFormat("dd-MM-yyyy HH:mm").parse(status.date + " " + status.time)!!
-        val cal  = Calendar.getInstance()
-        cal.time = eventDate
-        cal.add(Calendar.DAY_OF_MONTH, 1)
-
-        return if ((eventDate.after(Date()) && eventDate.before(cal.time)) || eventDate.after(cal.time)){
+        val eventDate    = parseEventDateTime(status)
+        val eventEndDate = getEventEndTime(eventDate)
+        return if(eventEndDate.after(Date()) || eventDate.after(Date())){
             "Current"
-        }
-        else {
+        }else {
             "Completed"
         }
     }
@@ -72,7 +80,7 @@ class EventViewModel: ViewModel() {
 
 
         list = list.filter {
-                e -> e.name.contains(name, true)
+            e -> e.name.contains(name, true)
                 && (category == "All" || category == e.category)
                 && (status == "All" || status == e.status)
         }
@@ -80,7 +88,7 @@ class EventViewModel: ViewModel() {
         list = when(field){
             "id" -> list.sortedBy { e -> e.id }
             "name" -> list.sortedBy { e -> e.name }
-            "date" -> sortDate(list)//list.sortedBy { e -> e.date } //need to change func check year>month>date
+            "date" -> list.sortedBy { e -> parseEventDateTime(e) }
             else -> list
         }
 
@@ -90,35 +98,6 @@ class EventViewModel: ViewModel() {
 
         event.value = list
     }
-    private fun sortDate(list: List<Event>): List<Event>{
-//        val dateTimeStrToLocalDateTime: (String) -> LocalDateTime = {
-//            LocalDateTime.parse(it, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-//        }
-        val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
-        list.sortedBy { LocalDate.parse(it.date+" "+it.time, dateTimeFormatter) }
-//        Log.d("list",list.toString())
-//        Log.d("list",list[0].date + " " + list[0].time)
-//        Log.d("list",list[1].date+ " " + list[1].time)
-//        Log.d("list",list[2].date+ " " + list[2].time)
-//        Log.d("list",list[3].date+ " " + list[3].time)
-//        Log.d("list",list[4].date+ " " + list[4].time)
-//        Log.d("list",list[5].date+ " " + list[5].time)
-
-//        val cmp = compareBy<String> { LocalDateTime.parse(it , DateTimeFormatter.ofPattern("dd-MM-yyyy")) }
-//        list.sortedWith(cmp)
-
-        //list.sortedBy {dateTimeStrToLocalDateTime }
-//        var year = 0
-//        var month = 0
-//        var day = 0
-//        var hour = 0
-//        var minute = 0
-//        for(e in list){
-//            if(e.year > year)
-//        }
-        return list
-    }
-
 
     fun search(name: String) {
         this.name = name
@@ -152,18 +131,6 @@ class EventViewModel: ViewModel() {
 
     fun delete(id: String){
         EVENT.document(id).delete()
-        PHOTO.whereEqualTo("eventID", id).get().addOnSuccessListener {
-            for (doc in it.documents)
-                PHOTO.document(doc.id).delete()
-        }
-        MESSAGE.whereEqualTo("eventID", id).get().addOnSuccessListener {
-            for (doc in it.documents)
-                MESSAGE.document(doc.id).delete()
-        }
-        VOLUNTEER.whereEqualTo("eventID", id).get().addOnSuccessListener {
-            for (doc in it.documents)
-                VOLUNTEER.document(doc.id).delete()
-        }
     }
 
     fun deleteEvents(orpID: String){
@@ -186,16 +153,16 @@ class EventViewModel: ViewModel() {
         }
 
         err += if(e.date == "") "- Please choose a date!\n"
-        else ""
+                else ""
 
         err += if(e.time == "") "- Please choose a time!\n"
-        else ""
+                else ""
 
         err += if(e.volunteerRequired == 0) "- Please set a number for the volunteer capacity!\n"
-        else ""
+                else ""
 
         err += if(e.description == "") "- Please fill in some description for the event!\n"
-        else ""
+                else ""
 
         return err
     }

@@ -16,6 +16,7 @@ import my.com.hoperise.R
 import my.com.hoperise.data.Event
 import my.com.hoperise.data.EventViewModel
 import my.com.hoperise.data.Orphanage
+import my.com.hoperise.data.returnFragment
 import my.com.hoperise.databinding.FragmentEditEventBinding
 import my.com.hoperise.databinding.FragmentEventBinding
 import my.com.hoperise.databinding.FragmentVolunteerSubmitApplicationBinding
@@ -150,6 +151,7 @@ class EditEventFragment : Fragment() {
         }
         vm.set(e)
         Toast.makeText(context, "Orphanage updated successfully", Toast.LENGTH_SHORT).show()
+        returnFragment = true
         nav.navigateUp()
     }
 }

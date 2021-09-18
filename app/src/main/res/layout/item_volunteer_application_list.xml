@@ -6,80 +6,80 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/orpName"
+        android:id="@+id/lblSubDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Submission Date:"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/orpPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/edtName" />
-
-    <TextView
-        android:id="@+id/edtDate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/orpName"
-        app:layout_constraintTop_toBottomOf="@+id/edtName"
-        tools:text="20/08/2021" />
+        app:layout_constraintStart_toEndOf="@+id/volAppImage"
+        app:layout_constraintTop_toBottomOf="@+id/volAppName" />
 
     <ImageView
-        android:id="@+id/orpPhoto"
+        android:id="@+id/volAppImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="#CCC"
         android:cropToPadding="true"
-        android:importantForAccessibility="no"
         android:padding="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no"
         tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/edtName"
+        android:id="@+id/lblStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Status: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/volAppImage"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubDate" />
+
+    <TextView
+        android:id="@+id/volAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/orpPhoto"
+        app:layout_constraintStart_toEndOf="@+id/volAppImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Chew Hong Yu" />
 
     <TextView
-        android:id="@+id/orpAddress"
+        android:id="@+id/volAppDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Status: "
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/orpPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/orpName" />
+        app:layout_constraintStart_toEndOf="@+id/lblSubDate"
+        app:layout_constraintTop_toBottomOf="@+id/volAppName"
+        tools:text="20/08/2021" />
 
     <TextView
-        android:id="@+id/edtStatus"
+        android:id="@+id/volAppStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Pending"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/orpAddress"
-        app:layout_constraintTop_toBottomOf="@+id/orpName" />
+        app:layout_constraintStart_toEndOf="@+id/lblStatus"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubDate"
+        tools:text="Pending" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
