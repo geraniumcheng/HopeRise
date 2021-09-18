@@ -5,6 +5,26 @@
     android:id="@+id/nav_staff"
     app:startDestination="@id/staffMainPageFragment">
     <fragment
+        android:id="@+id/photoDetailsFragment"
+        android:name="my.com.hoperise.ui.PhotoDetailsFragment"
+        android:label="Photo Details"
+        tools:layout="@layout/fragment_photo_details" />
+    <fragment
+        android:id="@+id/eventChatRoom"
+        android:name="my.com.hoperise.ui.EventChatRoom"
+        android:label="Event Chat Room"
+        tools:layout="@layout/fragment_event_chat_room" />
+    <fragment
+        android:id="@+id/eventGalleryFragment"
+        android:name="my.com.hoperise.ui.EventGalleryFragment"
+        android:label="Event Gallery"
+        tools:layout="@layout/fragment_event_gallery" />
+    <fragment
+        android:id="@+id/eventVolunteerListingFragment"
+        android:name="my.com.hoperise.ui.EventVolunteerListingFragment"
+        android:label="Event Volunteer Listing"
+        tools:layout="@layout/fragment_event_volunteer_listing" />
+    <fragment
         android:id="@+id/eventListingFragment"
         android:name="my.com.hoperise.ui.EventListingFragment"
         android:label="Event Listing"
@@ -56,11 +76,35 @@
     <fragment
         android:id="@+id/orphanageDetailsFragment"
         android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
-        android:label="fragment_orphanage_details"
+        android:label="Orphanage Details"
         tools:layout="@layout/fragment_orphanage_details" />
     <fragment
         android:id="@+id/editOrphanageFragment"
         android:name="my.com.hoperise.ui.EditOrphanageFragment"
-        android:label="fragment_edit_orphanage"
+        android:label="Edit Orphanage"
         tools:layout="@layout/fragment_edit_orphanage" />
+    <fragment
+        android:id="@+id/chooseOrphanageForEventFragment"
+        android:name="my.com.hoperise.ui.ChooseOrphanageForEventFragment"
+        android:label="Choose Orphanage"
+        tools:layout="@layout/fragment_choose_orphanage_for_event" />
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="my.com.hoperise.ui.EventDetailsFragment"
+        android:label="Event Details"
+        tools:layout="@layout/fragment_event_details" />
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="my.com.hoperise.ui.EditEventFragment"
+        android:label="Edit Event"
+        tools:layout="@layout/fragment_edit_event" />
+    <fragment
+        android:id="@+id/scanAttendanceFragment"
+        android:name="my.com.hoperise.ui.ScanAttendanceFragment"
+        android:label="Attendance Scanning" />
+    <fragment
+        android:id="@+id/eventOnScreenReportFragment"
+        android:name="my.com.hoperise.ui.EventOnScreenReportFragment"
+        android:label="On Screen Report "
+        tools:layout="@layout/fragment_event_on_screen_report" />
 </navigation>

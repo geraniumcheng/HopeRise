@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/lblEventID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblEventName"
+        tools:text="E0001" />
+
+    <TextView
+        android:id="@+id/lblEventName"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/lblEventID"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Happy Event" />
+
+    <TextView
+        android:id="@+id/lblEventCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblEventName"
+        tools:text="Interaction" />
+
+    <TextView
+        android:id="@+id/lblEventDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/lblEventName"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventName"
+        tools:text="12-9-2021 10:00am" />
+
+    <TextView
+        android:id="@+id/lblVolunteerParticipated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/participated_count"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/lblEventDateTime"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDateTime" />
+
+    <TextView
+        android:id="@+id/txtVolunteerParticipated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVolunteerParticipated"
+        app:layout_constraintStart_toEndOf="@+id/lblVolunteerParticipated"
+        app:layout_constraintTop_toTopOf="@+id/lblVolunteerParticipated"
+        tools:text="15" />
+
+    <TextView
+        android:id="@+id/lblAttended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/attended"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/txtVolunteerParticipated"
+        app:layout_constraintEnd_toStartOf="@+id/txtAttended"
+        app:layout_constraintTop_toTopOf="@+id/txtVolunteerParticipated"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtAttended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/lblAttended"
+        app:layout_constraintEnd_toEndOf="@+id/lblEventCategory"
+        app:layout_constraintTop_toTopOf="@+id/lblAttended"
+        tools:text="15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

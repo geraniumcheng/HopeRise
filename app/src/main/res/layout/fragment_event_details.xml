@@ -7,16 +7,6 @@
     tools:context=".ui.EventDetailsFragment">
 
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/lblName"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/lblName" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
@@ -25,7 +15,66 @@
         app:layout_constraintGuide_begin="129dp" />
 
     <TextView
-        android:id="@+id/lblName"
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventName"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventName" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date Time"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventDateTime"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventDateTime" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volunteer Count"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventVolunteerCount"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventVolunteerCount" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventCategory"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventCategory" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventStatus"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventStatus" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/lblEventDesc" />
+
+    <TextView
+        android:id="@+id/lblEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -36,24 +85,14 @@
         tools:text="Happy Event" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date Time"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
-
-    <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/lblEventCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/lblName"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventName"
         tools:text="Interaction" />
 
     <TextView
@@ -62,113 +101,233 @@
         android:layout_height="wrap_content"
         android:text="Volunteer Required"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView23"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEventVolunteerNeed"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView23" />
+        app:layout_constraintTop_toTopOf="@+id/lblEventVolunteerNeed" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/lblEventDesc"
+        android:layout_width="198dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventCategory"
+        tools:text="XXX" />
+
+    <TextView
+        android:id="@+id/lblEventDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDesc"
         tools:text="12/9/2021 10:00am" />
 
     <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volunteer Count"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView24"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView24" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Status"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView25"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView25" />
-
-    <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/lblEventVolunteerNeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDateTime"
         tools:text="10" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/lblEventVolunteerCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventVolunteerNeed"
         tools:text="6" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/lblEventStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventVolunteerCount"
         tools:text="Current" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnEditOrJoin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Edit"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/lblEventStatus"
+        tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnOrphanagePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="70dp"
         android:text="Go To Orphanage Page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditOrJoin"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btnDeleteEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="40dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/btnOrphanagePage"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditOrJoin"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/btnEventScan"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
+        android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:src="@drawable/ic_qr_ode"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEventVolunteer"
+        app:layout_constraintEnd_toStartOf="@+id/btnEventVolunteer"
+        app:layout_constraintTop_toTopOf="@+id/btnEventVolunteer"
+        tools:ignore="ImageContrastCheck"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnEventChatRoom"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/border"
+        android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:src="@drawable/ic_chatroom"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEventGallery"
+        app:layout_constraintStart_toEndOf="@+id/btnEventGallery"
+        app:layout_constraintTop_toTopOf="@+id/btnEventGallery"
+        tools:ignore="ImageContrastCheck"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnEventVolunteer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/border"
+        android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:src="@drawable/ic_eventvolunteer"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineMiddle"
+        app:layout_constraintTop_toBottomOf="@+id/btnOrphanagePage"
+        tools:ignore="ImageContrastCheck"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnEventGallery"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border"
+        android:cropToPadding="true"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:src="@drawable/ic_gallery"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/guidelineMiddle"
+        app:layout_constraintTop_toBottomOf="@+id/btnOrphanagePage"
+        tools:ignore="ImageContrastCheck"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/lblVolunteerList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/volunteer_list"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnEventVolunteer"
+        app:layout_constraintStart_toStartOf="@+id/btnEventVolunteer"
+        app:layout_constraintTop_toBottomOf="@+id/btnEventVolunteer"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/lblGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/gallery"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnEventGallery"
+        app:layout_constraintStart_toStartOf="@+id/btnEventGallery"
+        app:layout_constraintTop_toBottomOf="@+id/btnEventGallery"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/lblQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="QR Code"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnEventScan"
+        app:layout_constraintStart_toStartOf="@+id/btnEventScan"
+        app:layout_constraintTop_toBottomOf="@+id/btnEventScan"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/lblChatRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/chat_room"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnEventChatRoom"
+        app:layout_constraintStart_toStartOf="@+id/btnEventChatRoom"
+        app:layout_constraintTop_toBottomOf="@+id/btnEventChatRoom"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="731dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

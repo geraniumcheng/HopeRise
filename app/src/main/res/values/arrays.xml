@@ -24,8 +24,25 @@
         <item>Others</item>
     </array>
 
+    <array name="eventCategoryForFilter">
+        <item>All</item>
+        <item>Interaction</item>
+        <item>Cleaning</item>
+        <item>Playing</item>
+        <item>Exercise</item>
+        <item>Others</item>
+    </array>
+
     <array name="eventStatus">
+        <item>All</item>
         <item>Current</item>
-        <item>Past</item>
+        <item>Completed</item>
+    </array>
+
+    <array name="eventParticipationStatus">
+        <item>All</item>
+        <item>Current</item>
+        <item>Participated</item>
+        <item>Missed</item>
     </array>
 </resources>

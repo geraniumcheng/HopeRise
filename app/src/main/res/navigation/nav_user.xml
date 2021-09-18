@@ -7,17 +7,17 @@
     <fragment
         android:id="@+id/attendanceFragment"
         android:name="my.com.hoperise.ui.AttendanceFragment"
-        android:label="fragment_attendance"
+        android:label="Attendance"
         tools:layout="@layout/fragment_attendance" />
     <fragment
         android:id="@+id/participationFragment"
         android:name="my.com.hoperise.ui.ParticipationFragment"
-        android:label="fragment_participation"
+        android:label="Participation"
         tools:layout="@layout/fragment_participation" />
     <fragment
         android:id="@+id/accountFragment"
         android:name="my.com.hoperise.ui.AccountFragment"
-        android:label="fragment_account"
+        android:label="Account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/mapsFragment"
@@ -27,6 +27,51 @@
     <fragment
         android:id="@+id/eventListingFragment"
         android:name="my.com.hoperise.ui.EventListingFragment"
-        android:label="fragment_event_listing"
+        android:label="Event Listing"
         tools:layout="@layout/fragment_event_listing" />
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="my.com.hoperise.ui.EventDetailsFragment"
+        android:label="Event Details"
+        tools:layout="@layout/fragment_event_details" />
+    <fragment
+        android:id="@+id/orphanageDetailsFragment"
+        android:name="my.com.hoperise.ui.OrphanageDetailsFragment"
+        android:label="Orphanage Details"
+        tools:layout="@layout/fragment_orphanage_details" />
+    <fragment
+        android:id="@+id/eventVolunteerListingFragment"
+        android:name="my.com.hoperise.ui.EventVolunteerListingFragment"
+        android:label="Event Volunteer Listing"
+        tools:layout="@layout/fragment_event_volunteer_listing" />
+    <fragment
+        android:id="@+id/eventGalleryFragment"
+        android:name="my.com.hoperise.ui.EventGalleryFragment"
+        android:label="Event Gallery"
+        tools:layout="@layout/fragment_event_gallery" />
+    <fragment
+        android:id="@+id/eventChatRoom"
+        android:name="my.com.hoperise.ui.EventChatRoom"
+        android:label="Event Chat Room"
+        tools:layout="@layout/fragment_event_chat_room" />
+    <fragment
+        android:id="@+id/eventQRCodeFragment"
+        android:name="my.com.hoperise.ui.EventQRCodeFragment"
+        android:label="QR Code"
+        tools:layout="@layout/fragment_event_q_r_code" />
+    <fragment
+        android:id="@+id/eventWholeQRCode"
+        android:name="my.com.hoperise.ui.EventWholeQRCode"
+        android:label="QR Code"
+        tools:layout="@layout/fragment_event_whole_q_r_code" />
+    <fragment
+        android:id="@+id/photoDetailsFragment"
+        android:name="my.com.hoperise.ui.PhotoDetailsFragment"
+        android:label="Photo Details"
+        tools:layout="@layout/fragment_photo_details" />
+    <fragment
+        android:id="@+id/volunteerSubmitApplicationFragment"
+        android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
+        android:label="Submit Application"
+        tools:layout="@layout/fragment_volunteer_submit_application" />
 </navigation>

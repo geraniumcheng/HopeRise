@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import my.com.hoperise.R
+import my.com.hoperise.data.RESTORE_DATA
 import my.com.hoperise.databinding.FragmentStaffMainPageBinding
 
 
@@ -23,15 +24,15 @@ class StaffMainPageFragment : Fragment() {
         binding = FragmentStaffMainPageBinding.inflate(inflater, container, false)
 
         binding.cardEmployee.setOnClickListener { nav.navigate(R.id.accountFragment) }
-        binding.cardEventHistory.setOnClickListener {  }
+        binding.cardScanAttendance.setOnClickListener { nav.navigate(R.id.scanAttendanceFragment) }
         binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }
-        binding.cardOnScreen.setOnClickListener {  }
+        binding.cardOnScreen.setOnClickListener { nav.navigate(R.id.eventOnScreenReportFragment) }
         binding.cardOrphanage.setOnClickListener { nav.navigate(R.id.orphanageListingFragment) }
         binding.cardStaff.setOnClickListener {  }
         binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
         binding.cardVolunteerM.setOnClickListener { nav.navigate(R.id.volunteerListingFragment) }
 
-
+        binding.btnRestore.setOnClickListener { RESTORE_DATA(requireContext()) }
 
         return binding.root
     }

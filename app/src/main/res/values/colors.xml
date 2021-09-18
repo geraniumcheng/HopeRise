@@ -11,4 +11,10 @@
     <color name="color_button2">#FFFFD801</color>
     <color name="color_navigation">#fffbb117</color>
     <color name="color_drawer">#FFFBB917</color>
+    <color name="icon_background">#00FFFFFF</color>
+    <color name="border_grey">#B6B6B6</color>
+    <color name="light_grey">#CCC</color>
+    <color name="background_chat_room">#EAEAEA</color>
+    <color name="background_message_to">#C0EF89</color>
+    <color name="background_message_input">#C8C8C3</color>
 </resources>

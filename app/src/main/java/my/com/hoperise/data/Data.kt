@@ -19,6 +19,7 @@ val VOLUNTEER = Firebase.firestore.collection("volunteer")
 val MESSAGE = Firebase.firestore.collection("message")
 val PHOTO = Firebase.firestore.collection("photo")
 val USER = Firebase.firestore.collection("user")
+var currentUser: User? = null
 
 data class Location(
     var location: String = "",
@@ -59,7 +60,11 @@ data class Event(
     @get:Exclude
     var count: Int = 0
     @get:Exclude
+    var status: String = ""
+    @get:Exclude
     var orphanage: Orphanage = Orphanage()
+    @get:Exclude
+    var participatedCount: Int = 0
 }
 
 data class VolunteerApplication(
@@ -78,14 +83,15 @@ data class VolunteerApplication(
 
 data class Volunteer(
     @DocumentId
-    var userID: String      = "", //Composite key
-    var eventID: String     = "", //Composite key
+    var id: String          = "",
     var attendance: Boolean = false,
+    var userID: String      = "", //Foreign key
+    var eventID: String     = "", //Foreign key
 ){
     @get:Exclude
     var user: User = User()
     @get:Exclude
-    val event: Event = Event()
+    var event: Event = Event()
 }
 
 data class Photo(
@@ -96,7 +102,7 @@ data class Photo(
     var eventID: String    = "", //Foreign key
 ){
     @get:Exclude
-    val event: Event = Event()
+    var event: Event = Event()
 }
 
 data class Message(
@@ -110,7 +116,7 @@ data class Message(
     @get:Exclude
     var user: User = User()
     @get:Exclude
-    val event: Event = Event()
+    var event: Event = Event()
 }
 
 data class User(
@@ -146,10 +152,20 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> EVENT.document(doc.id).delete() }
 
         val events = listOf(
-            Event("EV0001", "Event 1", "Cleaning", "30/12/2021", "12:30", 50, 3, "Cleaning is the best thing to do", "OR0001"),
-            Event("EV0002", "Event 2", "Playing", "30/11/2021", "12:30", 30, 1, "Playing is the best thing to do", "OR0001"),
-            Event("EV0003", "Event 3", "Others", "30/10/2021", "12:30", 10, 0, "let's go sleep", "OR0002"),
-            Event("EV0004", "Event 4", "Cleaning", "30/09/2021", "12:30", 10, 0, "Nice Event I like it", "OR0002")
+
+            Event("EV0001", "Event 1", "Cleaning", "15-06-2021", "09:30", 50, 2, "Cleaning is the best thing to do", "OR0001"),
+            Event("EV0002", "Event 2", "Playing", "30-06-2021", "12:30", 30, 2, "Playing is the best thing to do", "OR0001"),
+            Event("EV0003", "Event 3", "Others", "30-07-2021", "10:30", 10, 0, "Let's go sleep", "OR0002"),
+            Event("EV0004", "Event 4", "Cleaning", "30-08-2021", "07:30", 10, 0, "Nice Event I like it", "OR0002"),
+            Event("EV0005", "Event 5", "Exercise", "14-09-2021", "17:30", 30, 1, "Exercising make us healthy", "OR0001"),
+            Event("EV0006", "Event 6", "Playing",  "16-09-2021", "11:00",30, 1, "Let's play together", "OR0001"),
+            Event("EV0007", "Event 7", "Exercise", "30-11-2021", "08:30", 10, 1, "Let's go exercise", "OR0002"),
+            Event("EV0008", "Event 8", "Interaction", "30-12-2021", "12:00", 15, 1, "Talking to your heart", "OR0002"),
+            Event("EV0009", "Event 9", "Interaction", "30-11-2021", "11:00", 15, 0, "Share you opinion", "OR0001"),
+            Event("EV0010", "Event 10", "Others", "30-11-2021", "07:00", 15, 0, "Let's work together", "OR0001"),
+            Event("EV0011", "Event 11", "Playing", "29-11-2021", "07:00", 15, 0, "Board game is the best thing to play", "OR0002"),
+            Event("EV0012", "Event 12", "Others", "01-01-2022", "08:00", 15, 0, "New Year celebration", "OR0002"),
+            Event("EV0013", "Event 13", "Cleaning", "02-01-2022", "07:00", 2, 2, "Gotong-royong bersama-sama", "OR0002"),
         )
 
         for (e in events)
@@ -160,12 +176,13 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> PHOTO.document(doc.id).delete() }
 
         val photos = listOf(
-            Photo("PH0001", BitmapFactory.decodeResource(ctx.resources, R.drawable.cleaning1).toBlob(), Date(), "EV0001"),
-            Photo("PH0002", BitmapFactory.decodeResource(ctx.resources, R.drawable.cleaning2).toBlob(), Date(), "EV0001"),
-            Photo("PH0003", BitmapFactory.decodeResource(ctx.resources, R.drawable.cleaning3).toBlob(), Date(), "EV0001"),
-            Photo("PH0004", BitmapFactory.decodeResource(ctx.resources, R.drawable.playing1).toBlob(), Date(), "EV0002"),
-            Photo("PH0005", BitmapFactory.decodeResource(ctx.resources, R.drawable.playing2).toBlob(), Date(), "EV0002"),
-            Photo("PH0006", BitmapFactory.decodeResource(ctx.resources, R.drawable.other1).toBlob(), Date(), "EV0003"),
+            Photo("PH0001", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_cleaning1).toBlob(), Date(), "EV0001"),
+            Photo("PH0002", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_cleaning2).toBlob(), Date(), "EV0001"),
+            Photo("PH0003", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_cleaning3).toBlob(), Date(), "EV0001"),
+            Photo("PH0004", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_playing1).toBlob(), Date(), "EV0002"),
+            Photo("PH0005", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_playing2).toBlob(), Date(), "EV0002"),
+            Photo("PH0006", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_playing3).toBlob(), Date(), "EV0002"),
+            Photo("PH0007", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_other1).toBlob(), Date(), "EV0005"),
         )
 
         for (p in photos)
@@ -185,10 +202,10 @@ fun RESTORE_DATA(ctx: Context) {
             User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Unverified", 3, null, null, 777558, Date()),
             User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Pending", 3, null, null, 575757, Date()),
             User("volunteer4", "volunteerno4@gmail.com", "Volunteer Four", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
-            User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Verified", 3, null, null, 827222, Date()),
+            User("volunteer5", "volunteerno5@gmail.com", "Volunteer Five", "Abcd123!", "Volunteer", "Verified", 3, null, null, 124553, Date()),
+            User("volunteer6", "volunteerno6@gmail.com", "Volunteer Six", "Abcd123!", "Volunteer", "Verified", 3, null, null, 404535, Date()),
+            User("volunteer7", "volunteerno7@gmail.com", "Volunteer Seven", "Abcd123!", "Volunteer", "Verified", 3, null, null, 101454, Date()),
+            User("volunteer8", "volunteerno8@gmail.com", "Volunteer Eight", "Abcd123!", "Volunteer", "Verified", 3, null, null, 457570, Date()),
         )
 
         for (u in users)
@@ -214,14 +231,20 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> VOLUNTEER.document(doc.id).delete() }
 
         val volunteers = listOf(
-            Volunteer("volunteer6", "EV0001"),
-            Volunteer("volunteer7", "EV0001"),
-            Volunteer("volunteer6", "EV0002"),
-            Volunteer("volunteer8", "EV0002"),
+            Volunteer("Mig57S0VvyLQPXfPLeB", false,"volunteer6","EV0001"), //Missed
+            Volunteer("MikgeR-HNTMZPoIhwBI", false,"volunteer7","EV0001"), //Missed
+            Volunteer("Mig-xXyuBwMzQ5vTGNn", false,"volunteer6","EV0002"), //Missed
+            Volunteer("Mig4f01TKx1asdVJLkY", false,"volunteer8","EV0002"), //Missed
+            Volunteer("Mikg0_7Hsi8lcutLy6X", true, "volunteer6","EV0005"), //Participated
+            Volunteer("MikgHchHIXPfaSzZ01q", false,"volunteer6","EV0006"), //Current
+            Volunteer("MilGgF12ZTb-eM9UkHT", false,"volunteer6","EV0007"), //Current
+            Volunteer("MilHzPtNNz003TuOcOt", false,"volunteer6","EV0008"), //Current
+            Volunteer("MilHzPtNNz003TuOcOt", false,"volunteer7","EV0013"), //Current
+            Volunteer("MilHzPtNNz003TuOcOt", false,"volunteer8","EV0013"), //Current
         )
 
         for (v in volunteers)
-            VOLUNTEER.document(v.userID).set(v)
+            VOLUNTEER.document(v.id).set(v)
     }
 
     MESSAGE.get().addOnSuccessListener { snap ->

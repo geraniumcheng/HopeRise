@@ -7,7 +7,7 @@
     tools:context=".ui.VolunteerListingFragment">
 
     <SearchView
-        android:id="@+id/sv"
+        android:id="@+id/svEventVolunteer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
         android:text="Filter Status:"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sv" />
+        app:layout_constraintTop_toBottomOf="@+id/svEventVolunteer" />
 
     <Spinner
         android:id="@+id/spnFilter2"
@@ -39,7 +39,7 @@
         android:layout_marginTop="12dp"
         android:entries="@array/filter"
         app:layout_constraintStart_toEndOf="@+id/lblFilter2"
-        app:layout_constraintTop_toBottomOf="@+id/sv"
+        app:layout_constraintTop_toBottomOf="@+id/svEventVolunteer"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -61,7 +61,8 @@
         android:layout_marginTop="20dp"
         android:text="ID"
         app:layout_constraintStart_toEndOf="@+id/lblSort2"
-        app:layout_constraintTop_toBottomOf="@+id/spnFilter2" />
+        app:layout_constraintTop_toBottomOf="@+id/spnFilter2"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lblRecords2"
@@ -76,7 +77,7 @@
 
     <View
         android:id="@+id/divider4"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:background="?android:attr/listDivider"
@@ -92,7 +93,8 @@
         android:layout_marginTop="20dp"
         android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/btnID"
-        app:layout_constraintTop_toBottomOf="@+id/spnFilter2" />
+        app:layout_constraintTop_toBottomOf="@+id/spnFilter2"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
