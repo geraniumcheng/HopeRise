@@ -41,14 +41,6 @@ class VolunteerChangePasswordFragment : Fragment() {
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword() }
         binding.btnForgetPassword.setOnClickListener { sendOtpResetPassword(userId) }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
-
-            }
-        })
-
         return binding.root
     }
 

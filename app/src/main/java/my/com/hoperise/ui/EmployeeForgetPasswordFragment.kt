@@ -32,23 +32,6 @@ class EmployeeForgetPasswordFragment : Fragment() {
         val userId = (activity as StaffActivity).loggedInId
         binding.btnResetNow.setOnClickListener { validatePassword(userId) }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                AlertDialog.Builder(requireActivity())
-                    .setTitle("Leave now?")
-                    .setMessage("Your password will not be reset if you leave now." )
-                    .setIcon(R.drawable.ic_leave_confirm_dialog)
-                    .setPositiveButton(android.R.string.yes, object :
-                        DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.popBackStack(R.id.viewStaffProfileFragment, false)
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null).show()
-            }
-        })
-
         return binding.root
     }
 

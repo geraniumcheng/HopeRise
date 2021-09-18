@@ -53,13 +53,6 @@ class EditVolunteerProfileFragment : Fragment() {
         binding.btnPickImage.setOnClickListener { showSelection() }
         binding.btnConfirm.setOnClickListener { updateVolunteer(userId) }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.popBackStack(R.id.viewVolunteerProfileFragment, false)
-            }
-        })
-
         return binding.root
     }
 

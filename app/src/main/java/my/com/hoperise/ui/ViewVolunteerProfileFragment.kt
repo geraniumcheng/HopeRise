@@ -43,12 +43,6 @@ class ViewVolunteerProfileFragment : Fragment() {
             logout()
         }
 
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                getActivity()?.finish()
-            }
-        })
-
         return binding.root
     }
 

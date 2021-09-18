@@ -40,14 +40,6 @@ class EmployeeChangePasswordFragment : Fragment() {
         binding.btnConfirmChangePassword.setOnClickListener { getCurrentPassword(userId) }
         binding.btnForgetPassword.setOnClickListener { sendOtpResetPassword(userId) }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.popBackStack(R.id.viewStaffProfileFragment, false)
-
-            }
-        })
-
         return binding.root
     }
 

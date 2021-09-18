@@ -38,14 +38,6 @@ class RegisterEmployeeFragment : Fragment() {
         binding.btnPickImage.setOnClickListener{ showSelection() }
         binding.btnReset.setOnClickListener { reset() }
 
-        // For prevent back press error happen
-        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                nav.navigate(R.id.employeeListingFragment)
-            }
-        })
-
-
         return binding.root
     }
 
