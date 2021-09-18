@@ -2,7 +2,6 @@ package my.com.hoperise.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.versionedparcelable.VersionedParcelize
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -21,7 +19,6 @@ import my.com.hoperise.data.VolunteerApplication
 import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentAccountBinding
 import java.text.SimpleDateFormat
-import java.util.*
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -36,7 +33,6 @@ class AccountFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
 
-        //var counter = 0
         lifecycleScope.launch {
             val volApp = VOLUNTEERAPPLICATION.whereEqualTo("userID", currentUser?.id!!).get().await().toObjects<VolunteerApplication>()
             val format = SimpleDateFormat("dd-MM-yyyy")

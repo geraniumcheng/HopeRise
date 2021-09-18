@@ -22,15 +22,10 @@ class OrphanageViewModel: ViewModel() {
 
     init {
         viewModelScope.launch {
-            //return all orphanage item from firebase
-            val orphanages = ORPHANAGE.get().await().toObjects<Orphanage>()
 
-            //realtime
             ORPHANAGE.addSnapshotListener { snap, _ -> if( snap == null) return@addSnapshotListener
                 orp = snap.toObjects<Orphanage>()
-                for(a in orp){
-                    a.geohash = GeoFireUtils.getGeoHashForLocation(GeoLocation(a.latitude, a.longitude))
-                }
+
                 lastID = if(orp.last().id == ""){
                     "OR0000"
                 }else{
@@ -78,21 +73,6 @@ class OrphanageViewModel: ViewModel() {
     fun get(id: String): Orphanage?{
         return orphanage.value?.find { o -> o.id == id }
     }
-//    fun get(id: String, isEvent: Boolean): Orphanage?{
-//        val o = Orphanage()
-//        if(isEvent && orp.isEmpty()){
-//            ORPHANAGE.get().addOnSuccessListener {
-//                snap -> snap.documents.forEach { doc ->
-//                if(doc.id == id)  {
-//
-//                }
-//                }
-//            }
-//            ORPHANAGE.addSnapshotListener { snap, _ -> orphanage.value = snap?.toObjects<Orphanage>() }
-//        }
-//        Log.d("check", orphanage.toString())
-//        return orphanage.value?.find { o -> o.id == id }
-//    }
 
      fun getAll() = orphanage
 
@@ -102,10 +82,6 @@ class OrphanageViewModel: ViewModel() {
 
     fun set(o: Orphanage){
         ORPHANAGE.document(o.id).set(o)
-    }
-
-    private fun nameExists(name: String): Boolean {
-        return orphanage.value?.any{ friend -> friend.name == name } ?: false
     }
 
     fun validate(o: Orphanage):String{
@@ -135,7 +111,6 @@ class OrphanageViewModel: ViewModel() {
         var idNum = lastID.takeLastWhile { !it.isLetter() }
         val fmt = DecimalFormat("0000")
         val str = fmt.format(idNum.toInt() + 1)
-        //var add = (idNum.toInt() + 1).toString()
         return idChar + str
     }
 }

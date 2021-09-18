@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="List By:"
+        android:text="@string/list_by"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnID"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="ID"
+        android:text="@string/id"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintStart_toEndOf="@+id/btnID"
         app:layout_constraintTop_toTopOf="parent" />
 

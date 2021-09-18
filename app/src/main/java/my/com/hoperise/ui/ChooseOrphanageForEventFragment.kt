@@ -15,7 +15,6 @@ import my.com.hoperise.R
 import my.com.hoperise.data.EventViewModel
 import my.com.hoperise.data.OrphanageViewModel
 import my.com.hoperise.databinding.FragmentChooseOrphanageForEventBinding
-import my.com.hoperise.util.OrphanageAdapter
 import my.com.hoperise.util.OrphangeEventAdapter
 
 

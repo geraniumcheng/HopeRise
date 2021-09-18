@@ -76,7 +76,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Employee Management"
+                                    android:text="@string/employee_management"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -138,7 +138,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Event Maintenance"
+                                    android:text="@string/event_maintenance"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -200,7 +200,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Volunteer Management"
+                                    android:text="@string/volunteer_management"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -262,7 +262,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Volunteer Application"
+                                    android:text="@string/volunteer_application"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -326,7 +326,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="On-Screen Report"
+                                    android:text="@string/on_screen_report"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -390,7 +390,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Staff Profile"
+                                    android:text="@string/staff_profile"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -452,7 +452,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Event History"
+                                    android:text="@string/event_history"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -514,7 +514,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Orphanage Maintenance"
+                                    android:text="@string/orphanage_maintenance"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
