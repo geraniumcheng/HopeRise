@@ -67,7 +67,7 @@ class AddOrphanageFragment : Fragment() {
             location = vmMap.location.location,
             latitude = vmMap.location.latitude,
             longitude = vmMap.location.longitude,
-            photo = binding.orpPhoto.cropToBlob(300, 300),
+            //photo = binding.orpPhoto.cropToBlob(300, 300),
         )
 
         val err = vmOrphanage.validate(o)

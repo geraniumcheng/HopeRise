@@ -17,8 +17,8 @@
         android:icon="@drawable/ic_participation"/>
 
     <item
-        android:id="@+id/accountFragment"
-        android:title="Account"
+        android:id="@+id/viewVolunteerProfileFragment"
+        android:title="Profile"
         android:icon="@drawable/ic_account"/>
 
 

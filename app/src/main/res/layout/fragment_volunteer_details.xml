@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/orpPhoto" />
 
     <TextView
-        android:id="@+id/orpID"
+        android:id="@+id/orpId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -65,7 +65,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/orpID"
+        app:layout_constraintTop_toBottomOf="@+id/orpId"
         tools:text="CHEW HONG YU" />
 
     <androidx.constraintlayout.widget.Guideline

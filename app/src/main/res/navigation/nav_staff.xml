@@ -107,4 +107,44 @@
         android:name="my.com.hoperise.ui.EventOnScreenReportFragment"
         android:label="On Screen Report "
         tools:layout="@layout/fragment_event_on_screen_report" />
+    <fragment
+        android:id="@+id/viewStaffProfileFragment"
+        android:name="my.com.hoperise.ui.ViewStaffProfileFragment"
+        android:label="Staff Profile"
+        tools:layout="@layout/fragment_view_staff_profile" />
+    <fragment
+        android:id="@+id/registerEmployeeFragment"
+        android:name="my.com.hoperise.ui.RegisterEmployeeFragment"
+        android:label="Register New Employee"
+        tools:layout="@layout/fragment_register_employee" />
+    <fragment
+        android:id="@+id/employeeListingFragment"
+        android:name="my.com.hoperise.ui.EmployeeListingFragment"
+        android:label="Employee Listing"
+        tools:layout="@layout/fragment_employee_listing" />
+    <fragment
+        android:id="@+id/manageEmployeeFragment"
+        android:name="my.com.hoperise.ui.ManageEmployeeFragment"
+        android:label="Employee Profile"
+        tools:layout="@layout/fragment_manage_employee" />
+    <fragment
+        android:id="@+id/employeeChangePasswordFragment"
+        android:name="my.com.hoperise.ui.EmployeeChangePasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_employee_change_password" />
+    <fragment
+        android:id="@+id/employeeForgetPasswordFragment"
+        android:name="my.com.hoperise.ui.EmployeeForgetPasswordFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_employee_forget_password" />
+    <fragment
+        android:id="@+id/employeeVerifyEmailFragment"
+        android:name="my.com.hoperise.ui.EmployeeVerifyEmailFragment"
+        android:label="Verify Email"
+        tools:layout="@layout/fragment_employee_verify_email" />
+    <fragment
+        android:id="@+id/employeeVerifyOtpFragment"
+        android:name="my.com.hoperise.ui.EmployeeVerifyOtpFragment"
+        android:label="Forget Password"
+        tools:layout="@layout/fragment_employee_verify_otp" />
 </navigation>

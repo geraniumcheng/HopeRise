@@ -74,4 +74,34 @@
         android:name="my.com.hoperise.ui.VolunteerSubmitApplicationFragment"
         android:label="Submit Application"
         tools:layout="@layout/fragment_volunteer_submit_application" />
+    <fragment
+        android:id="@+id/editVolunteerProfileFragment"
+        android:name="my.com.hoperise.ui.EditVolunteerProfileFragment"
+        android:label="fragment_edit_volunteer_profile"
+        tools:layout="@layout/fragment_edit_volunteer_profile" />
+    <fragment
+        android:id="@+id/viewVolunteerProfileFragment"
+        android:name="my.com.hoperise.ui.ViewVolunteerProfileFragment"
+        android:label="Volunteer Profile"
+        tools:layout="@layout/fragment_view_volunteer_profile" />
+    <fragment
+        android:id="@+id/volunteerChangePasswordFragment"
+        android:name="my.com.hoperise.ui.VolunteerChangePasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_volunteer_change_password" />
+    <fragment
+        android:id="@+id/volunteerForgetPasswordFragment"
+        android:name="my.com.hoperise.ui.VolunteerForgetPasswordFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_volunteer_forget_password" />
+    <fragment
+        android:id="@+id/volunteerVerifyEmailFragment"
+        android:name="my.com.hoperise.ui.VolunteerVerifyEmailFragment"
+        android:label="Verify Email"
+        tools:layout="@layout/fragment_volunteer_verify_email" />
+    <fragment
+        android:id="@+id/volunteerVefiryOtpFragment"
+        android:name="my.com.hoperise.ui.VolunteerVefiryOtpFragment"
+        android:label="Forget Password"
+        tools:layout="@layout/fragment_volunteer_vefiry_otp" />
 </navigation>

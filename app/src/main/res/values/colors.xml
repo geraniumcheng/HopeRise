@@ -17,4 +17,5 @@
     <color name="background_chat_room">#EAEAEA</color>
     <color name="background_message_to">#C0EF89</color>
     <color name="background_message_input">#C8C8C3</color>
+    <color name="color_nav">#F28866</color>
 </resources>

@@ -3,7 +3,6 @@ package my.com.hoperise.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -26,7 +25,7 @@ class OrphanageAdapter (
         val root = view
         val orpName  : TextView = view.findViewById(R.id.orpName)
         val orpPhoto : ImageView = view.findViewById(R.id.orpPhoto)
-        val orpID    : TextView = view.findViewById(R.id.orpID)
+        val orpID    : TextView = view.findViewById(R.id.orpId)
         val orpAddress    : TextView = view.findViewById(R.id.orpAddress)
     }
 

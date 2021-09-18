@@ -45,4 +45,23 @@
         <item>Participated</item>
         <item>Missed</item>
     </array>
+
+    <array name="staffRole">
+        <item>Manager</item>
+        <item>Employee</item>
+    </array>
+
+    <array name="staffRoleFilter">
+        <item>All</item>
+        <item>Manager</item>
+        <item>Employee</item>
+    </array>
+
+    <array name="staffStatus">
+        <item>All</item>
+        <item>Unactivated</item>
+        <item>Active</item>
+        <item>Deactivated</item>
+    </array>
+
 </resources>

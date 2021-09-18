@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/block_activity_background"
+    tools:context=".ui.AccountBlockFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/resetPasswordLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/account_blocked" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/ouh_oh"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/resetPasswordLogo"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/resetPasswordLogo"
+        app:layout_constraintTop_toBottomOf="@+id/resetPasswordLogo" />
+
+    <TextView
+        android:id="@+id/lblMessage"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/your_account_has_been_locked_because_you_have_reached_the_maximum_number_of_invalid_login_attempts_n_nif_you_want_to_unblock_your_account_we_will_send_an_one_time_password_otp_to_your_registered_email_to_unblock_it"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <Button
+        android:id="@+id/btnSendOtpUnlock"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="24dp"
+        android:background="#000"
+        android:elevation="0dp"
+        android:text="@string/send_otp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/lblMessage"
+        app:layout_constraintStart_toStartOf="@+id/lblMessage"
+        app:layout_constraintTop_toBottomOf="@+id/lblMessage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
