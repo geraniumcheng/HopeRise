@@ -244,5 +244,6 @@
     <string name="your_application_status_is_approved">Your application status is Approved!</string>
     <string name="your_application_status_is_pending">Your application status is Pending!</string>
     <string name="your_application_status_is_rejected">Your application status is Rejected!</string>
+    <string name="toTrue">true</string>
     <string name="changeProfilePhoto">Change profile photo</string>
 </resources>

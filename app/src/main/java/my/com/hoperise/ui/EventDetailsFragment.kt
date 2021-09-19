@@ -40,6 +40,8 @@ class EventDetailsFragment : Fragment() {
 
         role = currentUser?.role ?: ""
 
+        vmEvent.filterStatus("All")
+
         if(returnFragment){
             EVENT.document(id).get().addOnSuccessListener {
                     snap ->
@@ -53,7 +55,7 @@ class EventDetailsFragment : Fragment() {
 
         eventExtraBtnVisibility(true)
 
-        if (currentUser!!.role != getString(R.string.volunteer)) {
+        if (role != getString(R.string.volunteer)) {
             binding.btnEditOrJoin.text = getString(R.string.edit)
 
             if (currentUser!!.status != getString(R.string.active))
@@ -71,7 +73,7 @@ class EventDetailsFragment : Fragment() {
             }
         }
 
-        if (status == getString(R.string.completed) || (currentUser!!.role != getString(R.string.volunteer) && currentUser!!.status != getString(R.string.active))) {
+        if (status == getString(R.string.completed) || (role != getString(R.string.volunteer) && currentUser!!.status != getString(R.string.active))) {
             binding.btnEditOrJoin.isVisible  = false
             binding.btnDeleteEvent.isVisible = false
         }
@@ -79,9 +81,9 @@ class EventDetailsFragment : Fragment() {
         binding.btnEditOrJoin.setOnClickListener {
 
             lifecycleScope.launch {
-                if (currentUser!!.role != getString(R.string.volunteer) && currentUser!!.status == getString(R.string.active))
+                if (role != getString(R.string.volunteer) && currentUser!!.status == getString(R.string.active))
                     nav.navigate(R.id.editEventFragment, bundleOf("id" to id))
-                else if (currentUser!!.role == getString(R.string.volunteer) && vmParticipation.checkVolunteerStatus() == getString(R.string.approved))
+                else if (role == getString(R.string.volunteer) && vmParticipation.checkVolunteerStatus() == getString(R.string.approved))
                     joinEvent()
                 else
                     infoDialog(getString(R.string.verifyFirst)) { nav.navigate(R.id.volunteerSubmitApplicationFragment) }
@@ -102,7 +104,7 @@ class EventDetailsFragment : Fragment() {
 
             nav.popBackStack(R.id.eventDetailsFragment, true)
 
-            if (currentUser!!.role == getString(R.string.volunteer))
+            if (role == getString(R.string.volunteer))
                 nav.navigate(R.id.attendanceFragment, bundleOf("id" to id))
             else
                 nav.navigate(R.id.scanAttendanceFragment)

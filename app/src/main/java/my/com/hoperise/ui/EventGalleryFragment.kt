@@ -100,6 +100,9 @@ class EventGalleryFragment : Fragment() {
         vmGallery.getPhotos().observe(viewLifecycleOwner) { photos ->
             adapter.submitList(photos)
 
+            if (photos.isNotEmpty())
+                binding.rvGallery.scrollToPosition(photos.size - 1)
+
             val size = photos.size
             binding.lblRecord.text = getString(R.string.records, size)
 
