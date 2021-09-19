@@ -5,9 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
-import android.location.LocationRequest
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,45 +14,19 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest.create
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.databinding.FragmentEventNearMeBinding
-import my.com.hoperise.databinding.FragmentOrphanageDetailsBinding
-import com.google.android.gms.maps.CameraUpdateFactory
-
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-
-import com.google.android.gms.tasks.OnSuccessListener
 import my.com.hoperise.data.*
 import my.com.hoperise.util.EventNearMeAdapter
-import my.com.hoperise.util.OrphanageAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 import android.graphics.Typeface
-
-import android.text.style.StyleSpan
-
-import android.text.style.UnderlineSpan
-
-import android.text.SpannableString
-
-
-
-
 
 class EventNearMeFragment : Fragment() {
 
@@ -70,7 +42,7 @@ class EventNearMeFragment : Fragment() {
     private var address : Address? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentEventNearMeBinding.inflate(inflater, container, false)
-        requireActivity().title = "Event Near You (within 10km)"
+        requireActivity().title = getString(R.string.eventNearYou)
         filterEvent.clear()
         filterEvent = ArrayList<Event>()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
@@ -121,7 +93,6 @@ class EventNearMeFragment : Fragment() {
                 callback.invoke(loc)
             }
     }
-
 
     private fun doCallback(distance: Int){
         requireActivity().title = "Event Near You (within $distance km)"
@@ -204,6 +175,4 @@ class EventNearMeFragment : Fragment() {
             }
         }
     }
-
-
 }

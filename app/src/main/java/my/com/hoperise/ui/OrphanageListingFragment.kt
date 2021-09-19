@@ -1,22 +1,16 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import kotlinx.coroutines.launch
 import my.com.hoperise.R
 import my.com.hoperise.data.OrphanageViewModel
-import my.com.hoperise.data.User
-import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentOrphanageListingBinding
 import my.com.hoperise.util.OrphanageAdapter
-import java.util.*
 
 class OrphanageListingFragment : Fragment() {
 

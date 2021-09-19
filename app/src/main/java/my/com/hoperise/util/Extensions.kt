@@ -3,10 +3,8 @@ package my.com.hoperise.util
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.provider.MediaStore
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap

@@ -1,21 +1,17 @@
 package my.com.hoperise.ui
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.toObject
 import my.com.hoperise.R
 import my.com.hoperise.data.*
-import my.com.hoperise.databinding.FragmentEventDetailsBinding
 import my.com.hoperise.databinding.FragmentVolunteerApplicationStatusBinding
 import java.text.SimpleDateFormat
 
@@ -27,7 +23,6 @@ class VolunteerApplicationStatusFragment : Fragment() {
     private val status by lazy { requireArguments().getString("status") ?: "" }
     private val date by lazy { requireArguments().getString("date") ?: "" }
     private val reason by lazy { requireArguments().getString("reason") ?: "" }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVolunteerApplicationStatusBinding.inflate(inflater, container, false)

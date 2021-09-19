@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import my.com.hoperise.R
 import my.com.hoperise.data.VolunteerApplicationViewModel
-import my.com.hoperise.databinding.FragmentEventListingBinding
 import my.com.hoperise.databinding.FragmentManagerVolunteerApplicationListingBinding
-import my.com.hoperise.util.EventAdapter
 import my.com.hoperise.util.VolunteerApplicationAdapter
 
 class ManagerVolunteerApplicationListingFragment : Fragment() {

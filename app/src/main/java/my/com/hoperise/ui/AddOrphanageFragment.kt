@@ -1,10 +1,12 @@
 package my.com.hoperise.ui
 
+import android.Manifest
 import android.app.Activity
 import android.app.Activity.RESULT_CANCELED
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -24,6 +27,7 @@ import my.com.hoperise.databinding.FragmentAddOrphanageBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
 import my.com.hoperise.util.showPhotoSelection
+import my.com.hoperise.util.snackbar
 
 class AddOrphanageFragment : Fragment() {
 
@@ -50,7 +54,12 @@ class AddOrphanageFragment : Fragment() {
         }
     }
 
+    private val requestCameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) addPhoto() else snackbar(getString(R.string.featureCameraUnavailable))
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        requireActivity().title = getString(R.string.addOrphanage)
         binding = FragmentAddOrphanageBinding.inflate(inflater, container, false)
 
         vmShared.getSetLocation()
@@ -65,13 +74,7 @@ class AddOrphanageFragment : Fragment() {
                 binding.orpPhoto.setImageBitmap(cameraPhoto)
             }
         }
-        binding.orpPhoto.setOnClickListener {
-            showPhotoSelection(getString(R.string.uploadToGallery),
-                { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
-                    val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
-                    photoIntent.type = "image/*"
-                    photoLauncher.launch(photoIntent)})
-        }
+        binding.orpPhoto.setOnClickListener { addPhoto() }
         binding.btnReset.setOnClickListener { reset() }
         binding.btnSubmit.setOnClickListener { submit() }
         binding.btnLocation.setOnClickListener {
@@ -79,6 +82,20 @@ class AddOrphanageFragment : Fragment() {
             nav.navigate(R.id.mapsFragment, args)
         }
         return binding.root
+    }
+
+    private fun addPhoto() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+        else {
+            showPhotoSelection(getString(R.string.uploadToGallery),
+                { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
+                    val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
+                    photoIntent.type = "image/*"
+                    photoLauncher.launch(photoIntent)})
+        }
     }
 
     private fun reset() {

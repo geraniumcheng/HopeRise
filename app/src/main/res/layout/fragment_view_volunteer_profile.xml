@@ -106,7 +106,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnPaymentHistory"
+        android:id="@+id/btnVolunteerApplication"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -119,7 +119,7 @@
         tools:ignore="DuplicateSpeakableTextCheck">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnVolunteerApplication"
+            android:id="@+id/btnVolApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -143,9 +143,9 @@
             android:layout_marginTop="20dp"
             android:text="@string/volunteer_application"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/btnPaymentHistory"
-            app:layout_constraintStart_toEndOf="@+id/btnPaymentHistory"
-            app:layout_constraintTop_toTopOf="@+id/btnPaymentHistory" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnVolunteerApplication"
+            app:layout_constraintStart_toEndOf="@+id/btnVolunteerApplication"
+            app:layout_constraintTop_toTopOf="@+id/btnVolunteerApplication" />
     </LinearLayout>
 
     <LinearLayout
@@ -158,7 +158,7 @@
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPaymentHistory"
+        app:layout_constraintTop_toBottomOf="@id/btnVolunteerApplication"
         tools:ignore="DuplicateSpeakableTextCheck">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -173,7 +173,7 @@
             android:src="@drawable/ic_logout"
             app:backgroundTint="@color/color_drawer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPaymentHistory"
+            app:layout_constraintTop_toBottomOf="@+id/btnVolunteerApplication"
             app:rippleColor="@color/white"
             app:tint="@color/white"
             tools:ignore="ImageContrastCheck" />

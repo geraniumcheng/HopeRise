@@ -1,8 +1,9 @@
 package my.com.hoperise.ui
 
-import android.app.Activity
-import android.app.AlertDialog
+import android.Manifest
+import android.app.Activity.RESULT_CANCELED
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
@@ -19,9 +21,7 @@ import com.google.android.gms.maps.model.LatLng
 import my.com.hoperise.R
 import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentEditOrphanageBinding
-import my.com.hoperise.util.cropToBlob
-import my.com.hoperise.util.errorDialog
-import my.com.hoperise.util.toBitmap
+import my.com.hoperise.util.*
 
 class EditOrphanageFragment : Fragment() {
 
@@ -34,6 +34,28 @@ class EditOrphanageFragment : Fragment() {
     var latitude = 0.0
     var longitude = 0.0
     var loc = ""
+
+    private val requestCameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) addPhoto() else snackbar(getString(R.string.featureCameraUnavailable))
+    }
+
+    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode != RESULT_CANCELED) {
+            val thumbnail = it.data!!.extras!!["data"] as Bitmap?
+            binding.orpPhotoListing.setImageBitmap(thumbnail)
+            cameraPhoto = thumbnail
+            galleryPhoto = null
+        }
+    }
+
+    private val photoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.data != null) {
+            val photoURI: Uri? = it.data!!.data
+            binding.orpPhotoListing.setImageURI(photoURI)
+            galleryPhoto = photoURI
+            cameraPhoto = null
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentEditOrphanageBinding.inflate(inflater, container, false)
@@ -51,7 +73,7 @@ class EditOrphanageFragment : Fragment() {
                 binding.orpPhotoListing.setImageBitmap(cameraPhoto)
             }
         }
-        binding.orpPhotoListing.setOnClickListener { showSelection() }
+        binding.orpPhotoListing.setOnClickListener { addPhoto() }
         binding.btnMap.setOnClickListener {
             val args = bundleOf(
                 "location" to vmOrphanage.get(id)!!.location
@@ -67,53 +89,18 @@ class EditOrphanageFragment : Fragment() {
         binding.btnConfirm.setOnClickListener { submit() }
         return binding.root
     }
-    private fun showSelection() {
-        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
-        AlertDialog.Builder(requireContext())
-            .setTitle("Change profile photo")
-            //.setIcon(R.drawable.ic_select_photo)
-            .setSingleChoiceItems(items, 3) { d, n ->
-                if (n == 0) {
-                    pickImage(n)
-                    d?.dismiss()
-                } else if(n == 1){
-                    pickImage(n)
-                    d?.dismiss()
-                }else{
-                    d?.dismiss()
-                }
-            }
-            .setNegativeButton("Cancel", null).show()    }
 
-    private fun pickImage(n: Int) {
-        if(n == 0){
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, CAMERA)
-        }else{
-            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
-            galleryIntent.type = "image/*"
-            startActivityForResult(galleryIntent, GALLERY)
+    private fun addPhoto() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
-
-    }
-
-    @Override
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                val photoURI: Uri? = data.data
-                binding.orpPhotoListing.setImageURI(photoURI)
-                galleryPhoto = photoURI
-                cameraPhoto = null
-            }
-        } else if (requestCode == CAMERA) {
-            if(resultCode != Activity.RESULT_CANCELED){
-                val thumbnail = data!!.extras!!["data"] as Bitmap?
-                binding.orpPhotoListing.setImageBitmap(thumbnail)
-                cameraPhoto = thumbnail
-                galleryPhoto = null
-            }
+        else {
+            showPhotoSelection(getString(R.string.uploadToGallery),
+                { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
+                    val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
+                    photoIntent.type = "image/*"
+                    photoLauncher.launch(photoIntent)})
         }
     }
 

@@ -1,9 +1,11 @@
 package my.com.hoperise.ui
 
-import android.app.Activity
+import android.Manifest
+import android.app.Activity.RESULT_CANCELED
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -13,18 +15,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
-import my.com.hoperise.data.CAMERA
-import my.com.hoperise.data.GALLERY
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.User
 import my.com.hoperise.databinding.FragmentManageEmployeeBinding
-import my.com.hoperise.util.cropToBlob
-import my.com.hoperise.util.errorDialog
-import my.com.hoperise.util.toBitmap
+import my.com.hoperise.util.*
 
 class ManageEmployeeFragment : Fragment() {
     private lateinit var binding: FragmentManageEmployeeBinding
@@ -33,6 +33,25 @@ class ManageEmployeeFragment : Fragment() {
 
     private val id by lazy { requireArguments().getString("id") ?: "" }
 
+    private val requestCameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) addPhoto() else snackbar(getString(R.string.featureCameraUnavailable))
+    }
+
+    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode != RESULT_CANCELED) {
+            val thumbnail = it.data!!.extras!!["data"] as Bitmap?
+            binding.imgEmployeePhoto.setImageBitmap(thumbnail)
+        }
+    }
+
+    private val photoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.data != null) {
+            // do what you want for photoGallery input
+            val photoURI: Uri? = it.data!!.data
+            binding.imgEmployeePhoto.setImageURI(photoURI)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentManageEmployeeBinding.inflate(inflater, container, false)
 
@@ -40,40 +59,23 @@ class ManageEmployeeFragment : Fragment() {
         val currentStatus = getStatus()
         binding.btnUpdateEmployee.setOnClickListener { updateEmployee() }
         binding.btnReset.setOnClickListener { reset() }
-        binding.btnPickImage.setOnClickListener{ showSelection() }
+        binding.btnPickImage.setOnClickListener{ addPhoto() }
         binding.btnDeactivate.setOnClickListener { deactivate(currentStatus) }
 
         return binding.root
     }
 
-    private fun showSelection() {
-        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
-        AlertDialog.Builder(requireContext())
-            .setTitle("Change profile photo")
-            .setIcon(R.drawable.ic_select_photo)
-            .setSingleChoiceItems(items, 3, object : DialogInterface.OnClickListener {
-                override fun onClick(d: DialogInterface?, n: Int) {
-                    if(n == 0){
-                        pickImage(n)
-                        d?.dismiss()
-                    }
-                    else{
-                        pickImage(n)
-                        d?.dismiss()
-                    }
-                }
-            })
-            .setNegativeButton("Cancel", null).show()
-    }
-
-    private fun pickImage(n: Int) {
-        if(n == 0){
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, CAMERA)
-        }else{
-            val galleryIntent =  Intent(Intent.ACTION_GET_CONTENT)
-            galleryIntent.type = "image/*"
-            startActivityForResult(galleryIntent, GALLERY)
+    private fun addPhoto() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+        else {
+            showPhotoSelection(getString(R.string.uploadToGallery),
+                { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
+                    val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
+                    photoIntent.type = "image/*"
+                    photoLauncher.launch(photoIntent)})
         }
     }
 
@@ -182,22 +184,5 @@ class ManageEmployeeFragment : Fragment() {
 
     private fun toast(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
-    }
-
-    @Override
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                val photoURI: Uri? = data.data
-                binding.imgEmployeePhoto.setImageURI(photoURI)
-            }
-        }
-        else if (requestCode == CAMERA) {
-            if(resultCode != Activity.RESULT_CANCELED){
-                val thumbnail = data!!.extras!!["data"] as Bitmap?
-                binding.imgEmployeePhoto.setImageBitmap(thumbnail)
-            }
-        }
     }
 }

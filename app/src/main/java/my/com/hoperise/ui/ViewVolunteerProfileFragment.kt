@@ -1,14 +1,13 @@
 package my.com.hoperise.ui
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -37,9 +36,10 @@ class ViewVolunteerProfileFragment : Fragment() {
 
     private var application = VolunteerApplication()
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewVolunteerProfileBinding.inflate(inflater, container, false)
-        requireActivity().title = "Volunteer Profile"
+        requireActivity().title = getString(R.string.volunteerProfile)
 
         loadProfileData()
         binding.btnEditProfile.setOnClickListener {
@@ -99,18 +99,15 @@ class ViewVolunteerProfileFragment : Fragment() {
 
     private fun logout(){
         AlertDialog.Builder(requireContext())
-            .setTitle("Logout")
-            .setMessage("Are you sure want to log out?" )
+            .setTitle(getString(R.string.logout))
+            .setMessage(getString(R.string.confirmLogOut))
             .setIcon(R.drawable.ic_leave_confirm_dialog)
-            .setPositiveButton("Logout", object :
-                DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                    loginVm.logout(requireContext())
-                    val intent = Intent(requireContext(), LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
-            })
-            .setNegativeButton("Stay", null).show()
+            .setPositiveButton(getString(R.string.logout)) { _, _ ->
+                loginVm.logout(requireContext())
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+            .setNegativeButton(getString(R.string.stay), null).show()
     }
 }

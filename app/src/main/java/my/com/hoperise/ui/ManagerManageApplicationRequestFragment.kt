@@ -13,7 +13,6 @@ import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentManagerManageApplicationRequestBinding
 import my.com.hoperise.util.toBitmap
 import java.text.SimpleDateFormat
-import java.util.*
 
 class ManagerManageApplicationRequestFragment : Fragment() {
     private lateinit var binding: FragmentManagerManageApplicationRequestBinding

@@ -12,6 +12,7 @@
     <string name="add">Add</string>
     <string name="add_new_employee">add_new_employee</string>
     <string name="addEventFor">Add Event for %s</string>
+    <string name="addOrphanage">Add Orphanage</string>
     <string name="all">All</string>
     <string name="already_have_an_account_n_log_in">Already have an account?\n Log In</string>
     <string name="application_submitted_date">Application submitted date:</string>
@@ -35,6 +36,7 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="confirmDeletePhoto">Are you sure to delete this photo?</string>
+    <string name="confirmLogOut">Are you sure want to log out?</string>
     <string name="convertFailed">Convert Failed!</string>
     <string name="current">Current</string>
     <string name="current_password">Current Password</string>
@@ -51,16 +53,20 @@
     <string name="dismiss">Dismiss</string>
     <string name="don_t_have_an_account_nsign_up_now">Don\'t have an account?\nSign up Now!</string>
     <string name="edit">Edit</string>
+    <string name="editVolProfile">Update Volunteer Profile</string>
     <string name="email">Email</string>
     <string name="email_">Email:</string>
+    <string name="emailExist">Email exist! Try another one!</string>
     <string name="employee">Employee</string>
     <string name="employee_management">Employee Management</string>
     <string name="enter_message">Enter Message</string>
+    <string name="enterValidEmail">Please enter new valid email!</string>
     <string name="error">Error</string>
     <string name="event">Event</string>
     <string name="event_date_u0026_time"><![CDATA[Event Date & Time:]]></string>
     <string name="event_history">Event History</string>
     <string name="event_id">Event ID:</string>
+    <string name="event_maintenance">Event Maintenance</string>
     <string name="event_name">Event Name:</string>
     <string name="event_near_me">Event Near Me</string>
     <string name="eventAddSuccess">Event added successfully</string>
@@ -68,11 +74,13 @@
     <string name="eventDetails">Event Details</string>
     <string name="eventGallery">Event Gallery</string>
     <string name="eventListing">Event Listing</string>
+    <string name="eventNearYou">Event Near You (within 10km)</string>
     <string name="eventSummaryReport">Event Summary</string>
     <string name="eventVolunteerList">Event Volunteer List</string>
     <string name="failSavePhoto">Something goes wrong. Failed to save photo</string>
     <string name="featureCameraUnavailable">This features is unavailable since the camera permission denied</string>
     <string name="featureFileUnavailable">This features is unavailable since the file permission denied</string>
+    <string name="fillAllProfileDetail">Please filled up all your personal details!</string>
     <string name="fillEvery">Please fill in every field!</string>
     <string name="filter">Filter:</string>
     <string name="filter_by">Filter By:</string>
@@ -146,6 +154,7 @@
     <string name="please_wait_patiently">Please wait patiently as the staff will update your status within 2 business days of your submission date!</string>
     <string name="profile">Profile</string>
     <string name="profile_reset_password">Please enter the One Time Password (OTP) that we\'ve sent to your email to confirm your reset password request.</string>
+    <string name="profileUpdated">Profile updated successfully!</string>
     <string name="promptDeletePhotoConfirm">Are you sure to delete all the photos in this event?</string>
     <string name="promptQRScan">Scan the attendance QR code\n</string>
     <string name="promtEventName">Enter event name</string>
@@ -181,12 +190,14 @@
     <string name="selfie_photo_with_ic">Selfie Photo with IC</string>
     <string name="send">SEND</string>
     <string name="send_otp">Send OTP</string>
+    <string name="simpleWarning">In order to change your email, you may need to verify your email account again. Proceed to email verification?\nNote: If you rejected, your new email address will not be updated.</string>
     <string name="somethingWrong">Opps! Something wrong!</string>
     <string name="sort_by">Sort By:</string>
     <string name="staff_profile">Staff Profile</string>
     <string name="status">Status:</string>
     <string name="status_with_dot">Status:</string>
     <string name="statusWithDot">Status:</string>
+    <string name="stay">Stay</string>
     <string name="submission_date">Submission Date:</string>
     <string name="submit">Submit</string>
     <string name="submit_application">Submit Application</string>
@@ -218,6 +229,7 @@
     <string name="volunteer_required">Volunteer Required</string>
     <string name="volunteer_six">volunteer Six</string>
     <string name="volunteer_submit_application_success">Volunteer application submitted successfully</string>
+    <string name="volunteerProfile">Volunteer Profile</string>
     <string name="waitMoment">Please wait a moment ...</string>
     <string name="warning">Warning!</string>
     <string name="welcome_back_to_hoeprise">WELCOME BACK TO HOEPRISE!</string>
@@ -232,6 +244,4 @@
     <string name="your_application_status_is_approved">Your application status is Approved!</string>
     <string name="your_application_status_is_pending">Your application status is Pending!</string>
     <string name="your_application_status_is_rejected">Your application status is Rejected!</string>
-    <string name="event_maintenance">Event Maintenance</string>
-
 </resources>

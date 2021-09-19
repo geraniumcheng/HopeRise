@@ -159,7 +159,7 @@ class ParticipationViewModel : ViewModel() {
     }
 
     suspend fun get(eventId: String, userID: String): Volunteer? {
-        if (!isLoaded) { delay(1000) }
+        if (!isLoaded) { delay(2000) }
 
         return volunteers.find { v -> v.eventID == eventId && v.userID == userID }
     }
@@ -249,15 +249,20 @@ class ParticipationViewModel : ViewModel() {
 
         var status = "" // it is not redundant in case there are no value get
 
-        var volunteerApplications  = VOLUNTEERAPPLICATION.get().await().toObjects<VolunteerApplication>()
+        try {
+            var volunteerApplications  = VOLUNTEERAPPLICATION.get().await().toObjects<VolunteerApplication>()
 
-        for (va in volunteerApplications) {
-            volunteerApplications = volunteerApplications
-                .filter { va-> va.userID == currentUser!!.id }
-                .sortedBy { va -> va.date }
+            for (va in volunteerApplications) {
+                volunteerApplications = volunteerApplications
+                    .filter { va-> va.userID == currentUser!!.id }
+                    .sortedBy { va -> va.date }
+            }
+
+            status = volunteerApplications.last().status
         }
-
-        status = volunteerApplications.last().status
+        catch (e: Exception) {
+            checkVolunteerStatus()
+        }
 
         return status
     }

@@ -62,15 +62,19 @@ class EventGalleryFragment : Fragment() {
         }
     }
 
-    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-        if (isGranted) addPhoto() else snackbar(getString(R.string.featureFileUnavailable))
-    }
-
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode != RESULT_CANCELED) {
             val thumbnail = it.data!!.extras!!["data"] as Bitmap
             uploadPhoto(blob = thumbnail.toBlob())
         }
+    }
+
+    private val requestFilePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) addPhoto() else snackbar(getString(R.string.featureFileUnavailable))
+    }
+
+    private val requestCameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) addPhoto() else snackbar(getString(R.string.featureCameraUnavailable))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
@@ -125,18 +129,24 @@ class EventGalleryFragment : Fragment() {
     }
 
     private fun addPhoto() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED) {
-            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
-        else {
-            showPhotoSelection(getString(R.string.uploadToGallery),
-                { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
-                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                    intent.type = "image/*"
-                    galleryLauncher.launch(intent)
-                })
+        when {
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED -> {
+                requestFilePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED -> {
+                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+            else -> {
+                showPhotoSelection(getString(R.string.uploadToGallery),
+                    { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
+                        val intent = Intent(Intent.ACTION_GET_CONTENT)
+                        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                        intent.type = "image/*"
+                        galleryLauncher.launch(intent)
+                    })
+            }
         }
     }
 

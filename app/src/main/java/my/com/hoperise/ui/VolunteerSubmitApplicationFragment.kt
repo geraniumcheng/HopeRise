@@ -1,18 +1,21 @@
 package my.com.hoperise.ui
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -22,6 +25,7 @@ import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentVolunteerSubmitApplicationBinding
 import my.com.hoperise.util.cropToBlob
 import my.com.hoperise.util.errorDialog
+import my.com.hoperise.util.snackbar
 import java.util.*
 
 class VolunteerSubmitApplicationFragment : Fragment() {
@@ -31,7 +35,12 @@ class VolunteerSubmitApplicationFragment : Fragment() {
     private val status by lazy { requireArguments().getString("status") ?: "" }
     private val id by lazy { requireArguments().getString("id") ?: "" }
     private var imageFor : String = ""
+    private val GALLERY = 1
+    private val CAMERA  = 2
 
+    private val requestCameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (!isGranted) snackbar(getString(R.string.featureCameraUnavailable))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVolunteerSubmitApplicationBinding.inflate(inflater, container, false)
@@ -48,23 +57,31 @@ class VolunteerSubmitApplicationFragment : Fragment() {
     }
 
     private fun showSelection(field: String) {
-        imageFor = field
-        var items: Array<CharSequence> = arrayOf<CharSequence>("Take Photo", "Chose from photos")
-        AlertDialog.Builder(requireContext())
-            .setTitle("Change profile photo")
-            //.setIcon(R.drawable.ic_select_photo)
-            .setSingleChoiceItems(items, 3) { d, n ->
-                if (n == 0) {
-                    pickImage(n)
-                    d?.dismiss()
-                } else if(n == 1){
-                    pickImage(n)
-                    d?.dismiss()
-                }else{
-                    d?.dismiss()
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+        else {
+            imageFor = field
+            var items: Array<CharSequence> =
+                arrayOf<CharSequence>("Take Photo", "Chose from photos")
+            AlertDialog.Builder(requireContext())
+                .setTitle("Change profile photo")
+                //.setIcon(R.drawable.ic_select_photo)
+                .setSingleChoiceItems(items, 3) { d, n ->
+                    if (n == 0) {
+                        pickImage(n)
+                        d?.dismiss()
+                    } else if (n == 1) {
+                        pickImage(n)
+                        d?.dismiss()
+                    } else {
+                        d?.dismiss()
+                    }
                 }
-            }
-            .setNegativeButton("Cancel", null).show()    }
+                .setNegativeButton("Cancel", null).show()
+        }
+    }
 
     private fun pickImage(n: Int) {
         if(n == 0){

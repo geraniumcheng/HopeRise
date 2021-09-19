@@ -23,9 +23,6 @@ val USER = Firebase.firestore.collection("user")
 val EMPLOYEE = Firebase.firestore.collection("user").whereIn("role", listOf("Manager","Employee"))
 var currentUser: User? = null
 
-const val GALLERY = 1
-const val CAMERA = 2
-
 var reason: String = ""
 var returnFragment: Boolean = false
 var returnVAID: String = ""
@@ -47,8 +44,6 @@ data class Orphanage(
     var longitude: Double = 0.0,
     var photo: Blob?      = Blob.fromBytes(ByteArray(0))
 ){
-    @get:Exclude
-    var geohash: String  = ""
     @get:Exclude
     var distance: Double = 0.0
 }
@@ -146,8 +141,8 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> ORPHANAGE.document(doc.id).delete() }
 
         val orphanages = listOf(
-            Orphanage("OR0001", "Chew2 Orphanage", "9, Jalan Melati Utama 2, Melati Utama, 53100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, null),
-            Orphanage("OR0002", "ABC Orphanage", "134, Jalan Development, Taman Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, null),
+            Orphanage("OR0001", "Chew2 Orphanage", "9, Jalan Melati Utama 2, Melati Utama, 53100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage1).toBlob()),
+            Orphanage("OR0002", "ABC Orphanage", "134, Jalan Development, Taman Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage2).toBlob()),
         )
 
         for (o in orphanages)
@@ -228,7 +223,7 @@ fun RESTORE_DATA(ctx: Context) {
             VolunteerApplication("VA0004", null, null, "Approved", "", Date(), "volunteer7"),
             VolunteerApplication("VA0005", null, null, "Approved", "", Date(), "volunteer8"),
         )
-//        "December 10, 1815"
+
         for (va in volunteerApplications)
             VOLUNTEERAPPLICATION.document(va.id).set(va)
     }

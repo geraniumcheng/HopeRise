@@ -7,18 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import my.com.hoperise.R
-import my.com.hoperise.data.Event
 import my.com.hoperise.data.User
 import my.com.hoperise.data.VolunteerViewModel
 import my.com.hoperise.databinding.FragmentVolunteerDetailsBinding
-import my.com.hoperise.databinding.FragmentVolunteerListingBinding
 import my.com.hoperise.util.toBitmap
-import java.text.SimpleDateFormat
-import java.util.*
-
 class VolunteerDetailsFragment : Fragment() {
-
 
     private lateinit var binding: FragmentVolunteerDetailsBinding
     private val nav by lazy { findNavController() }

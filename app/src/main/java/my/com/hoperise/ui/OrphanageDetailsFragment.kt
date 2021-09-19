@@ -10,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.firestore.ktx.toObjects
 import my.com.hoperise.R
 import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentOrphanageDetailsBinding

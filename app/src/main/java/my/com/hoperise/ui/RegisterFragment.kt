@@ -1,7 +1,6 @@
 package my.com.hoperise.ui
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -41,12 +40,7 @@ class RegisterFragment : Fragment() {
                     .setTitle("Hmmm")
                     .setMessage("Just one step away to register with Hope Rise! Are you sure you want to leave now?" )
                     .setIcon(R.drawable.ic_leave_confirm_dialog)
-                    .setPositiveButton(android.R.string.yes, object :
-                        DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                            nav.navigate(R.id.loginFragment)
-                        }
-                    })
+                    .setPositiveButton(android.R.string.yes) { _, _ -> nav.navigate(R.id.loginFragment) }
                     .setNegativeButton(android.R.string.no, null).show()
             }
         })
@@ -75,12 +69,7 @@ class RegisterFragment : Fragment() {
                 .setTitle("Hmmm")
                 .setMessage("Just one step away to register with Hope Rise! Are you sure you want to leave now?" )
                 .setIcon(R.drawable.ic_leave_confirm_dialog)
-                .setPositiveButton("Yes", object :
-                    DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, whichButton: Int) {
-                        nav.navigate(R.id.loginFragment)
-                    }
-                })
+                .setPositiveButton("Yes") { dialog, whichButton -> nav.navigate(R.id.loginFragment) }
                 .setNegativeButton("No", null).show()
         }
     }
