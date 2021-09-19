@@ -49,11 +49,11 @@ class ScanAttendanceFragment : Fragment() {
                         failedGetRecord()
                     }
                     volunteer!!.attendance -> {
-                        binding.btnConfirm.isEnabled     = false
+                        binding.btnConfirm.isEnabled = false
                         load(volunteer!!)
                     }
                     else -> {
-                        binding.btnConfirm.isEnabled     = true
+                        binding.btnConfirm.isEnabled = true
                         load(volunteer!!)
                     }
                 }
@@ -80,7 +80,7 @@ class ScanAttendanceFragment : Fragment() {
 
         reset()
 
-        scanQRCode()
+        askPermission()
 
         binding.btnConfirm.setOnClickListener   { takeAttendance() }
         binding.btnScanAgain.setOnClickListener { scanQRCode() }
@@ -94,20 +94,23 @@ class ScanAttendanceFragment : Fragment() {
         binding.txtAttendanceStatus.text = ""
     }
 
-    private fun scanQRCode() {
+    private fun askPermission() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
-        else {
-            val intent = IntentIntegrator.forSupportFragment(this)
-                .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-                .setPrompt(getString(R.string.promptQRScan))
-                .setBeepEnabled(true)
-                .createScanIntent()
+        else
+            scanQRCode()
+    }
 
-            result.launch(intent)
-        }
+    private fun scanQRCode() {
+        val intent = IntentIntegrator.forSupportFragment(this)
+            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            .setPrompt(getString(R.string.promptQRScan))
+            .setBeepEnabled(true)
+            .createScanIntent()
+
+        result.launch(intent)
     }
 
     private fun failedGetRecord() {
