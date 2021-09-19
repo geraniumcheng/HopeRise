@@ -71,7 +71,7 @@ class ManageEmployeeFragment : Fragment() {
             requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
         else {
-            showPhotoSelection(getString(R.string.uploadToGallery),
+            showPhotoSelection(getString(R.string.changeProfilePhoto),
                 { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
                     val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
                     photoIntent.type = "image/*"
