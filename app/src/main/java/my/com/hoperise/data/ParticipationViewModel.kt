@@ -14,8 +14,8 @@ import java.util.*
 
 class ParticipationViewModel : ViewModel() {
 
-    private var volunteerListener: ListenerRegistration?                = null
-    private var eventListener: ListenerRegistration?                    = null
+    private var volunteerListener: ListenerRegistration? = null
+    private var eventListener: ListenerRegistration?     = null
 
     private var volunteers = listOf<Volunteer>()
     private val liveEvent  = MutableLiveData<List<Event>>()
@@ -159,7 +159,7 @@ class ParticipationViewModel : ViewModel() {
     }
 
     suspend fun get(eventId: String, userID: String): Volunteer? {
-        if (!isLoaded) { delay(2000) }
+        if (!isLoaded) { delay(1500) }
 
         return volunteers.find { v -> v.eventID == eventId && v.userID == userID }
     }
@@ -215,7 +215,7 @@ class ParticipationViewModel : ViewModel() {
      * Refer to https://stackoverflow.com/questions/7128704/how-would-i-go-about-finding-the-closest-date-to-a-specified-date-java
      */
     suspend fun getNearest(): Volunteer? {
-        if (!isLoaded) { delay(2000) }
+        if (!isLoaded) { delay(1500) }
 
         try {
             val list = volunteers

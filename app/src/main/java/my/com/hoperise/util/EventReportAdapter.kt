@@ -43,7 +43,7 @@ class EventReportAdapter : ListAdapter<Event, EventReportAdapter.ViewHolder>(Eve
         holder.eventCategory.text   = eventItem.category
         holder.eventDateTime.text   = eventItem.date + " " + eventItem.time
         holder.eventName.text       = eventItem.name
-        holder.volParticipated.text = eventItem.volunteerCount.toString()
-        holder.volAttended.text     = eventItem.participatedCount.toString()
+        holder.volParticipated.text = eventItem.participatedCount.toString()
+        holder.volAttended.text     = eventItem.attendedCount.toString()
     }
 }

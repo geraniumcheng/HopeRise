@@ -1,12 +1,16 @@
 package my.com.hoperise.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -28,6 +32,10 @@ class PhotoDetailsFragment : Fragment() {
     private val nav by lazy { findNavController() }
     private val vmGallery: EventGalleyViewModel by activityViewModels()
     private val id by lazy { requireArguments().getString("id") ?: "" }
+
+    private val requestFilePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) saveToPhone(vmGallery.get(id)!!) else snackbar(getString(R.string.featureFileUnavailable))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         requireActivity().title = getString(R.string.photoDetails)
@@ -64,18 +72,26 @@ class PhotoDetailsFragment : Fragment() {
     }
 
     private fun saveToPhone(p: Photo) {
-        try {
-            val uri = MediaStore.Images.Media.insertImage(
-                requireActivity().contentResolver,
-                p.photo.toBitmap(),
-                p.id,
-                getString(R.string.photo_desc, p.id, p.eventID)
-            )
-            snackbar(getString(R.string.savedImage, uri))
-        }
-        catch (e: Exception) {
-            e.printStackTrace()
-            errorDialog(getString(R.string.failSavePhoto))
+        when {
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED -> {
+                requestFilePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+            else -> {
+                try {
+                    val uri = MediaStore.Images.Media.insertImage(
+                        requireActivity().contentResolver,
+                        p.photo.toBitmap(),
+                        p.id,
+                        getString(R.string.photo_desc, p.id, p.eventID)
+                    )
+                    snackbar(getString(R.string.savedImage, uri))
+                }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                    errorDialog(getString(R.string.failSavePhoto))
+                }
+            }
         }
     }
 }

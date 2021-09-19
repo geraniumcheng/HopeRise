@@ -33,6 +33,8 @@ class EventDetailsFragment : Fragment() {
     private var orphanageID = ""
     private var status      = ""
     private var role        = ""
+    private var volCount = 0
+    private var volRequired = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         requireActivity().title = getString(R.string.eventDetails)
@@ -142,7 +144,8 @@ class EventDetailsFragment : Fragment() {
         binding.lblEventVolunteerNeed.text = e.volunteerRequired.toString()
         binding.lblEventVolunteerCount.text = e.volunteerCount.toString()
 //        binding.lblEventStatus.text = e.status
-
+        volCount = e.volunteerCount
+        volRequired = e.volunteerRequired
         val eventDate    = parseEventDateTime(e)
         val eventEndDate = getEventEndTime(eventDate)
         if(eventEndDate.after(Date()) || eventDate.after(Date())){
@@ -180,8 +183,9 @@ class EventDetailsFragment : Fragment() {
             Volunteer(
                 userID  = currentUser!!.id,
                 eventID = id,
-        ))
+            ))
 
+        EVENT.document(id).update("volunteerCount", (volCount+1))
         snackbar(getString(R.string.msgJoinedSuccess, id))
 
         nav.popBackStack(R.id.eventDetailsFragment, true)

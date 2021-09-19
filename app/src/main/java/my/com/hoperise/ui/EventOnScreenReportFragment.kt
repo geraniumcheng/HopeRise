@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.whiteelephant.monthpicker.MonthPickerDialog
 import my.com.hoperise.R
 import my.com.hoperise.data.EventReportViewModel
-import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentEventOnScreenReportBinding
 import my.com.hoperise.util.EventReportAdapter
-import my.com.hoperise.util.infoDialog
 import java.util.*
 
 class EventOnScreenReportFragment : Fragment() {
@@ -31,7 +29,7 @@ class EventOnScreenReportFragment : Fragment() {
 
         binding = FragmentEventOnScreenReportBinding.inflate(inflater, container, false)
 
-        vmReport.filterCategory(getString(R.string.all))
+        vmReport.getRecord()
 
         binding.spReportCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

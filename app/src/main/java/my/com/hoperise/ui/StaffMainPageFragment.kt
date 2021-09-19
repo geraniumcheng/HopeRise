@@ -63,13 +63,15 @@ class StaffMainPageFragment : Fragment() {
     }
 
     private fun accessToReport() {
-        // if not active manager has not right to view report
-        if (currentUser!!.role != getString(R.string.manager) || currentUser!!.status != getString(R.string.active)) {
-            warningDialog(getString(R.string.reportAccessWarning)) {
-                nav.navigateUp()
-            }
+        val userId = (activity as StaffActivity).loggedInId
+
+        lifecycleScope.launch {
+            val emp = vm.getLogIn(userId)
+
+            if (emp!!.role == getString(R.string.employee))
+                infoDialog(getString(R.string.reportAccessWarning))
+            else
+                nav.navigate(R.id.eventOnScreenReportFragment)
         }
-        else
-            nav.navigate(R.id.eventOnScreenReportFragment)
     }
 }

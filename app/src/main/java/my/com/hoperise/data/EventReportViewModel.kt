@@ -24,29 +24,35 @@ class EventReportViewModel : ViewModel() {
     val formatter    = SimpleDateFormat("MM/yyyy")
     var dateSelected = MutableLiveData(formatter.format(Date()))
 
-    init {
+    init { getRecord() }
+
+    fun getRecord() {
         viewModelScope.launch {
             events     = EVENT.get().await().toObjects()
             volunteers = VOLUNTEER.get().await().toObjects()
 
             for (e in events) {
+                e.participatedCount = 0
+                e.attendedCount = 0
+
                 for (v in volunteers) {
-                    val event = events.find { ev -> ev.id == v.eventID }!!
-
-                    v.event = event
-                    v.event.status = checkStatus(v)
-
-                    if (v.attendance)
+                    if (e.id == v.eventID) {
                         e.participatedCount++
+
+                        if (v.attendance)
+                            e.attendedCount++
+                    }
                 }
+                e.status = checkStatus(e)
             }
 
             updateResult()
+            filterCategory("All")
         }
     }
 
-    private fun checkStatus(v: Volunteer): String {
-        val eventDate    = parseEventDateTime(v.event)
+    private fun checkStatus(e: Event): String {
+        val eventDate    = parseEventDateTime(e)
         val eventEndDate = getEventEndTime(eventDate)
 
         return if (eventEndDate.before(Date())) "Completed" else "Current"

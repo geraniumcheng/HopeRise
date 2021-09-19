@@ -66,6 +66,7 @@ data class Event(
     var orphanage: Orphanage = Orphanage()
     @get:Exclude
     var participatedCount: Int = 0
+    var attendedCount: Int = 0
 }
 
 data class VolunteerApplication(
@@ -145,7 +146,7 @@ fun RESTORE_DATA(ctx: Context) {
             Orphanage("OR0001", "Setapak Orphanage", "TARUC Hall, Tunku Abdul Rahman University College, 53100 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia", 3.2162158013694264, 101.7289587110281, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage1).toBlob()),
             Orphanage("OR0002", "Batu Caves Orphanage", "No. 15, Jalan Perindustrian Batu Caves 1/6, Taman Perindustrian, Kawasan industrial Batu Caves, 68100 Batu Caves, Selangor, Malaysia", 3.2319019737626293, 101.68652147054672, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage2).toBlob()),
             Orphanage("OR0003", "Kuala Lumpur Orphanage", "8, Jalan Tun Sambanthan, Kampung Attap, 50470 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.1361878200426117, 101.69248703867197, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage3).toBlob()),
-            Orphanage("OR0004", "Batu Caves Orphanage", "LOT 4523, JALAN CHERAS, Taman Sri Bahtera, 56100 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia", 3.1037339929231305, 101.73433016985655, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage4).toBlob()),
+            Orphanage("OR0004", "Cheras Orphanage", "LOT 4523, JALAN CHERAS, Taman Sri Bahtera, 56100 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia", 3.1037339929231305, 101.73433016985655, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage4).toBlob()),
         )
 
         for (o in orphanages)
@@ -201,6 +202,7 @@ fun RESTORE_DATA(ctx: Context) {
             User("teohshuzi", "teohs-am18@student.tarc.edu.my", "Teoh Shuzi", "Abcd123!", "Manager", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff3).toBlob(), null, null, Date()),
             User("employeeno1", "employee1@gmail.com", "Employee One", "Abcd123!", "Employee", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff4).toBlob(), null, null, Date()),
             User("employeeno2", "employee2@gmail.com", "Employee Two", "Abcd123!", "Employee", "Deactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff5).toBlob(), null, null, Date()),
+            User("employeeno3", "employee3@gmail.com", "Employee Three", "Abcd123!", "Employee", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_staff5).toBlob(), null, null, Date()),
             User("volunteer1", "shuzi1717@gmail.com", "Volunteer One", "Abcd123!", "Volunteer", "Unactivated", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user1).toBlob(), null, null, Date()),
             User("volunteer2", "volunteerno2@gmail.com", "Volunteer Two", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user2).toBlob(), null, null, Date()),
             User("volunteer3", "volunteerno3@gmail.com", "Volunteer Three", "Abcd123!", "Volunteer", "Active", 3, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_user3).toBlob(), null, null, Date()),
@@ -234,11 +236,11 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> VOLUNTEER.document(doc.id).delete() }
 
         val volunteers = listOf(
-            Volunteer("Mig57S0VvyLQPXfPLeB", false,"volunteer6","EV0001"), //Missed
+            Volunteer("Mig57S0VvyLQPXfPLeB", true,"volunteer6","EV0001"),  //Participated
             Volunteer("MikgeR-HNTMZPoIhwBI", false,"volunteer7","EV0001"), //Missed
             Volunteer("Mig-xXyuBwMzQ5vTGNn", false,"volunteer6","EV0002"), //Missed
             Volunteer("Mig4f01TKx1asdVJLkY", false,"volunteer8","EV0002"), //Missed
-            Volunteer("Mikg0_7Hsi8lcutLy6X", true, "volunteer6","EV0005"), //Participated
+            Volunteer("Mikg0_7Hsi8lcutLy6X", true, "volunteer6","EV0004"), //Participated
             Volunteer("MikgHchHIXPfaSzZ01q", false,"volunteer6","EV0006"), //Current
             Volunteer("MilGgF12ZTb-eM9UkHT", false,"volunteer6","EV0007"), //Current
             Volunteer("MilHzPtNNz003TuOcOt", false,"volunteer6","EV0008"), //Current
