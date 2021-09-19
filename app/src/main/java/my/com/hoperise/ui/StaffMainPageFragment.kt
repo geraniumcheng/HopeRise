@@ -14,8 +14,11 @@ import my.com.hoperise.R
 import my.com.hoperise.StaffActivity
 import my.com.hoperise.data.UserViewModel
 import my.com.hoperise.data.RESTORE_DATA
+import my.com.hoperise.data.currentUser
 import my.com.hoperise.databinding.FragmentStaffMainPageBinding
+import my.com.hoperise.util.infoDialog
 import my.com.hoperise.util.snackbar
+import my.com.hoperise.util.warningDialog
 
 class StaffMainPageFragment : Fragment() {
     private lateinit var binding: FragmentStaffMainPageBinding
@@ -28,7 +31,7 @@ class StaffMainPageFragment : Fragment() {
         binding.cardScanAttendance.setOnClickListener { nav.navigate(R.id.scanAttendanceFragment) }
         binding.cardEmployee.setOnClickListener { checkEmployeeAccessibility() }
         binding.cardMaintenance.setOnClickListener { nav.navigate(R.id.eventListingFragment) }
-        binding.cardOnScreen.setOnClickListener { nav.navigate(R.id.eventOnScreenReportFragment) }
+        binding.cardOnScreen.setOnClickListener { accessToReport() }
         binding.cardOrphanage.setOnClickListener { nav.navigate(R.id.orphanageListingFragment) }
         binding.cardStaff.setOnClickListener { nav.navigate(R.id.viewStaffProfileFragment) }
         binding.cardVolunteerA.setOnClickListener { nav.navigate(R.id.managerVolunteerApplicationListingFragment) }
@@ -57,5 +60,16 @@ class StaffMainPageFragment : Fragment() {
             else
                 nav.navigate(R.id.employeeListingFragment)
         }
+    }
+
+    private fun accessToReport() {
+        // if not active manager has not right to view report
+        if (currentUser!!.role != getString(R.string.manager) || currentUser!!.status != getString(R.string.active)) {
+            warningDialog(getString(R.string.reportAccessWarning)) {
+                nav.navigateUp()
+            }
+        }
+        else
+            nav.navigate(R.id.eventOnScreenReportFragment)
     }
 }

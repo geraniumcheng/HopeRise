@@ -31,36 +31,28 @@ class EventOnScreenReportFragment : Fragment() {
 
         binding = FragmentEventOnScreenReportBinding.inflate(inflater, container, false)
 
-        // if not active manager has not right to view report
-        if (currentUser!!.role != getString(R.string.manager) || currentUser!!.status != getString(R.string.active)) {
-            infoDialog(getString(R.string.reportAccessWarning)) {
-                nav.navigateUp()
+        vmReport.filterCategory(getString(R.string.all))
+
+        binding.spReportCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                vmReport.filterCategory(binding.spReportCategory.selectedItem.toString())
             }
+            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
         }
-        else {
-            vmReport.filterCategory(getString(R.string.all))
 
-            binding.spReportCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    vmReport.filterCategory(binding.spReportCategory.selectedItem.toString())
-                }
-                override fun onNothingSelected(p0: AdapterView<*>?) = Unit
-            }
+        vmReport.dateSelected.observe(viewLifecycleOwner) { binding.btnMonth.text = it.toString() }
 
-            vmReport.dateSelected.observe(viewLifecycleOwner) { binding.btnMonth.text = it.toString() }
+        val adapter = EventReportAdapter()
 
-            val adapter = EventReportAdapter()
+        binding.rvReport.adapter = adapter
+        binding.rvReport.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
-            binding.rvReport.adapter = adapter
-            binding.rvReport.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
-            vmReport.getEvent().observe(viewLifecycleOwner) { events ->
-                adapter.submitList(events)
-                binding.lblRecord.text = getString(R.string.records, events.size)
-            }
-
-            binding.btnMonth.setOnClickListener { openDatePicker() }
+        vmReport.getEvent().observe(viewLifecycleOwner) { events ->
+            adapter.submitList(events)
+            binding.lblRecord.text = getString(R.string.records, events.size)
         }
+
+        binding.btnMonth.setOnClickListener { openDatePicker() }
 
         return binding.root
     }

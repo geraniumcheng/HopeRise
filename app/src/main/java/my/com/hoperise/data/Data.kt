@@ -135,14 +135,17 @@ data class User(
     var registerDate: Date  = Date(),
 )
 
+// if want to restore the original data, need to go to staff main page fragment to make the button visible
 fun RESTORE_DATA(ctx: Context) {
 
     ORPHANAGE.get().addOnSuccessListener { snap ->
         snap.documents.forEach { doc -> ORPHANAGE.document(doc.id).delete() }
 
         val orphanages = listOf(
-            Orphanage("OR0001", "Chew2 Orphanage", "9, Jalan Melati Utama 2, Melati Utama, 53100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage1).toBlob()),
-            Orphanage("OR0002", "ABC Orphanage", "134, Jalan Development, Taman Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.2219526971649777, 101.7286130413413, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage2).toBlob()),
+            Orphanage("OR0001", "Setapak Orphanage", "TARUC Hall, Tunku Abdul Rahman University College, 53100 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia", 3.2162158013694264, 101.7289587110281, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage1).toBlob()),
+            Orphanage("OR0002", "Batu Caves Orphanage", "No. 15, Jalan Perindustrian Batu Caves 1/6, Taman Perindustrian, Kawasan industrial Batu Caves, 68100 Batu Caves, Selangor, Malaysia", 3.2319019737626293, 101.68652147054672, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage2).toBlob()),
+            Orphanage("OR0003", "Kuala Lumpur Orphanage", "8, Jalan Tun Sambanthan, Kampung Attap, 50470 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia", 3.1361878200426117, 101.69248703867197, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage3).toBlob()),
+            Orphanage("OR0004", "Batu Caves Orphanage", "LOT 4523, JALAN CHERAS, Taman Sri Bahtera, 56100 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia", 3.1037339929231305, 101.73433016985655, BitmapFactory.decodeResource(ctx.resources, R.drawable.init_orphanage4).toBlob()),
         )
 
         for (o in orphanages)
@@ -153,20 +156,19 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> EVENT.document(doc.id).delete() }
 
         val events = listOf(
-
             Event("EV0001", "Event 1", "Cleaning", "15-06-2021", "09:30", 50, 2, "Cleaning is the best thing to do", "OR0001"),
             Event("EV0002", "Event 2", "Playing", "30-06-2021", "12:30", 30, 2, "Playing is the best thing to do", "OR0001"),
             Event("EV0003", "Event 3", "Others", "30-07-2021", "10:30", 10, 0, "Let's go sleep", "OR0002"),
             Event("EV0004", "Event 4", "Cleaning", "30-08-2021", "07:30", 10, 0, "Nice Event I like it", "OR0002"),
             Event("EV0005", "Event 5", "Exercise", "20-09-2021", "17:30", 30, 1, "Exercising make us healthy", "OR0001"),
             Event("EV0006", "Event 6", "Playing",  "21-09-2021", "11:00",30, 1, "Let's play together", "OR0001"),
-            Event("EV0007", "Event 7", "Exercise", "30-11-2021", "08:30", 10, 1, "Let's go exercise", "OR0002"),
-            Event("EV0008", "Event 8", "Interaction", "30-12-2021", "12:00", 15, 1, "Talking to your heart", "OR0002"),
+            Event("EV0007", "Event 7", "Exercise", "30-11-2021", "08:30", 10, 1, "Let's go exercise", "OR0003"),
+            Event("EV0008", "Event 8", "Interaction", "30-12-2021", "12:00", 15, 1, "Talking to your heart", "OR0004"),
             Event("EV0009", "Event 9", "Interaction", "30-11-2021", "11:00", 15, 0, "Share you opinion", "OR0001"),
-            Event("EV0010", "Event 10", "Others", "30-11-2021", "07:00", 15, 0, "Let's work together", "OR0001"),
+            Event("EV0010", "Event 10", "Others", "30-11-2021", "07:00", 15, 0, "Let's work together", "OR0003"),
             Event("EV0011", "Event 11", "Playing", "29-11-2021", "07:00", 15, 0, "Board game is the best thing to play", "OR0002"),
             Event("EV0012", "Event 12", "Others", "01-01-2022", "08:00", 15, 0, "New Year celebration", "OR0002"),
-            Event("EV0013", "Event 13", "Cleaning", "02-01-2022", "07:00", 2, 2, "Gotong-royong bersama-sama", "OR0002"),
+            Event("EV0013", "Event 13", "Cleaning", "02-01-2022", "07:00", 2, 2, "Gotong-royong bersama-sama", "OR0004"),
         )
 
         for (e in events)
@@ -217,11 +219,11 @@ fun RESTORE_DATA(ctx: Context) {
         snap.documents.forEach { doc -> VOLUNTEERAPPLICATION.document(doc.id).delete() }
 
         val volunteerApplications = listOf(
-            VolunteerApplication("VA0001", null, null, "Approved", "", Date(), "volunteer6"),
-            VolunteerApplication("VA0002", null, null, "Pending", "",  Date(), "volunteer5"),
-            VolunteerApplication("VA0003", null, null, "Rejected", "IC Photo not clear", Date(), "volunteer4"),
-            VolunteerApplication("VA0004", null, null, "Approved", "", Date(), "volunteer7"),
-            VolunteerApplication("VA0005", null, null, "Approved", "", Date(), "volunteer8"),
+            VolunteerApplication("VA0001", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_front).toBlob(), BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_selfie_photo).toBlob(), "Approved", "", Date(), "volunteer6"),
+            VolunteerApplication("VA0002", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_front).toBlob(), BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_selfie_photo).toBlob(), "Pending", "",  Date(), "volunteer5"),
+            VolunteerApplication("VA0003", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_unclear_front).toBlob(), BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_selfie_photo).toBlob(), "Rejected", "IC Photo not clear", Date(), "volunteer4"),
+            VolunteerApplication("VA0004", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_front).toBlob(), BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_selfie_photo).toBlob(), "Approved", "", Date(), "volunteer7"),
+            VolunteerApplication("VA0005", BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_front).toBlob(), BitmapFactory.decodeResource(ctx.resources, R.drawable.init_ic_selfie_photo).toBlob(), "Approved", "", Date(), "volunteer8"),
         )
 
         for (va in volunteerApplications)
