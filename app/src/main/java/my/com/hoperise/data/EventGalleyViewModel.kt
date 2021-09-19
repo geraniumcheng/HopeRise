@@ -47,7 +47,7 @@ class EventGalleyViewModel : ViewModel() {
     private fun updateResult() {
         var list = photos
 
-        list = list.filter { p -> p.eventID == eventID }.sortedByDescending { p -> p.date }
+        list = list.filter { p -> p.eventID == eventID }.sortedBy { p -> p.date }
 
         livePhotos.value = list
     }

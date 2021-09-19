@@ -245,24 +245,18 @@ class ParticipationViewModel : ViewModel() {
     }
 
     suspend fun checkVolunteerStatus(): String {
-        if (!isLoaded) { delay(2000) }//wait for volunteers fetch all the records }
+        if (!isLoaded) { delay(1500) }//wait for volunteers fetch all the records }
 
         var status = "" // it is not redundant in case there are no value get
 
-        try {
-            var volunteerApplications  = VOLUNTEERAPPLICATION.get().await().toObjects<VolunteerApplication>()
+        var volunteerApplications  = VOLUNTEERAPPLICATION.get().await().toObjects<VolunteerApplication>()
 
-            for (va in volunteerApplications) {
-                volunteerApplications = volunteerApplications
-                    .filter { va-> va.userID == currentUser!!.id }
-                    .sortedBy { va -> va.date }
-            }
+        volunteerApplications = volunteerApplications
+            .filter { va-> va.userID == currentUser!!.id }
+            .sortedBy { va -> va.date }
 
+        if (volunteerApplications.isNotEmpty())
             status = volunteerApplications.last().status
-        }
-        catch (e: Exception) {
-            checkVolunteerStatus()
-        }
 
         return status
     }

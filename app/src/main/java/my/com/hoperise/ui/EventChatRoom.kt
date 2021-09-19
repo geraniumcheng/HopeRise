@@ -28,9 +28,13 @@ class EventChatRoom : Fragment() {
 
         val adapter = EventChatRoomAdapter()
 
-        vmChatRoom.getMessages().observe(viewLifecycleOwner) { adapter.submitList(it) }
-
         binding.rvChatRoom.adapter = adapter
+
+        vmChatRoom.getMessages().observe(viewLifecycleOwner) { messages ->
+            adapter.submitList(messages)
+            if (messages.isNotEmpty())
+                binding.rvChatRoom.smoothScrollToPosition(messages.size - 1)
+        }
 
         binding.edtMessage.setText(vmChatRoom.userContent.value.toString())
 

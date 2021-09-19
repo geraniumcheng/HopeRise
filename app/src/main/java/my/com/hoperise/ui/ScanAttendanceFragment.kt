@@ -134,5 +134,6 @@ class ScanAttendanceFragment : Fragment() {
         vmParticipation.update(volunteer!!)
         snackbar(getString(R.string.successTakeAttendance))
         binding.btnConfirm.isEnabled = false
+        binding.txtAttendanceStatus.text = getString(R.string.toTrue)
     }
 }
