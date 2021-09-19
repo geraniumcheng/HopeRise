@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -122,6 +123,16 @@ class EditEventFragment : Fragment() {
         return "$newHour:$newMin"
     }
     private fun submit(){
+        AlertDialog.Builder(requireContext())
+            .setTitle("Edit Event")
+            .setMessage("Confirm edit event?")
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun confirm() {
         if(binding.editVolunteerNo.text.toString() == ""){
             errorDialog(getString(R.string.fillEvery))
             return

@@ -53,16 +53,19 @@ class EventNearMeFragment : Fragment() {
         binding.txt15.setOnClickListener { doCallback(15) }
         binding.btnSearchArea.setOnClickListener {
              area = binding.edtArea.text.toString()
-            var addressList: List<Address>? = null
-            val geoCoder = Geocoder(context)
-            addressList = geoCoder.getFromLocationName(area, 1)
-
-            if(addressList.isEmpty()){
-                Toast.makeText(context, "Area not found! Sorry.", Toast.LENGTH_SHORT).show()
+            if(area == ""){
+                Toast.makeText(context, "Field is empty!", Toast.LENGTH_SHORT).show()
             }else{
-                address = addressList!![0]
-            }
+                var addressList: List<Address>? = null
+                val geoCoder = Geocoder(context)
+                addressList = geoCoder.getFromLocationName(area, 1)
 
+                if(addressList.isEmpty()){
+                    Toast.makeText(context, "Area not found! Sorry.", Toast.LENGTH_SHORT).show()
+                }else{
+                    address = addressList!![0]
+                }
+            }
             doCallback(10)
         }
 
@@ -76,11 +79,11 @@ class EventNearMeFragment : Fragment() {
             && ActivityCompat.checkSelfPermission(requireContext(),android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             val requestCode = 1000
             ActivityCompat.requestPermissions(requireContext() as Activity, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), requestCode)
-//            when(requestCode){
-//                1000 -> fetchLocation()
-//                else -> return
-//            }
-//            return
+            when(requestCode){
+                1000 -> fetchLocation(callback)
+                else -> return
+            }
+            return
         }
 
         val task = fusedLocationProviderClient?.lastLocation

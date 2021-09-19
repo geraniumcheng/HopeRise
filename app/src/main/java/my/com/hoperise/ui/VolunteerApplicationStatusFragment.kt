@@ -26,6 +26,7 @@ class VolunteerApplicationStatusFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVolunteerApplicationStatusBinding.inflate(inflater, container, false)
+        requireActivity().title = getString(R.string.volunteer_status)
 
         if(returnFragment){
             VOLUNTEERAPPLICATION.document(returnVAID).get().addOnSuccessListener {

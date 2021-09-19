@@ -44,6 +44,7 @@ class VolunteerSubmitApplicationFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVolunteerSubmitApplicationBinding.inflate(inflater, container, false)
+        requireActivity().title = getString(R.string.submit_application)
 
         binding.imgSelfie.setOnClickListener { showSelection("Selfie") }
         binding.imgFrontIC.setOnClickListener { showSelection("IC") }
@@ -66,8 +67,8 @@ class VolunteerSubmitApplicationFragment : Fragment() {
             var items: Array<CharSequence> =
                 arrayOf<CharSequence>("Take Photo", "Chose from photos")
             AlertDialog.Builder(requireContext())
-                .setTitle("Change profile photo")
-                //.setIcon(R.drawable.ic_select_photo)
+                .setTitle(getString(R.string.uploadICPhoto))
+                .setIcon(R.drawable.ic_select_photo)
                 .setSingleChoiceItems(items, 3) { d, n ->
                     if (n == 0) {
                         pickImage(n)

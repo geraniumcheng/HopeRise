@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable-v24/search_background.xml" value="0.33425925925925926" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ic_down.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ic_my_location.xml" value="0.16510416666666666" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ic_up.xml" value="0.30277777777777776" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ic_volunteer_application.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ic_volunteer_management.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/drawable/ss.xml" value="0.26296296296296295" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout-land/fragment_event_listing.xml" value="0.384375" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout-land/fragment_orphanage_listing.xml" value="0.384375" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/ic_error.xml" value="0.2546875" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/loading_img.xml" value="0.2824074074074074" />
         <entry key="..\:/Users/CZY/AndroidStudioProjects/HopeRise/app/src/main/res/drawable-v24/message_backgroun.xml" value="0.2796296296296296" />
@@ -103,16 +112,21 @@
         <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_request_reset_password.xml" value="0.2234375" />
         <entry key="..\:/Users/Shuzi/AndroidStudioProjects/HopeRise/app/src/main/res/layout/fragment_reset_password.xml" value="0.2234375" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_splash_screen.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/activity_staff.xml" value="0.11488250652741515" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_account.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_add_event.xml" value="0.33" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_add_orphanage.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_attendance.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_choose_orphanage_for_event.xml" value="0.3353846153846154" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_date_dialog.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_edit_event.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_edit_orphanage.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_enlarge_image.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event.xml" value="0.22" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event_details.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event_listing.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_event_near_me.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_manager_manage_application_request.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_manager_volunteer_application_listing.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_maps.xml" value="0.178125" />
@@ -126,11 +140,15 @@
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_details.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_listing.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/fragment_volunteer_submit_application.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_choose_orphanage_for_event.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_event_listing.xml" value="0.33" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_event_near_me.xml" value="0.5" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_orphanage_listing.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_volunteer_application_list.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/layout/item_volunteer_list.xml" value="0.3546875" />
         <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/menu/menu_add.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/menu/menu_event_near_me.xml" value="0.3546875" />
+        <entry key="..\:/Users/User/Desktop/HopeRise/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37083333333333335" />
       </map>
     </option>
   </component>

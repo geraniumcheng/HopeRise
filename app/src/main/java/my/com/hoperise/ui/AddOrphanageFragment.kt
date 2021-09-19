@@ -90,7 +90,7 @@ class AddOrphanageFragment : Fragment() {
             requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
         else {
-            showPhotoSelection(getString(R.string.uploadToGallery),
+            showPhotoSelection(getString(R.string.uploadToOrphanange),
                 { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
                     val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
                     photoIntent.type = "image/*"
@@ -109,6 +109,16 @@ class AddOrphanageFragment : Fragment() {
     }
 
     private fun submit() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add Orphanage")
+            .setMessage("Confirm add orphanage?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun confirm() {
         val o = Orphanage(
             id = vmOrphanage.generateID(),
             name = binding.edtName.text.toString().trim(),

@@ -35,7 +35,7 @@ class AttendanceFragment : Fragment() {
 
         lifecycleScope.launch {
             if (vmParticipation.checkVolunteerStatus() != getString(R.string.approved)) {
-                infoDialog(getString(R.string.verifyFirst)) { nav.navigate(R.id.volunteerSubmitApplicationFragment) }
+                infoDialog(getString(R.string.verifyFirst)) { nav.navigate(R.id.viewVolunteerProfileFragment) }
                 return@launch
             }
 

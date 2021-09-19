@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -90,6 +91,17 @@ class AddEventFragment : Fragment(){
     }
 
     private fun submit() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add Event")
+            .setMessage("Confirm add event?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+
+    }
+
+    private fun confirm() {
         if(binding.edtVolunteerNo.text.toString() == ""){
             errorDialog(getString(R.string.fillEvery))
             return
@@ -105,6 +117,7 @@ class AddEventFragment : Fragment(){
             description = binding.edtDesc.text.toString(),
             orphanageID = id
         )
+
 
         val err = vmEvent.validate(e)
         if( err != ""){

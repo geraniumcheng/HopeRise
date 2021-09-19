@@ -2,6 +2,7 @@ package my.com.hoperise.ui
 
 import android.Manifest
 import android.app.Activity.RESULT_CANCELED
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -96,7 +97,7 @@ class EditOrphanageFragment : Fragment() {
             requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
         else {
-            showPhotoSelection(getString(R.string.uploadToGallery),
+            showPhotoSelection(getString(R.string.uploadToOrphanange),
                 { cameraLauncher.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE)) }, {
                     val photoIntent =  Intent(Intent.ACTION_GET_CONTENT)
                     photoIntent.type = "image/*"
@@ -125,6 +126,17 @@ class EditOrphanageFragment : Fragment() {
     }
 
     private fun submit(){
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("Edit Orphanage")
+            .setMessage("Confirm edit orphanage?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun confirm() {
         var lat = 0.0
         var long = 0.0
         var newLoc = ""

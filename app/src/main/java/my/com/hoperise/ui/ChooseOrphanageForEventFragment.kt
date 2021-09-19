@@ -33,9 +33,6 @@ class ChooseOrphanageForEventFragment : Fragment() {
                 "id" to orphanage.id,
                 "name" to orphanage.name
             )
-            val fragmentManager: FragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().remove(this).commit()
-            fragmentManager.popBackStack()
             nav.navigate(R.id.addEventFragment, args)
         }
         }

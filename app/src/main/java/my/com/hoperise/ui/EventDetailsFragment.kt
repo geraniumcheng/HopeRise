@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -86,7 +87,7 @@ class EventDetailsFragment : Fragment() {
                 else if (role == getString(R.string.volunteer) && vmParticipation.checkVolunteerStatus() == getString(R.string.approved))
                     joinEvent()
                 else
-                    infoDialog(getString(R.string.verifyFirst)) { nav.navigate(R.id.volunteerSubmitApplicationFragment) }
+                    infoDialog(getString(R.string.verifyFirst)) { nav.navigate(R.id.viewVolunteerProfileFragment) }
             }
         }
 
@@ -118,6 +119,16 @@ class EventDetailsFragment : Fragment() {
     }
 
     private fun delete() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Event")
+            .setMessage("Confirm delete event?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun confirm() {
         vmEvent.delete(id)
         nav.navigateUp()
     }

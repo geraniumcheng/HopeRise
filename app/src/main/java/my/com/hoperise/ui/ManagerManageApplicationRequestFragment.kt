@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import my.com.hoperise.data.*
 import my.com.hoperise.databinding.FragmentManagerManageApplicationRequestBinding
 import my.com.hoperise.util.toBitmap
 import java.text.SimpleDateFormat
+import java.util.*
 
 class ManagerManageApplicationRequestFragment : Fragment() {
     private lateinit var binding: FragmentManagerManageApplicationRequestBinding
@@ -39,7 +41,6 @@ class ManagerManageApplicationRequestFragment : Fragment() {
         binding.btnReject.setOnClickListener {
             if(binding.btnReject.text == "Confirm Reject"){
                 setStatus("Rejected")
-                reason = ""
             }else{
                 nav.navigate(R.id.rejectReasonFragment)
 
@@ -49,13 +50,29 @@ class ManagerManageApplicationRequestFragment : Fragment() {
     }
 
     private fun setStatus(item: String) {
-        if(item == "Rejected"){
-            VOLUNTEERAPPLICATION.document(id).update("status",item, "reason", reason)
+        val status = if(item == "Rejected"){
+            item.dropLast(2)
         }else{
-            VOLUNTEERAPPLICATION.document(id).update("status",item)
-
+            item.dropLast(1)
         }
-        nav.navigateUp()
+        AlertDialog.Builder(requireContext())
+            .setTitle("Manage Volunteer Application Request")
+            .setMessage("Confirm $status request?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ ->
+                if(item == "Rejected"){
+                    VOLUNTEERAPPLICATION.document(id).update("status",item, "reason", reason)
+                    reason = ""
+                    nav.navigateUp()
+                }else{
+                    VOLUNTEERAPPLICATION.document(id).update("status",item)
+                    nav.navigateUp()
+                }
+            }
+            .setNegativeButton("Cancel", null).show()
+
+
     }
 
     private fun load(va: VolunteerApplication) {

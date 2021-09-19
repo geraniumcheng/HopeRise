@@ -1,5 +1,6 @@
 package my.com.hoperise.ui
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -32,12 +33,11 @@ class OrphanageDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentOrphanageDetailsBinding.inflate(inflater, container, false)
         role = currentUser?.role ?: ""
-
+        requireActivity().title = getString(R.string.orphanage_details)
         if(returnFragment){
             ORPHANAGE.document(id).get().addOnSuccessListener {
                     snap ->
                 val orph = snap.toObject<Orphanage>()!!
-                Log.d("orph", orph.toString())
                 load(orph)
             }
             returnFragment = false
@@ -51,7 +51,6 @@ class OrphanageDetailsFragment : Fragment() {
             ORPHANAGE.document(id).get().addOnSuccessListener {
                 snap ->
                 val orph = snap.toObject<Orphanage>()!!
-                Log.d("orph", orph.toString())
                 load(orph)
             }
         }else{
@@ -84,6 +83,16 @@ class OrphanageDetailsFragment : Fragment() {
 
     private fun delete() {
         //delete events as well
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Orphanage")
+            .setMessage("Confirm delete orphanage?" )
+            //.setIcon(R.drawable.ic_leave_confirm_dialog)
+            .setPositiveButton("Confirm"
+            ) { _, _ -> confirm() }
+            .setNegativeButton("Cancel", null).show()
+    }
+
+    private fun confirm() {
         vmEvent.deleteEvents(id)
         vmOrphanage.delete(id)
         nav.navigateUp()
